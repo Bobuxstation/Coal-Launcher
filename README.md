@@ -17,7 +17,7 @@ Then, you can just run this app by typing
 npm start
 ```
 
-If you want to build for you platform, you can run: 
+If you want to build for your platform, you can run: 
 
 ```
 npm run dist
