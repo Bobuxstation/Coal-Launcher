@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="interfont/inter.css">
+<link rel="stylesheet" href="scroll.css">
+<link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Coal - Add a game</title>
+<style>
+    input, button {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #4d4d4d;
+        color:white;
+        transition: all 0.5s ease;
+        border: #5d5d5d solid 1px;
+    }
+    body {
+        text-align: center;
+        background: #1d1d1d;
+    }
+</style>
+</head>
+  <header class="header">
+    <nav>
+      <ul>
+        <li><a href="index.html">Collection</a></li>
+        <li><a href="market.html">Market</a></li>
+        <li><a href="add.html">Options</a></li>
+        <input class="searchbox" type="search" placeholder="Search On Coal...">
+      </ul>
+      </nav>
+  </header>
+  <body>
+    <br>
+    <h1>Add a game</h1><br><br>
+    <input placeholder="Game name" id="name"><br>
+    <input placeholder="Banner" id="banner"><br>
+    <input placeholder="Game Feed (optional)" id="feed"><br>
+    <input placeholder="Game URL" id="dir"><br><br>
+    <button onclick="add()">Add to my games</button><br>
+    <script>
+        const remote = require('@electron/remote');
+        const app = remote.app;
+        const configDir =  app.getPath('userData');
+        let jsonData = require(configDir + '/games.json');
+        let fs = require('fs');
+        function add() {
+            var obj = (jsonData);
+            if (document.getElementById("feed").value == "") {
+              let feed2 = "false";
+              obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value});
+            } else {
+              let feed2 = document.getElementById("feed").value;
+              obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value});
+            }
+            jsonStr = JSON.stringify(obj);
+            console.log(jsonStr);
+            fs.writeFile(configDir + '/games.json', jsonStr, (err) => { 
+                if (err) { 
+                 console.log(err); 
+                }
+            });
+            //window.location.replace("index.html");
+        }
+    </script>
+  </body>
+</html>

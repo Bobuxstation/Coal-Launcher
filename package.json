@@ -1,0 +1,33 @@
+{
+  "name": "coal-launcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "author": "ABstudios",
+  "license": "ISC",
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "electron-dl": "^3.3.1",
+    "electron-download-manager": "^2.1.2",
+    "electron-fetch": "^1.7.4",
+    "jquery": "^3.6.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "electron": "^20.0.0",
+    "electron-builder": "^23.3.3"
+  },
+  "build": {
+    "appId": "com.ABstudios.coal-launcher",
+    "productName": "AB Coal",
+    "target": "NSIS"
+  },
+  "nsis": {
+    "allowToChangeInstallationDirectory": true
+  }
+}
