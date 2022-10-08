@@ -2,6 +2,7 @@
     font-family: inter;
     padding:0;
     margin:0;
+    transition: all 0.5s ease !important;
 }
 body {
     padding: 0;
@@ -22,10 +23,6 @@ body {
 }
 input {
     border: none;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
-}
-input:hover {
-    box-shadow: none;
 }
 .body button {
     border: none;
@@ -88,6 +85,7 @@ li a:hover {
     backdrop-filter: blur(10px);
     background: #1d1d1ddd;
     box-sizing: border-box;
+    border: #5d5d5d solid 1px;
     padding: 5px;
     border-radius: 5px;
 }
@@ -95,6 +93,7 @@ li a:hover {
     backdrop-filter: blur(10px);
     background: #1d1d1ddd;
     box-sizing: border-box;
+    border: #5d5d5d solid 1px;
     padding: 5px;
     border-radius: 5px;
 }
@@ -102,6 +101,7 @@ li a:hover {
     width: 100%;
     backdrop-filter: blur(10px);
     padding: 5px;
+    border: #5d5d5d solid 1px;
     border-radius: 5px;
     box-sizing: border-box;
     border: none;
@@ -111,11 +111,11 @@ li a:hover {
 }
 .STOREGAME {
     width: 250px;
+    box-sizing: border-box !important;
     height: 250px;
     float:left;
     background-size: cover;
     text-shadow: 2px 2px 10px #000000;
-	border: #1d1d1dab solid 2px;
     padding: 5px;
     margin: 5px !important;
     justify-content: center;

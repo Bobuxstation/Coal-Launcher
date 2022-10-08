@@ -5,9 +5,11 @@ let discoverList = document.getElementById("notmygames");
 let fs = require('fs');
 const configDir =  app.getPath('userData');
 let jsonData = require(configDir + '/games.json');
-console.log(configDir);
+let gameproviders = jsonData.gameprovider;
+console.log("Launcher Directory Set To: " + configDir);
+console.log("Game Provider Set To: " + gameproviders);
 
-fetch("https://bobuxstation.github.io/Coal-Web/games.json")
+fetch(gameproviders)
           .then((res) => {
             return res.json();
           })
@@ -20,7 +22,16 @@ fetch("https://bobuxstation.github.io/Coal-Web/games.json")
             btn.style.backgroundImage = "url(" + banner + ")";
             btn.onclick = function () {
                 var obj = (jsonData);
-                obj['items'].push({"name" : onlineitems.name, "feed": onlineitems.feed, "Version" : onlineitems.Version, "developer" : onlineitems.developer, "banner" : onlineitems.banner, "dir" : onlineitems.link});
+                obj['items'].push(
+                  {
+                  "name" : onlineitems.name,
+                  "feed": onlineitems.feed,
+                  "Version" : onlineitems.Version,
+                  "developer" : onlineitems.developer,
+                  "banner" : onlineitems.banner,
+                  "dir" : onlineitems.link
+                  }
+                  );
                 jsonStr = JSON.stringify(obj);
                 console.log(jsonStr);
                 const gameListDir = configDir + "/games.json";
@@ -30,6 +41,7 @@ fetch("https://bobuxstation.github.io/Coal-Web/games.json")
                      console.log(err); 
                     }
                 });
+                window.alert('Game Added!')
             };
             discoverList.appendChild(btn);
         })

@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <title>Coal - Add a game</title>
 <style>
-    input, button {
+    input, button, textarea {
         padding: 5px;
         margin: 5px;
         border-radius: 2.5px;
@@ -14,10 +14,11 @@
         background: #4d4d4d;
         color:white;
         transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
         border: #5d5d5d solid 1px;
     }
     body {
-        text-align: center;
         background: #1d1d1d;
     }
 </style>
@@ -33,13 +34,42 @@
       </nav>
   </header>
   <body>
-    <br>
-    <h1>Add a game</h1><br><br>
-    <input placeholder="Game name" id="name"><br>
-    <input placeholder="Banner" id="banner"><br>
-    <input placeholder="Game Feed (optional)" id="feed"><br>
-    <input placeholder="Game URL" id="dir"><br><br>
-    <button onclick="add()">Add to my games</button><br>
+    <div style="padding: 10px;">
+      <h3>Add a game</h3>
+      <p>
+        Like It Says, it adds a game to your collection. Note That: <br>
+        if you do not want to add a game news/feed, leave it empty.
+      </p><br>
+      <input placeholder="Game name" id="name"><br>
+      <input placeholder="Banner" id="banner"><br>
+      <input placeholder="Game Feed (optional)" id="feed"><br>
+      <input placeholder="Game URL" id="dir"><br>
+      <button onclick="add()" style="cursor: pointer;" id="addgame">Add to my games</button><br><br>
+
+      <h3>Launcher Configuration</h3>
+      <p>
+        Changes your configuration for this launcher. Very experimental!
+      </p><br>
+      <input placeholder="Game Provider" id="gameprovider"></input><br>
+      <button onclick="changeprovider()">Apply</button><br>
+      <button onclick="defaultprovider()">Defaults</button><br><br>
+      
+      <h3>Send Feedback</h3>
+      <p>
+        If you have any bugs to report or ideas to add, leave a message!
+      </p><br>
+      <form action="https://postmail.invotes.com/send"
+      method="post" id="email_form">
+
+      <input type="text" name="subject" placeholder="Subject" /><br>
+      <textarea name="text" placeholder="Message"></textarea><br>
+      <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
+      <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
+      <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
+      <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" />
+  </form>
+    </div>
+
     <script>
         const remote = require('@electron/remote');
         const app = remote.app;
@@ -62,8 +92,30 @@
                  console.log(err); 
                 }
             });
-            //window.location.replace("index.html");
-        }
+            window.alert('Game Added!')
+        };
+        function changeprovider(){
+          jsonData.gameprovider = document.getElementById('gameprovider').value;
+          console.log(jsonData);
+          newsettings = JSON.stringify(jsonData);
+          fs.writeFile(configDir + '/games.json', newsettings, (err) => { 
+                if (err) { 
+                 console.log(err); 
+                }
+            });
+            window.alert('Changes Applied!')
+        };
+        function defaultprovider(){
+          jsonData.gameprovider = 'https://bobuxstation.github.io/Coal-Web/games.json';
+          console.log(jsonData);
+          newsettings = JSON.stringify(jsonData);
+          fs.writeFile(configDir + '/games.json', newsettings, (err) => { 
+                if (err) { 
+                 console.log(err); 
+                }
+            });
+          window.alert('Changes Reverted!')
+        };
     </script>
   </body>
 </html>

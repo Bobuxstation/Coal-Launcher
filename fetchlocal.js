@@ -14,7 +14,8 @@ if (fs.existsSync(configDir + '/games.json')) {
   } else {
     console.log('Game List Is Not Found! Creating Game List...')
     let student = { 
-        "items":[]
+        "items":[],
+        "gameprovider":"https://bobuxstation.github.io/Coal-Web/games.json"
     };
      
     let data = JSON.stringify(student);
