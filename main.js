@@ -8,8 +8,9 @@ function createWindow () {
     const win = new BrowserWindow({
       width: 1000,
       height: 600,
-      icon: './assets/logo.png',
+      icon: "./assets/logo.png",
       autoHideMenuBar: true,
+      frame: false,
       webPreferences: {
         enableRemoteModule: true,
         nodeIntegration: true,

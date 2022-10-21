@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
     height: 6px;
   }
   ::-webkit-scrollbar-button {
@@ -7,9 +7,8 @@
     height: 4px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #e1e1e1;
+    background: #4d4d4d;
     border: 0px none #ffffff;
-    border-radius: 41px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #ffffff;
@@ -18,16 +17,12 @@
     background: #ffffff;
   }
   ::-webkit-scrollbar-track {
-    background: #1d1d1d;
+    background: #2d2d2d;
     border: 0px none #ffffff;
-    border-radius: 50px;
   }
   ::-webkit-scrollbar-track:hover {
-    background: #1d1d1d;
+    background: #2d2d2d;
   }
   ::-webkit-scrollbar-track:active {
-    background: #1d1d1d;
-  }
-  ::-webkit-scrollbar-corner {
-    background: transparent;
+    background: #2d2d2d;
   }

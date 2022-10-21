@@ -1,6 +1,5 @@
 const remote = require('@electron/remote');
 const app = remote.app;
-window.$ = window.jQuery = require('jquery');
 let gameList = document.getElementById("mygames");
 let discoverList = document.getElementById("notmygames");
 let toolList = document.getElementById("coaltools");
@@ -13,12 +12,13 @@ if (fs.existsSync(configDir + '/games.json')) {
     console.log('Game List Found!')
   } else {
     console.log('Game List Is Not Found! Creating Game List...')
-    let student = { 
+    let jsontemplate = { 
         "items":[],
-        "gameprovider":"https://bobuxstation.github.io/Coal-Web/games.json"
+        "gameprovider":"https://bobuxstation.github.io/Coal-Web/games.json",
+        "achievements":"{'name':'Coal','details':'Use coal for the first time'}"
     };
      
-    let data = JSON.stringify(student);
+    let data = JSON.stringify(jsontemplate);
     fs.writeFileSync(configDir + '/games.json', data);
   }
 
@@ -31,7 +31,9 @@ jsonData.items.forEach(items => {
     btn.onclick = function () {
         document.getElementById('gamename').innerHTML = items.name;
         document.getElementById('gamedev').innerHTML = items.developer;
-        document.getElementById('gameplay').href = "player.html?game=" + items.dir + "&banner=" + items.banner;
+        document.getElementById('gameplay').onclick = function(){
+            window.open("player.html?game="+items.dir+"&banner="+items.banner+"&name="+items.name, '_blank', 'icon= "./assets/logo.png", autoHideMenuBar= true, width= 1000, height= 600,');
+        };
         document.getElementById('gamedetails').style.display = "block";
         document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
         if (items.feed == "false") {
@@ -42,4 +44,4 @@ jsonData.items.forEach(items => {
         }
     };
     gameList.appendChild(btn);
-})
+});

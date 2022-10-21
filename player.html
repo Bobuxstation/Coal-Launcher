@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="scroll.css">
 <link rel="stylesheet" href="interfont/inter.css">
-<script src="https://kit.fontawesome.com/970a0290cd.js" crossorigin="anonymous"></script>
+<script src="fontawesome.js" crossorigin="anonymous"></script>
 <script src="player.js" defer></script>
 <meta charset="UTF-8">
-<title>Coal - Home</title>
+<title id="titlename">Coal - Home</title>
+<link rel="icon" href="assets/logo.png">
 </head>
-<body id="body" style="backdrop-filter: blur(10px);">
+<body id="body">
   <div class="content" id="content">
-    <header class="header">
-        <nav>
+    <header class="header" style="border-radius: 0px;">
+        <nav style="border-radius: 0px;">
           <ul>
-            <li><a href="index.html">Back</a></li>
             <li><a onclick="refresh()"><i class="fa-solid fa-arrow-rotate-right"></i></a></li>
+            <li><a id="titlename1"></a></li>
           </ul>
           </nav>
     </header>
-<div class="body">
-<iframe id="player" src="" style="height: 92vh; width: 100vw; display: block; border: none; background: none;"></iframe>
+<div class="body" style="padding-top: 45px;">
+<iframe id="player" src="" style=" height: 92vh; width: 100vw; display: block; border: none; box-sizing: border-box;"></iframe>
 </div>
 </div>
 </body>

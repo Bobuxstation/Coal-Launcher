@@ -4,25 +4,30 @@
 <link rel="stylesheet" href="scroll.css">
 <link rel="stylesheet" href="interfont/inter.css">
 <script src="fetchlocal.js" defer></script>
-<script src="https://kit.fontawesome.com/970a0290cd.js" crossorigin="anonymous"></script>
+<script src="downloader.js" defer></script>
+<script src="close.js"></script>
+<script src="fontawesome.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Coal - Home</title>
 </head>
 <body id="body">
+  <header class="header">
+    <nav>
+      <ul>
+        <li><a href="index.html">Collection</a></li>
+        <li><a href="market.html">Market</a></li>
+        <li><a href="add.html">Options</a></li>
+        <li style="float: right;"><a onclick="closeWindow()"><i class="fa-solid fa-x"></i></a></li>
+        <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
+        <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
+      </ul>
+      </nav>
+  </header>
   <div class="content" id="content">
-    <header class="header">
-        <nav>
-          <ul>
-            <li><a href="index.html">Collection</a></li>
-            <li><a href="market.html">Market</a></li>
-            <li><a href="add.html">Options</a></li>
-            <input class="searchbox" type="search" placeholder="Search On Coal...">
-          </ul>
-          </nav>
-    </header>
 <div class="body">
   <div class="sidebar"><div class="gamelist">
-    <h2>My Collection</h2><br>
+    <h2 style="text-align: center;">My Collection</h2>
+    <button style="background: none;"></button>
     <div id="mygames" class="game">
   </div></div>
 </div>
@@ -30,7 +35,7 @@
       <div class="gamedetails" id="gamedetails" style="display: none;">
       <h2 id="gamename">Game Name</h2>
       <p id="gamedev">Game Publisher</p><br>
-      <a href="" id="gameplay" style="text-decoration:none;" target="_blank"><button class="playbutton">Play</button></a>
+      <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton">Play</button></a>
       </div>
       <iframe id="gamefeed" style="display: none;">
         <link rel="stylesheet" href="scroll.css">

@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="interfont/inter.css">
 <link rel="stylesheet" href="scroll.css">
 <link rel="stylesheet" href="style.css">
+<script src="close.js"></script>
+<script src="fontawesome.js" crossorigin="anonymous"></script>
 <head>
   <meta charset="UTF-8">
   <title>Coal - Add a game</title>
@@ -23,18 +25,20 @@
     }
 </style>
 </head>
-  <header class="header">
-    <nav>
-      <ul>
-        <li><a href="index.html">Collection</a></li>
-        <li><a href="market.html">Market</a></li>
-        <li><a href="add.html">Options</a></li>
-        <input class="searchbox" type="search" placeholder="Search On Coal...">
-      </ul>
-      </nav>
-  </header>
+<header class="header">
+  <nav>
+    <ul>
+      <li><a href="index.html">Collection</a></li>
+      <li><a href="market.html">Market</a></li>
+      <li><a href="add.html">Options</a></li>
+      <li style="float: right;"><a onclick="closeWindow()"><i class="fa-solid fa-x"></i></a></li>
+      <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
+      <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
+    </ul>
+    </nav>
+</header>
   <body>
-    <div style="padding: 10px;">
+    <div style="padding: 10px; padding-top: 60px;">
       <h3>Add a game</h3>
       <p>
         Like It Says, it adds a game to your collection. Note That: <br>
