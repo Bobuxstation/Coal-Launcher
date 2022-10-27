@@ -17,14 +17,15 @@ function downloadgame(gameURL, gameName) {
         directory: configDir + "/games",
         fileName: gameName + ".html",
         cloneFiles: false,
+        maxAttempts: 3,
         onError: function (error) {
           console.log("Error from attempt ", error);
           document.getElementById(gameName).innerHTML = "<h2>" + gameName + "</h2>" + "<p>" + error + "</p>";
         },
         onProgress: function (percentage, chunk, remainingSize) {
-            let downloadprogres = ("Downloading File... " + Math.round(percentage) + "%. " + remainingSize + " Bytes Left");
+            let downloadprogres = (Math.round(percentage) + "%. " + remainingSize + " Bytes Left");
             console.log(downloadprogres);
-            document.getElementById(gameName).innerHTML = "<h2>" + gameName + "</h2>" + "<p>" + downloadprogres + "</p>";
+            document.getElementById(gameName).innerHTML = "<h2>" + gameName + "</h2>" + "<p>" + downloadprogres + "</p>" + "<progress class='progress' value='" + Math.round(percentage) + "' max='100'></progress>";
           },
       });
     downloader.download();

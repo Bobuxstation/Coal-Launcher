@@ -1,197 +1,213 @@
 * {
-    font-family: inter;
-    padding:0;
-    margin:0;
-    transition: all 0.5s ease !important;
+  font-family: inter;
+  padding:0;
+  margin:0;
+  transition: all 0.5s ease !important;
 }
 body {
-    padding: 0;
-    user-select: none;
-    color:white;
-    background-size: cover;
-    background-color: #1d1d1d;
+  padding: 0;
+  user-select: none;
+  color:white;
+  background-size: cover;
+  background-color: #1d1d1d;
 }
 .body {
-  padding-top: 50px;
+padding-top: 50px;
 }
 .body button {
-    color: white;
-    background: none;
-    background-size: cover;
-    border-radius: 5px;
-    display: block;
-    margin-bottom: 5px;
-    transition: all 0.5s ease;
+  color: white;
+  background: none;
+  background-size: cover;
+  border-radius: 5px;
+  display: block;
+  margin-bottom: 5px;
+  transition: all 0.5s ease;
 }
 input {
-    border: none;
+  border: none;
 }
 .body button {
-    border: none;
+  border: none;
 }
 .header {
-    height: fit-content;
-    background-color: #2d2d2d;
-    -webkit-app-region: drag;
-    position: fixed;
-    width: 100%;
-    border-radius: 5px 5px 0px 0px;
+  height: fit-content;
+  background-color: #2d2d2dee;
+  -webkit-app-region: drag;
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(10px);
 }
 .sidebar {
-  box-sizing: border-box;
-  padding: 5px;
-  width: 20% !important;
-  width: fit-content;
-  float: left;
+box-sizing: border-box;
+padding: 5px;
+width: 20% !important;
+width: fit-content;
+float: left;
 }
 li {
-  float: left;
+float: left;
 }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
 }
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 7.5px;
-  margin: 5px;
-  border-radius: 5px;
-  min-width: 20px;
-  text-decoration: none;
-  -webkit-app-region: no-drag;
+display: block;
+color: white;
+text-align: center;
+padding: 7.5px;
+margin: 5px;
+border-radius: 5px;
+min-width: 20px;
+text-decoration: none;
+-webkit-app-region: no-drag;
+font-weight: bold;
 }
 li a:hover {
-  background-color: #3d3d3d;
+background-color: #3d3d3d;
 }
 .searchbox {
-    padding: 8.5px;
-    box-shadow: none;
-    margin: 5px;
-    width: 300px;
-    border-radius: 5px;
-    text-align: center;
-    background: #4d4d4d;
-    color:white;
-    transition: all 0.5s ease;
-    border: #5d5d5d solid 1px;
-    float: right;
+  padding: 8.5px;
+  box-shadow: none;
+  margin: 5px;
+  width: 300px;
+  border-radius: 5px;
+  text-align: center;
+  background: #4d4d4d;
+  color:white;
+  transition: all 0.5s ease;
+  border: #5d5d5d solid 1px;
+  float: right;
 }
 .sidebar2 {
-  box-sizing: border-box;
-  padding: 5px;
-  width: fit-content;
-  float: right;
-  width: 80%!important;
-  height: 100%;
+box-sizing: border-box;
+padding: 5px;
+width: fit-content;
+float: right;
+width: 80%!important;
+height: 100%;
 }
 .gamelist {
-    backdrop-filter: blur(10px);
-    background: #1d1d1ddd;
-    box-sizing: border-box;
-    border: #5d5d5d solid 1px;
-    padding: 5px;
-    border-radius: 5px;
-    min-height: 250px;
+  backdrop-filter: blur(10px);
+  background: #1d1d1ddd;
+  box-sizing: border-box;
+  border: #5d5d5d solid 1px;
+  padding: 5px;
+  border-radius: 5px;
+  min-height: 250px;
 }
 .gamelist button {
-  width: 100%;
-  padding: 2.5px;
-  text-align: left;
+width: 100%;
+padding: 2.5px;
+text-align: left;
 }
 .gamelist button:hover {
-  background-color: #5d5d5d90;
+background-color: #5d5d5d90;
 }
 .gamedetails {
-    backdrop-filter: blur(10px);
-    background: #1d1d1ddd;
-    box-sizing: border-box;
-    border: #5d5d5d solid 1px;
-    padding: 5px;
-    border-radius: 5px;
+  backdrop-filter: blur(10px);
+  background: #1d1d1ddd;
+  box-sizing: border-box;
+  border: #5d5d5d solid 1px;
+  padding: 5px;
+  border-radius: 5px;
 }
 #gamefeed {
-    width: 100%;
-    backdrop-filter: blur(10px);
-    padding: 5px;
-    border: #5d5d5d solid 1px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    border: none;
-    background: #1d1d1ddd;
-    height: 500px;
-    margin-top: 5px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  padding: 5px;
+  border: #5d5d5d solid 1px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: none;
+  background: #1d1d1ddd;
+  height: 500px;
+  margin-top: 5px;
 }
 .STOREGAME {
-    width: 250px;
-    box-sizing: border-box !important;
-    height: 250px;
-    background-size: cover;
-    text-shadow: 2px 2px 10px #000000;
-    padding: 5px;
-    justify-content: center;
-    text-align: center;
-    background-color: #1d1d1dab;
-    border: #5d5d5d solid 1px;
-    border-radius: 5PX;
-    margin: 10px !important;
-    float: left;
-	transition: all 0.5s ease;
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 250px;
+  box-sizing: border-box !important;
+  height: 250px;
+  background-size: cover;
+  text-shadow: 2px 2px 10px #000000;
+  padding: 5px;
+  justify-content: center;
+  text-align: center;
+  background-color: #1d1d1dab;
+  border: #5d5d5d solid 1px;
+  border-radius: 5PX;
+  margin: 10px !important;
+  float: left;
+transition: all 0.5s ease;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .STOREGAME:hover {
-	box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	transition: all 0.5s ease;
-    cursor: pointer;
+box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+transition: all 0.5s ease;
+  cursor: pointer;
 }
 #notmygames {
-    margin: 0;
+  margin: 0;
 }
 .playbutton {
-    background: green !important; 
-    font-size: 17.5px;
-    padding: 10px; 
-    width: 100%;
-    color: white !important;
-    text-decoration: none;
-    font-weight: bold;
-    border: darkgreen solid 1px !important;
+  background: green !important; 
+  font-size: 17.5px;
+  padding: 10px; 
+  width: 100%;
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  border: darkgreen solid 1px !important;
 }
 .playbutton:hover {
-  background: lime !important; 
-  color: black !important;
+background: lime !important; 
+color: black !important;
 }
 .downloads {
-  z-index:1;
-  right: 0;
-  position:fixed;
-  margin: 5px;
-  margin-top: 50px;
-  background-color: #2d2d2d;
-  border-radius: 5px;
-  width: 300px;
-  min-height: 150px;
-  padding: 5px;
-  animation: fadein;
-  animation-duration: 0.5s;
+z-index:1;
+right: 0;
+position:fixed;
+margin: 5px;
+margin-top: 50px;
+background-color: #2d2d2dee;
+backdrop-filter: blur(10px);
+border-radius: 5px;
+width: 300px;
+min-height: 150px;
+padding: 5px;
+animation: fadein;
+animation-duration: 0.5s;
 }
 .downloadinfo {
-  border: white solid 1px;
-  border-width: 1px 0px 0px 0px;
-  margin-top: 5px;
-  padding-top: 5px;
+border: white solid 1px;
+border-width: 1px 0px 0px 0px;
+margin-top: 5px;
+padding-top: 5px;
 }
 @keyframes fadein {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
 }
 nav {
-  border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px;
+}
+.progress {
+width: 100%;
+background: #1d1d1d;
+border-radius: 5px;
+height: 15px;
+}
+.progress::-webkit-progress-bar {
+background: #1d1d1d;
+border-radius: 5px;
+}
+.progress::-webkit-progress-value {
+background: white;
+border-radius: 5px;
 }
