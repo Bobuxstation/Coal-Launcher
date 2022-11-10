@@ -15,6 +15,7 @@ function createWindow () {
         enableRemoteModule: true,
         nodeIntegration: true,
         contextIsolation: false,
+        webviewTag: true,
       }
     });
     require('@electron/remote/main').initialize()

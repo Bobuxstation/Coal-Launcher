@@ -13,7 +13,8 @@ if (fs.existsSync(configDir + '/games.json')) {
   } else {
     console.log('Game List Is Not Found! Creating Game List...')
     let jsontemplate = { 
-        "items":[],
+        "items":[
+        ],
         "gameprovider":"https://bobuxstation.github.io/Coal-Web/games.json",
         "achievements":"{'name':'Coal','details':'Use coal for the first time'}"
     };
@@ -32,7 +33,11 @@ jsonData.items.forEach(items => {
         document.getElementById('gamename').innerHTML = items.name;
         document.getElementById('gamedev').innerHTML = items.developer;
         document.getElementById('gameplay').onclick = function(){
-            window.open("player.html?game="+items.dir+"&banner="+items.banner+"&name="+items.name, '_blank', 'icon= "./assets/logo.png", autoHideMenuBar= true, width= 1000, height= 600,');
+            window.open(
+                "player.html?game="+items.dir+"&banner="+items.banner+"&name="+items.name,
+                 '_blank', 
+                 'icon= "./assets/logo.png",webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+                );
         };
         document.getElementById('gamedetails').style.display = "block";
         document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
@@ -44,4 +49,21 @@ jsonData.items.forEach(items => {
         }
     };
     gameList.appendChild(btn);
+    document.getElementById('gamename').innerHTML = items.name;
+    document.getElementById('gamedev').innerHTML = items.developer;
+    document.getElementById('gameplay').onclick = function(){
+        window.open(
+            "player.html?game="+items.dir+"&banner="+items.banner+"&name="+items.name,
+             '_blank', 
+             'icon= "./assets/logo.png",webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+            );
+    };
+    document.getElementById('gamedetails').style.display = "block";
+    document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
+    if (items.feed == "false") {
+        document.getElementById('gamefeed').style.display = "none";
+    } else {
+        document.getElementById('gamefeed').src = items.feed;
+        document.getElementById('gamefeed').style.display = "block";
+    }
 });

@@ -19,6 +19,43 @@
         resize: vertical;
         box-sizing: border-box;
         border: #5d5d5d solid 1px;
+        outline: none;
+    }
+    input:hover, button:hover, textarea:hover {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #5d5d5d;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px;
+    }
+    input:focus, button:focus, textarea:focus {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #5d5d5d;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px;
+    }
+    input:active, button:active, textarea:active {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #3d3d3d;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px;
     }
     body {
         background: #1d1d1d;
@@ -55,8 +92,8 @@
         Changes your configuration for this launcher. Very experimental!
       </p><br>
       <input placeholder="Game Provider" id="gameprovider"></input><br>
-      <button onclick="changeprovider()">Apply</button><br>
-      <button onclick="defaultprovider()">Defaults</button><br><br>
+      <button onclick="changeprovider()" id="gameapply">Apply</button><br>
+      <button onclick="defaultprovider()" id="gamedefault">Defaults</button><br><br>
       
       <h3>Send Feedback</h3>
       <p>
@@ -96,7 +133,7 @@
                  console.log(err); 
                 }
             });
-            window.alert('Game Added!')
+            document.getElementById('addgame').innerHTML = 'Game Added!'
         };
         function changeprovider(){
           jsonData.gameprovider = document.getElementById('gameprovider').value;
@@ -107,7 +144,7 @@
                  console.log(err); 
                 }
             });
-            window.alert('Changes Applied!')
+            document.getElementById('gameapply').innerHTML = 'Changes Applied!'
         };
         function defaultprovider(){
           jsonData.gameprovider = 'https://bobuxstation.github.io/Coal-Web/games.json';
@@ -118,7 +155,7 @@
                  console.log(err); 
                 }
             });
-          window.alert('Changes Reverted!')
+            document.getElementById('gamedefault').innerHTML = 'Changes Reverted!'
         };
     </script>
   </body>

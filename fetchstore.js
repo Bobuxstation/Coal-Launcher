@@ -36,4 +36,7 @@ fetch(gameproviders)
             };
             discoverList.appendChild(btn);
         })
-          );
+          ) 
+          .catch(error => {
+            discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment: ' + error.message + '</h4>';
+          });

@@ -2,7 +2,7 @@
   font-family: inter;
   padding:0;
   margin:0;
-  transition: all 0.5s ease !important;
+  transition: all 0.5s ease;
 }
 body {
   padding: 0;
