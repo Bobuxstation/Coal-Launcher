@@ -15,13 +15,12 @@ jobs:
             sudo apt-get update -y
             sudo dpkg --add-architecture i386 && sudo apt-get update -y
             sudo apt-get install -y dpkg fakeroot wine32 wine64 rpm
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
       - run:
           name: Generate Builds
           command: npm run dist
+      - run:
+          name: Generate Windows Builds
+          command: npm run buildwin
 
       - store_artifacts:
           path: ~/repo/dist
