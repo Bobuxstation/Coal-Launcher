@@ -1,29 +1,43 @@
 {
   "name": "coal-launcher",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Epok HTML5 Game Launcher",
   "main": "main.js",
   "scripts": {
     "test": "echo \"No test specified\"",
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "buildwin": "electron-builder --win"
   },
   "author": "ABstudios",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@electron/remote": "^2.0.8",
     "nodejs-file-downloader": "^4.10.2"
   },
   "devDependencies": {
     "electron": "^20.0.0",
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^20.44.4"
   },
   "build": {
     "appId": "com.ABstudios.coal-launcher",
-    "productName": "AB Coal",
-    "target": "NSIS"
+    "productName": "Coal Launcher"
   },
-  "nsis": {
-    "allowToChangeInstallationDirectory": true
+  "win": {
+    "target": [
+      "nsis",
+      "portable"
+    ],
+    "publisherName": "Arsyad&Bagus Studios"
+  },
+  "linux": {
+    "target": [
+      "deb",
+      "AppImage",
+      "snap",
+      "rpm"
+    ],
+    "maintainer": "Arsyad&Bagus Studios",
+    "category": "Game"
   }
 }
