@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Generate Windows Builds
           command: npm run buildwin
+      - run:
+          name: Delete foreign artifacts
+          command: cd dist && rm -rf win-unpacked && rm -rf linux-unpacked && cd ..
 
       - store_artifacts:
           path: ~/repo/dist
