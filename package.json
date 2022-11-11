@@ -2,6 +2,7 @@
   "name": "coal-launcher",
   "version": "1.1.0",
   "description": "Epok HTML5 Game Launcher",
+  "homepage": "https://github.com/Bobuxstation/Coal-Launcher#coal-launcher",
   "main": "main.js",
   "scripts": {
     "test": "echo \"No test specified\"",
