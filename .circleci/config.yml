@@ -3,30 +3,27 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:11
+      - image: circleci/node:13
     steps:
       - checkout
-      - run:
-          name: Update NPM
-          command: "sudo npm install -g npm"
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: npm i
       - run:
           name: Install dpkg and fakeroot
           command: |
             sudo apt-get update -y
-            sudo apt-get install -y dpkg fakeroot
-
+            sudo dpkg --add-architecture i386 && sudo apt-get update -y
+            sudo apt-get install -y dpkg fakeroot wine32 wine64 rpm
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
-          name: build launcher
+          name: Generate Builds
           command: npm run dist
 
       - store_artifacts:
-          path: ~/repo/out/make
+          path: ~/repo/dist
