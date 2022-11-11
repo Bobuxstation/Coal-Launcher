@@ -21,15 +21,15 @@
   },
   "build": {
     "appId": "com.ABstudios.coal-launcher",
-    "productName": "Coal Launcher"
-  },
-  "win": {
-    "target": ["nsis","portable"],
-    "publisherName": "Arsyad&Bagus Studios"
-  },
-  "linux": {
-    "target": ["deb","AppImage","snap","rpm"],
-    "maintainer": "Arsyad&Bagus Studios",
-    "category": "Game"
+    "productName": "Coal Launcher",
+    "win": {
+      "target": ["nsis","portable"],
+      "publisherName": "Arsyad&Bagus Studios"
+    },
+    "linux": {
+      "target": ["deb","AppImage","snap","rpm"],
+      "maintainer": "Arsyad&Bagus Studios",
+      "category": "Game"
+    }
   }
 }
