@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Generate Windows Builds
           command: npm run buildwin
+      - run:
+          name: Generate win32 Builds
+          command: npm run dist --ia32
 
       - store_artifacts:
           path: ~/repo/dist
