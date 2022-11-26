@@ -36,7 +36,7 @@ jsonData.items.forEach(items => {
             window.open(
                 "player.html?game="+items.dir+"&banner="+items.banner+"&name="+items.name,
                  '_blank', 
-                 'icon= "./assets/logo.png",webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+                 'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
                 );
         };
         document.getElementById('gamedetails').style.display = "block";
@@ -55,7 +55,7 @@ jsonData.items.forEach(items => {
         window.open(
             "player.html?game="+items.dir+"&banner="+items.banner+"&name="+items.name,
              '_blank', 
-             'icon= "./assets/logo.png",webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+             'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
             );
     };
     document.getElementById('gamedetails').style.display = "block";
