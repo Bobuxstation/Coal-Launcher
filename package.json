@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "buildwin": "electron-builder --win"
   },
-  "author": "ABstudios",
+  "author": "Arsyad&Bagus Studios",
   "license": "MIT",
   "dependencies": {
     "@electron/remote": "^2.0.8",
