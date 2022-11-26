@@ -22,7 +22,7 @@ jobs:
           name: Generate Windows Builds
           command: npm run buildwin
       - run:
-          name: Generate Mac binaries
+          name: Generate Win32 Builds
           command: npx electron-builder --ia32
       - run:
           name: Delete foreign artifacts
