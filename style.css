@@ -2,7 +2,7 @@
   font-family: inter;
   padding:0;
   margin:0;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
 }
 body {
   padding: 0;
@@ -12,16 +12,16 @@ body {
   background-color: #1d1d1d;
 }
 .body {
-padding-top: 50px;
+padding-top: 7.5vh;
 }
 .body button {
   color: white;
   background: none;
   background-size: cover;
-  border-radius: 5px;
+  border-radius: 3px;
   display: block;
   margin-bottom: 5px;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
 }
 input {
   border: none;
@@ -36,72 +36,73 @@ input {
   position: fixed;
   width: 100%;
   backdrop-filter: blur(10px);
+  height: 7.5vh;
 }
 .sidebar {
-box-sizing: border-box;
-padding: 5px;
-width: 20% !important;
-width: fit-content;
-float: left;
+  box-sizing: border-box;
+  width: 20% !important;
+  width: fit-content;
+  float: left;
 }
 li {
-float: left;
+  float: left;
 }
 ul {
-list-style-type: none;
-margin: 0;
-padding: 0;
-overflow: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 li a {
-display: block;
-color: white;
-text-align: center;
-padding: 7.5px;
-margin: 5px;
-border-radius: 5px;
-min-width: 20px;
-text-decoration: none;
--webkit-app-region: no-drag;
-font-weight: bold;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7.5px;
+  margin: 5px;
+  border-radius: 3px;
+  min-width: 20px;
+  text-decoration: none;
+  -webkit-app-region: no-drag;
+  font-weight: bold;
 }
 li a:hover {
-background-color: #3d3d3d;
+  background-color: #3d3d3d;
 }
 .searchbox {
   padding: 8.5px;
   box-shadow: none;
   margin: 5px;
   width: 300px;
-  border-radius: 5px;
+  border-radius: 3px;
   text-align: center;
   background: #4d4d4d;
   color:white;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
   border: #5d5d5d solid 1px;
   float: right;
 }
 .sidebar2 {
-box-sizing: border-box;
-padding: 5px;
-width: fit-content;
-float: right;
-width: 80%!important;
-height: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  width: fit-content;
+  float: right;
+  width: 80%!important;
+  height: 100%;
 }
 .gamelist {
   backdrop-filter: blur(10px);
-  background: #1d1d1ddd;
+  background: #2d2d2dee;
   box-sizing: border-box;
-  border: #5d5d5d solid 1px;
   padding: 5px;
-  border-radius: 5px;
-  min-height: 250px;
+  overflow: auto;
+  height: 92.5vh;
 }
 .gamelist button {
-width: 100%;
-padding: 2.5px;
-text-align: left;
+  width: 100%;
+  padding: 5px;
+  text-align: left;
+  font-weight: bold;
+  font-family: Inter;
 }
 .gamelist button:hover {
 background-color: #5d5d5d90;
@@ -112,18 +113,18 @@ background-color: #5d5d5d90;
   box-sizing: border-box;
   border: #5d5d5d solid 1px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 #gamefeed {
   width: 100%;
   backdrop-filter: blur(10px);
   padding: 5px;
-  border: #5d5d5d solid 1px;
-  border-radius: 5px;
+  border: #5d5d5d solid 1px !important;
+  border-radius: 3px;
   box-sizing: border-box;
   border: none;
   background: #1d1d1ddd;
-  height: 500px;
+  height: 411px !important;
   margin-top: 5px;
 }
 .STOREGAME {
@@ -137,15 +138,16 @@ background-color: #5d5d5d90;
   text-align: center;
   background-color: #1d1d1dab;
   border: #5d5d5d solid 1px;
-  border-radius: 5PX;
+  border-radius: 3PX;
   margin: 10px !important;
   float: left;
-transition: all 0.5s ease;
-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 .STOREGAME:hover {
-box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-transition: all 0.5s ease;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 #notmygames {
@@ -162,29 +164,29 @@ transition: all 0.5s ease;
   border: darkgreen solid 1px !important;
 }
 .playbutton:hover {
-background: lime !important; 
-color: black !important;
+  background: lime !important; 
+  color: black !important;
 }
 .downloads {
-z-index:1;
-right: 0;
-position:fixed;
-margin: 5px;
-margin-top: 50px;
-background-color: #2d2d2dee;
-backdrop-filter: blur(10px);
-border-radius: 5px;
-width: 300px;
-min-height: 150px;
-padding: 5px;
-animation: fadein;
-animation-duration: 0.5s;
+  z-index:1;
+  right: 0;
+  position:fixed;
+  margin: 5px;
+  margin-top: 8.5vh;
+  background-color: #2d2d2dee;
+  backdrop-filter: blur(10px);
+  border-radius: 3px;
+  width: 300px;
+  min-height: 150px;
+  padding: 5px;
+  animation: fadein;
+  animation-duration: 0.5s;
 }
 .downloadinfo {
-border: white solid 1px;
-border-width: 1px 0px 0px 0px;
-margin-top: 5px;
-padding-top: 5px;
+  border: white solid 1px;
+  border-width: 1px 0px 0px 0px;
+  margin-top: 5px;
+  padding-top: 5px;
 }
 @keyframes fadein {
 0% {
@@ -194,20 +196,28 @@ padding-top: 5px;
     opacity: 1;
 }
 }
+@keyframes skeleton-loading {
+  0% {
+    background-color: gray;
+  }
+  100% {
+    background-color: darkgrey;
+  }
+}
 nav {
-border-radius: 5px 5px 0px 0px;
+  border-radius: 3px 3px 0px 0px;
 }
 .progress {
-width: 100%;
-background: #1d1d1d;
-border-radius: 5px;
-height: 15px;
+  width: 100%;
+  background: #1d1d1d;
+  border-radius: 3px;
+  height: 15px;
 }
 .progress::-webkit-progress-bar {
-background: #1d1d1d;
-border-radius: 5px;
+  background: #1d1d1d;
+  border-radius: 3px;
 }
 .progress::-webkit-progress-value {
-background: white;
-border-radius: 5px;
+  background: white;
+  border-radius: 3px;
 }
