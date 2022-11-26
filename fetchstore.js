@@ -15,7 +15,7 @@ fetch(gameproviders)
           .then((data) => 
             data.items.forEach(onlineitems => {
             let btn = document.createElement("div");
-            btn.innerHTML = "<H4>" + onlineitems.name +"</H4>" + onlineitems.developer + "<BR>" + "<BR>" + onlineitems.info;
+            btn.innerHTML = "<H4>" + onlineitems.name +"</H4>" + onlineitems.developer + "<BR>" + "<BR><p>" + onlineitems.info + "</p>";
             btn.className = "STOREGAME";
             let banner = onlineitems.banner;
             btn.style.backgroundImage = "url(" + banner + ")";
