@@ -33,7 +33,3 @@ npm run dist
 
 You can add your own HTML5 games to your coal-launcher collection and even change the game provider for the market tab!
 
-## Note
-
-This project is still in beta, it is recommended to delete the coal launcer data folder before installing a new version
-
