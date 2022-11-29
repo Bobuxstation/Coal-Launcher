@@ -12,7 +12,7 @@ body {
   background-color: #1d1d1d;
 }
 .body {
-padding-top: 7.5vh;
+padding-top: 45px;
 }
 .body button {
   color: white;
@@ -36,7 +36,7 @@ input {
   position: fixed;
   width: 100%;
   backdrop-filter: blur(10px);
-  height: 7.5vh;
+  height: 45px;
 }
 .sidebar {
   box-sizing: border-box;
@@ -95,7 +95,7 @@ li a:hover {
   box-sizing: border-box;
   padding: 5px;
   overflow: auto;
-  height: 92.5vh;
+  height: calc(100vh - 45px);
 }
 .gamelist button {
   width: 100%;
@@ -220,4 +220,7 @@ nav {
 .progress::-webkit-progress-value {
   background: white;
   border-radius: 3px;
+}
+#player {
+  height: calc(100vh - 45px) !important;
 }
