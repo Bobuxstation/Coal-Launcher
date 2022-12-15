@@ -8,57 +8,54 @@
   <meta charset="UTF-8">
   <title>Coal - Add a game</title>
 <style>
-    input, button, textarea {
+    .input, .button, .textarea {
         padding: 5px;
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #4d4d4d;
+        background: #4d4d4d !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px;
+        border: #5d5d5d solid 1px !important;
         outline: none;
     }
-    input:hover, button:hover, textarea:hover {
+    .input:hover, .button:hover, .textarea:hover {
         padding: 5px;
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #5d5d5d;
+        background: #5d5d5d !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px;
+        border: #5d5d5d solid 1px !important;
     }
-    input:focus, button:focus, textarea:focus {
+    .input:focus, .button:focus, .textarea:focus {
         padding: 5px;
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #5d5d5d;
+        background: #5d5d5d !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px;
+        border: #5d5d5d solid 1px !important;
     }
-    input:active, button:active, textarea:active {
+    .input:active, .button:active, .textarea:active {
         padding: 5px;
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #3d3d3d;
+        background: #3d3d3d !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px;
-    }
-    body {
-        background: #1d1d1d;
+        border: #5d5d5d solid 1px !important;
     }
 </style>
 </head>
@@ -74,42 +71,53 @@
     </ul>
     </nav>
 </header>
-  <body>
-    <div style="padding: 10px; padding-top: 60px;">
-      <h3>Add a game</h3>
-      <p>
-        Like It Says, it adds a game to your collection. Note That: <br>
-        if you do not want to add a game news/feed, leave it empty.
-      </p><br>
-      <input placeholder="Game name" id="name"><br>
-      <input placeholder="Banner" id="banner"><br>
-      <input placeholder="Game Feed (optional)" id="feed"><br>
-      <input placeholder="Game URL" id="dir"><br>
-      <button onclick="add()" style="cursor: pointer;" id="addgame">Add to my games</button><br><br>
-
-      <h3>Launcher Configuration</h3>
-      <p>
-        Changes your configuration for this launcher. Very experimental!
-      </p><br>
-      <input placeholder="Game Provider" id="gameprovider"></input><br>
-      <button onclick="changeprovider()" id="gameapply">Apply</button><br>
-      <button onclick="defaultprovider()" id="gamedefault">Defaults</button><br><br>
-      
-      <h3>Send Feedback</h3>
-      <p>
-        If you have any bugs to report or ideas to add, leave a message!
-      </p><br>
-      <form action="https://postmail.invotes.com/send"
-      method="post" id="email_form">
-
-      <input type="text" name="subject" placeholder="Subject" /><br>
-      <textarea name="text" placeholder="Message"></textarea><br>
-      <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
-      <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
-      <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
-      <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" />
-  </form>
+<body>
+  <div class="body">
+    <div class="sidebar">
+      <div class="gamelist">
+        <a href="#addgametitle"><button>Add a game</button></a>
+        <a href="#launcherconfigtitle"><button>Launcher Configuration</button></a>
+        <a href="#sendfeedbacktitle"><button>Send Feedback</button></a>
+      </div>
     </div>
+    <div class="sidebar2" style="overflow: scroll;">
+      <div style="padding: 7.5px;">
+        <h2 id="addgametitle">Add a game</h2>
+        <p>
+          Like It Says, it adds a game to your collection. Note That: <br>
+          if you do not want to add a game news/feed, leave it empty.
+        </p><br>
+        <input placeholder="Game name" id="name" class="input"><br>
+        <input placeholder="Banner" id="banner" class="input"><br>
+        <input placeholder="Game Feed (optional)" id="feed" class="input"><br>
+        <input placeholder="Game URL" id="dir" class="input"><br>
+        <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button><br><br>
+
+        <h2 id="launcherconfigtitle">Launcher Configuration</h2>
+        <p>
+          Changes your configuration for this launcher. Very experimental!
+        </p><br>
+        <input placeholder="Game Provider" id="gameprovider" class="input"></input><br>
+        <button onclick="changeprovider()" id="gameapply" class="button">Apply</button>
+        <button onclick="defaultprovider()" id="gamedefault" class="button">Defaults</button><br><br>
+        
+        <h2 id="sendfeedbacktitle">Send Feedback</h2>
+        <p>
+          If you have any bugs to report or ideas to add, leave a message!
+        </p><br>
+        <form action="https://postmail.invotes.com/send"
+        method="post" id="email_form">
+
+        <input type="text" name="subject" placeholder="Subject" class="input" /><br>
+        <textarea name="text" placeholder="Message" class="textarea"></textarea><br>
+        <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
+        <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
+        <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
+        <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" class="input" />
+        </form>
+      </div>
+    </div>
+  </div>
 
     <script>
         const remote = require('@electron/remote');
