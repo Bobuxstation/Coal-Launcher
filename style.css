@@ -148,13 +148,12 @@ background-color: #5d5d5d90;
   margin: 7.5px !important;
   float: left;
   transition: all 0.25s ease;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation: skeleton-loading 1s linear infinite alternate;
   font-size: 15px;
 }
 .STOREGAME:hover {
-  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: all 0.25s ease;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
 }
 #notmygames {
