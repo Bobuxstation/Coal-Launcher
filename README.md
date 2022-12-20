@@ -1,5 +1,5 @@
 # Coal-Launcher
-[![CircleCI Pipeline - Coal-Launcher](https://img.shields.io/static/v1?label=CircleCI+Pipeline&message=Coal-Launcher&color=2ea44f&logo=CircleCI&logoColor=%23ffffff)](https://app.circleci.com/pipelines/github/Bobuxstation/Coal-Launcher)
+[![CircleCI Pipelines - Coal-Launcher](https://img.shields.io/static/v1?label=CircleCI+Pipelines&message=Coal-Launcher&color=2ea44f&logo=CircleCI&logoColor=%23ffffff)](https://app.circleci.com/pipelines/github/Bobuxstation/Coal-Launcher)
 [![Latest Release - Coal-Launcher](https://img.shields.io/static/v1?label=Latest+Release&message=Coal-Launcher&color=2ea44f&logo=GitHub&logoColor=%23ffffff)](https://github.com/Bobuxstation/Coal-Launcher/releases)
 [![Product Hunt Page - Coal-Launcher](https://img.shields.io/static/v1?label=Product+Hunt+Page&message=Coal-Launcher&color=2ea44f&logo=Product+Hunt&logoColor=%23ffffff)](https://www.producthunt.com/products/coal-game-launcher)
 [![Profile - Bobuxstation](https://img.shields.io/static/v1?label=Profile&message=Bobuxstation&color=blue)](https://github.com/Bobuxstation/)
