@@ -1,17 +1,12 @@
-const remote = require('@electron/remote');
-const app = remote.app;
 let discoverList = document.getElementById("notmygames");
-let fs = require('fs');
-const configDir =  app.getPath('userData');
 let jsonData = require(configDir + '/games.json');
-let gameproviders = jsonData.gameprovider;
-console.log("Launcher Directory Set To: " + configDir);
-console.log("Game Provider Set To: " + gameproviders);
+let gameList = document.getElementById("mygames");
+let gameProviderList = require(configDir + '/gameProviders.json');
 
-fetch(gameproviders)
-          .then((res) => {
-            return res.json();
-          })
+function loadMarket(jsonURL) {
+  discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle">Market</h2>';
+  fetch(jsonURL)
+          .then((res) => {return res.json();})
           .then((data) => 
             data.items.forEach(onlineitems => {
             let btn = document.createElement("div");
@@ -35,8 +30,16 @@ fetch(gameproviders)
 
             };
             discoverList.appendChild(btn);
-        })
-          ) 
-          .catch(error => {
-            discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment: ' + error.message + '</h4>';
-          });
+          })) 
+          .catch(error => {discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment: ' + error.message + '</h4>';});
+};
+
+gameProviderList.items.forEach(items => {
+  let btn = document.createElement("button");
+  btn.textContent = items.name;
+  btn.onclick = function () {
+    loadMarket(items.JSONDir);
+  };
+  gameList.appendChild(btn);
+  loadMarket(items.JSONDir);
+});

@@ -10,7 +10,7 @@ body {
   color:white;
   background-size: cover;
   background-color: #1d1d1d;
-  background-image: url('assets/abpattern.png');
+  background-image: url('../assets/abpattern.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -46,6 +46,7 @@ input {
   width: 20% !important;
   width: fit-content;
   float: left;
+  transition: none;
 }
 li {
   float: left;
@@ -91,6 +92,7 @@ li a:hover {
   float: right;
   width: 80%!important;
   height: calc(100vh - 45px);
+  transition: none;
 }
 .gamelist {
   backdrop-filter: blur(10px);
@@ -99,6 +101,7 @@ li a:hover {
   padding: 5px;
   overflow: auto;
   height: calc(100vh - 45px);
+  transition: none;
 }
 .gamelist button {
   width: 100%;
@@ -116,22 +119,22 @@ background-color: #5d5d5d90;
 .gamedetails {
   backdrop-filter: blur(10px);
   background: #1d1d1ddd;
-  box-sizing: border-box;
   border: #5d5d5d solid 1px;
   padding: 5px;
   border-radius: 3px;
+  box-sizing: border-box;
 }
 #gamefeed {
   width: 100%;
   backdrop-filter: blur(10px);
-  padding: 5px;
   border: #5d5d5d solid 1px !important;
   border-radius: 3px;
   box-sizing: border-box;
   border: none;
   background: #1d1d1ddd;
-  height: 405px !important;
+  height: calc(100vh - 194px);
   margin-top: 5px;
+  transition: none;
 }
 .STOREGAME {
   width: 240px;

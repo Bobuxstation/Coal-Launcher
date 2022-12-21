@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="interfont/inter.css">
-<link rel="stylesheet" href="scroll.css">
-<link rel="stylesheet" href="style.css">
-<script src="close.js"></script>
-<script src="fontawesome.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/interfont/inter.css">
+<link rel="stylesheet" href="css/scroll.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="scripts/integritycheck.js"></script>
+<script src="scripts/options.js" defer></script>
+<script src="scripts/close.js"></script>
+<script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
 <head>
   <meta charset="UTF-8">
   <title>Coal - Add a game</title>
@@ -91,15 +93,16 @@
         <input placeholder="Banner" id="banner" class="input"><br>
         <input placeholder="Game Feed (optional)" id="feed" class="input"><br>
         <input placeholder="Game URL" id="dir" class="input"><br>
-        <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button><br><br>
+        <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button><br>
 
         <h2 id="launcherconfigtitle">Launcher Configuration</h2>
         <p>
           Changes your configuration for this launcher. Very experimental!
         </p><br>
-        <input placeholder="Game Provider" id="gameprovider" class="input"></input><br>
-        <button onclick="changeprovider()" id="gameapply" class="button">Apply</button>
-        <button onclick="defaultprovider()" id="gamedefault" class="button">Defaults</button><br><br>
+        <input placeholder="Game Provider Name" id="gameprovidername" class="input"></input><br>
+        <input placeholder="Game Provider JSON Url" id="gameprovider" class="input"></input><br>
+        <button onclick="changeprovider()" id="gameapply" class="button">Add Game Provider</button>
+        <button onclick="defaultprovider()" id="gamedefault" class="button">Reset Game Providers</button><br>
         
         <h2 id="sendfeedbacktitle">Send Feedback</h2>
         <p>
@@ -114,57 +117,13 @@
         <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
         <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
         <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" class="input" />
-        </form>
+        </form><br>
+        <h2 id="sendfeedbacktitle">Launcher Version</h2>
+        <p id="versioninfo">
+          Please Wait...
+        </p>
       </div>
     </div>
   </div>
-
-    <script>
-        const remote = require('@electron/remote');
-        const app = remote.app;
-        const configDir =  app.getPath('userData');
-        let jsonData = require(configDir + '/games.json');
-        let fs = require('fs');
-        function add() {
-            var obj = (jsonData);
-            if (document.getElementById("feed").value == "") {
-              let feed2 = "false";
-              obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value});
-            } else {
-              let feed2 = document.getElementById("feed").value;
-              obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value});
-            }
-            jsonStr = JSON.stringify(obj);
-            console.log(jsonStr);
-            fs.writeFile(configDir + '/games.json', jsonStr, (err) => { 
-                if (err) { 
-                 console.log(err); 
-                }
-            });
-            document.getElementById('addgame').innerHTML = 'Game Added!'
-        };
-        function changeprovider(){
-          jsonData.gameprovider = document.getElementById('gameprovider').value;
-          console.log(jsonData);
-          newsettings = JSON.stringify(jsonData);
-          fs.writeFile(configDir + '/games.json', newsettings, (err) => { 
-                if (err) { 
-                 console.log(err); 
-                }
-            });
-            document.getElementById('gameapply').innerHTML = 'Changes Applied!'
-        };
-        function defaultprovider(){
-          jsonData.gameprovider = 'https://bobuxstation.github.io/Coal-Web/games.json';
-          console.log(jsonData);
-          newsettings = JSON.stringify(jsonData);
-          fs.writeFile(configDir + '/games.json', newsettings, (err) => { 
-                if (err) { 
-                 console.log(err); 
-                }
-            });
-            document.getElementById('gamedefault').innerHTML = 'Changes Reverted!'
-        };
-    </script>
   </body>
 </html>
