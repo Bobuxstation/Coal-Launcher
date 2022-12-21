@@ -31,7 +31,7 @@ function loadMarket(jsonURL) {
             };
             discoverList.appendChild(btn);
           })) 
-          .catch(error => {discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment: ' + error.message + '</h4>';});
+          .catch(error => {discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + error.message + '</p>';});
 };
 
 gameProviderList.items.forEach(items => {
@@ -41,5 +41,6 @@ gameProviderList.items.forEach(items => {
     loadMarket(items.JSONDir);
   };
   gameList.appendChild(btn);
-  loadMarket(items.JSONDir);
 });
+
+loadMarket("https://bobuxstation.github.io/Coal-Web/games.json");
