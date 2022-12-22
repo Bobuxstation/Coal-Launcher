@@ -4,7 +4,7 @@
 [![Product Hunt Page - Coal-Launcher](https://img.shields.io/static/v1?label=Product+Hunt+Page&message=Coal+Game+Launcher&color=2ea44f&logo=Product+Hunt&logoColor=%23ffffff)](https://www.producthunt.com/products/coal-game-launcher)
 [![Profile - Bobuxstation](https://img.shields.io/static/v1?label=Profile&message=Bobuxstation&color=blue)](https://github.com/Bobuxstation/)
 
-<img src="https://raw.githubusercontent.com/Bobuxstation/Coal-Launcher/main/assets/coallaunchergame.png" style="height: 300px; border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></img>
+<img src="https://raw.githubusercontent.com/Bobuxstation/Coal-Launcher/main/assets/coallaunchergame.png" style="width: 100%; border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></img>
 
 A client to view and play HTML5 games provided by the Bobuxstation/Coal-Web repository
 

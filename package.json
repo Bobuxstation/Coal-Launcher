@@ -23,6 +23,7 @@
   "build": {
     "appId": "com.ABstudios.coal-launcher",
     "productName": "Coal Launcher",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
     "win": {
       "target": ["nsis","portable"],
       "publisherName": "Arsyad&Bagus Studios"
