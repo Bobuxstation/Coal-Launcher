@@ -32,7 +32,7 @@ npm run dist
 
 ## Customize your launcher!
 
-<img src="https://raw.githubusercontent.com/Bobuxstation/Coal-Launcher/main/assets/coallaunchermarket.png" style="height: 300px; border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></img>
+<img src="https://raw.githubusercontent.com/Bobuxstation/Coal-Launcher/main/assets/coallaunchermarket.png" style="width: 100%; border-radius: 5px;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></img>
 
 You can add your own HTML5 games to your coal-launcher collection and even change the game provider for the market tab!
 
