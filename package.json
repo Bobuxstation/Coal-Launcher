@@ -28,7 +28,7 @@
       "publisherName": "Arsyad&Bagus Studios"
     },
     "linux": {
-      "target": ["deb","AppImage","snap","rpm"],
+      "target": ["deb","AppImage","snap","rpm","apk"],
       "maintainer": "Arsyad&Bagus Studios",
       "category": "Game"
     }
