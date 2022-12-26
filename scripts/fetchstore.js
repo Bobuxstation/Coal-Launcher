@@ -3,9 +3,10 @@ let jsonData = require(configDir + '/games.json');
 let gameList = document.getElementById("mygames");
 let gameProviderList = require(configDir + '/gameProviders.json');
 
-function loadMarket(jsonURL) {
-  discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle">Market</h2>';
-  fetch(jsonURL)
+function loadMarket(jsonURL, jsonName) {
+  discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle"></h2>';
+  document.getElementById('markettitle').innerText = jsonName;
+  fetch(jsonURL, {cache: "no-store"})
           .then((res) => {return res.json();})
           .then((data) => 
             data.items.forEach(onlineitems => {
@@ -38,9 +39,9 @@ gameProviderList.items.forEach(items => {
   let btn = document.createElement("button");
   btn.textContent = items.name;
   btn.onclick = function () {
-    loadMarket(items.JSONDir);
+    loadMarket(items.JSONDir, items.name);
   };
   gameList.appendChild(btn);
 });
 
-loadMarket("https://bobuxstation.github.io/Coal-Web/games.json");
+loadMarket("https://bobuxstation.github.io/Coal-Web/games.json", "Coal Games");

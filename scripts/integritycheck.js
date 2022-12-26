@@ -15,9 +15,14 @@ if (fs.existsSync(configDir + '/gameProviders.json')) {console.log('Game Provide
     console.log('Game Provider List Is Not Found! Creating Game List...')
     let jsontemplate = {
         "items":[
-            {"name":"Market",
-            "JSONDir":"https://bobuxstation.github.io/Coal-Web/games.json"
-        }
+            {
+                "name":"Coal Games",
+                "JSONDir":"https://bobuxstation.github.io/Coal-Web/games.json"
+            },
+            {
+                "name":"Community games",
+                "JSONDir":"https://bobuxstation.github.io/Coal-Web/communitygames.json"
+            }
     ],};
     let data = JSON.stringify(jsontemplate);
     fs.writeFileSync(configDir + '/gameProviders.json', data);

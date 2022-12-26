@@ -233,3 +233,9 @@ nav {
 #player {
   height: calc(100vh - 45px) !important;
 }
+hr {
+  margin-bottom: 13px;
+  border: gray solid 1px;
+  border-radius: 5px;
+  margin-top: 13px;
+}
