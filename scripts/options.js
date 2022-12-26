@@ -33,7 +33,17 @@ function changeprovider(){
 };
 
 function defaultprovider(){
-    let jsontemplate = { "items":[{"name":"Market","JSONDir":"https://bobuxstation.github.io/Coal-Web/games.json"}],};
+  let jsontemplate = {
+    "items":[
+        {
+            "name":"Coal Games",
+            "JSONDir":"https://bobuxstation.github.io/Coal-Web/games.json"
+        },
+        {
+            "name":"Community games",
+            "JSONDir":"https://bobuxstation.github.io/Coal-Web/communitygames.json"
+        }
+    ],};
     let data = JSON.stringify(jsontemplate);
     fs.writeFileSync(configDir + '/gameProviders.json', data);
     document.getElementById('gamedefault').innerHTML = 'Changes Reverted!'
