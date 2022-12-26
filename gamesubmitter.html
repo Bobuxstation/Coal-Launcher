@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="css/scroll.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Submit a game</title>
+<style>
+    * {
+        color: white;
+        font-family: Inter;
+    }
+    body {
+        background-image: url('assets/abpattern.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    input, button, textarea {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #4d4d4d !important;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px !important;
+        outline: none;
+    }
+    input:hover, button:hover, textarea:hover {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #5d5d5d !important;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px !important;
+    }
+    input:focus, button:focus, textarea:focus {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #5d5d5d !important;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px !important;
+    }
+    input:active, button:active, textarea:active {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2.5px;
+        width: 250px;
+        background: #3d3d3d !important;
+        color:white;
+        transition: all 0.5s ease;
+        resize: vertical;
+        box-sizing: border-box;
+        border: #5d5d5d solid 1px !important;
+    }
+</style>
+<div style="display: flex; text-align: center; align-items: center; justify-content: center; height: 100vh;">
+    
+    <form action="https://postmail.invotes.com/send"
+        method="post" id="email_form">
+
+        <h2>Submit a game</h2><br>
+        <input type="text" name="subject" placeholder="Game Name" /><br>
+        <input type="text" name="extra_publisher name" placeholder="Publisher name" /><br>
+        <input type="text" name="extra_banner art" placeholder="Banner Art" /><br>
+        <input type="text" name="extra_feed" placeholder="Game feed (optional)" /><br>
+        <input type="text" name="extra_url" placeholder="Game html file (single file only)" /><br>
+        <textarea name="text" placeholder="Game Description"></textarea><br>
+        <input type="hidden" name="access_token" value="srnt4hfiandivs3dyilimhi4" />
+
+        <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
+        <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
+    
+        <input id="submit_form" type="submit" value="Send" /><br><br>
+        <p>Submitting a game will take a few days to <br> moderate. Read the <a href="https://github.com/Bobuxstation/Coal-Launcher/wiki" target="_blank" style="color: lightblue;">documentation</a> for more info.</p><br>
+        <p>Powered by PostMail</p>
+    </form>
+</div>
+     
+<script>
+    var submitButton = document.getElementById("submit_form");
+    var form = document.getElementById("email_form");
+    form.addEventListener("submit", function (e) {
+        setTimeout(function() {
+            submitButton.value = "Sending...";
+            submitButton.disabled = true;
+        }, 1);
+    });
+</script> 
