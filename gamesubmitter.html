@@ -16,12 +16,12 @@
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #4d4d4d !important;
+        background: #4d4d4d90 !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px !important;
+        border: #5d5d5d90 solid 1px !important;
         outline: none;
     }
     input:hover, button:hover, textarea:hover {
@@ -29,24 +29,24 @@
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #5d5d5d !important;
+        background: #5d5d5d90 !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px !important;
+        border: #5d5d5d90 solid 1px !important;
     }
     input:focus, button:focus, textarea:focus {
         padding: 5px;
         margin: 5px;
         border-radius: 2.5px;
         width: 250px;
-        background: #5d5d5d !important;
+        background: #5d5d5d90 !important;
         color:white;
         transition: all 0.5s ease;
         resize: vertical;
         box-sizing: border-box;
-        border: #5d5d5d solid 1px !important;
+        border: #5d5d5d90 solid 1px !important;
     }
     input:active, button:active, textarea:active {
         padding: 5px;
@@ -67,6 +67,7 @@
         method="post" id="email_form">
 
         <h2>Submit a game</h2><br>
+        <input type="text" name="extra_publisher email" placeholder="Email adress" /><br>
         <input type="text" name="subject" placeholder="Game Name" /><br>
         <input type="text" name="extra_publisher name" placeholder="Publisher name" /><br>
         <input type="text" name="extra_banner art" placeholder="Banner Art" /><br>
@@ -79,7 +80,7 @@
         <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
     
         <input id="submit_form" type="submit" value="Send" /><br><br>
-        <p>Submitting a game will take a few days to <br> moderate. Read the <a href="https://github.com/Bobuxstation/Coal-Launcher/wiki" target="_blank" style="color: lightblue;">documentation</a> for more info.</p><br>
+        <p>Submitting a game will take a few days to <br> moderate. Read the <a href="https://github.com/Bobuxstation/Coal-Launcher/wiki" target="_blank" style="color: lightblue;">documentation</a> for more info.</p>
         <p>Powered by PostMail</p>
     </form>
 </div>
