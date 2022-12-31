@@ -1,5 +1,7 @@
+//load dependencies
 const Downloader = require("nodejs-file-downloader");
 
+//download game function
 function downloadgame(gameURL, gameName) {
     if (document.getElementById('downloadprogress').innerHTML.includes(gameName)){
     } else {
@@ -31,6 +33,7 @@ function downloadgame(gameURL, gameName) {
     downloader.download();
     };
 
+//downloads menu
 function downloadsmenu() {
   var x = document.getElementById("downloads");
   if (x.style.display === "none") {

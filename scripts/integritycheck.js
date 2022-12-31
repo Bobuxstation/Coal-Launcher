@@ -1,8 +1,10 @@
+//load dependencies
 const remote = require('@electron/remote');
 const app = remote.app;
 let fs = require('fs');
 const configDir =  app.getPath('userData');
 
+//check if game list exists
 if (fs.existsSync(configDir + '/games.json')) {console.log('Game List Found!')
 } else {
     console.log('Game List Is Not Found! Creating Game List...')
@@ -11,6 +13,7 @@ if (fs.existsSync(configDir + '/games.json')) {console.log('Game List Found!')
     fs.writeFileSync(configDir + '/games.json', data);
 }
 
+//check if game provider list exists
 if (fs.existsSync(configDir + '/gameProviders.json')) {console.log('Game Provider List Found!')} else {
     console.log('Game Provider List Is Not Found! Creating Game List...')
     let jsontemplate = {
@@ -20,7 +23,7 @@ if (fs.existsSync(configDir + '/gameProviders.json')) {console.log('Game Provide
                 "JSONDir":"https://bobuxstation.github.io/Coal-Web/games.json"
             },
             {
-                "name":"Community games",
+                "name":"Community Games",
                 "JSONDir":"https://bobuxstation.github.io/Coal-Web/communitygames.json"
             }
     ],};

@@ -1,3 +1,4 @@
+//load dependencies
 let gameList = document.getElementById("mygames");
 const electron = require('electron');
 console.log(configDir);

@@ -1,6 +1,8 @@
+//load dependencies
 let jsonData = require(configDir + '/games.json');
 let gameProviderList = require(configDir + '/gameProviders.json');
 
+//add game function
 function add() {
     var obj = (jsonData);
     if (document.getElementById("feed").value == "") {
@@ -17,9 +19,10 @@ function add() {
          console.log(err); 
         }
     });
-    document.getElementById('addgame').innerHTML = 'Game Added!'
+    document.getElementById('addgame').innerText = 'Game Added!'
 };
 
+//change game provider
 function changeprovider(){
   var obj = (gameProviderList);
   obj['items'].push({"name" : document.getElementById("gameprovidername").value,"JSONDir": document.getElementById("gameprovider").value});
@@ -29,9 +32,10 @@ function changeprovider(){
          console.log(err); 
         }
     });
-    document.getElementById('gameapply').innerHTML = 'Changes Applied!'
+    document.getElementById('gameapply').innerText = 'Changes Applied!'
 };
 
+//reset game provider
 function defaultprovider(){
   let jsontemplate = {
     "items":[
@@ -40,13 +44,14 @@ function defaultprovider(){
             "JSONDir":"https://bobuxstation.github.io/Coal-Web/games.json"
         },
         {
-            "name":"Community games",
+            "name":"Community Games",
             "JSONDir":"https://bobuxstation.github.io/Coal-Web/communitygames.json"
         }
     ],};
     let data = JSON.stringify(jsontemplate);
     fs.writeFileSync(configDir + '/gameProviders.json', data);
-    document.getElementById('gamedefault').innerHTML = 'Changes Reverted!'
+    document.getElementById('gamedefault').innerText = 'Changes Reverted!'
 };
 
-document.getElementById('versioninfo').innerHTML = "coal-launcher version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform;
+//Get Launcher Version
+document.getElementById('versioninfo').innerText = "coal-launcher version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform;
