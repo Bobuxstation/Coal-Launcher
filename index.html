@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/scroll.css">
 <link rel="stylesheet" href="css/interfont/inter.css">
+<script src="scripts/launcher.js"></script>
 <script src="scripts/integritycheck.js"></script>
 <script src="scripts/fetchlocal.js" defer></script>
-<script src="scripts/downloader.js" defer></script>
 <script src="scripts/close.js"></script>
 <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
@@ -15,16 +15,21 @@
   <header class="header">
     <nav>
       <ul>
-        <li><a href="index.html" style="background-color: #4d4d4d;"><i class="fa-solid fa-list"></i> Collection</a></li>
+        <li><a href="index.html" style="background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%); color: black;" class="selectedtab"><i class="fa-solid fa-list"></i> Collection</a></li>
         <li><a href="market.html"><i class="fa-solid fa-shop"></i></a></li>
         <li><a href="add.html"><i class="fa-solid fa-gear"></i></a></li>
         <li style="float: right;"><a onclick="closeWindow()"><i class="fa-solid fa-x"></i></a></li>
         <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
         <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
+        <li style="float: right;"><a onclick="taskmgr()"><i class="fa-solid fa-cubes-stacked"></i></a></li>
       </ul>
     </nav>
   </header>
   <div class="content" id="content">
+    <div class="downloads" id="taskmgr" style="display: none;">
+      <h2 style="text-align: center;">Task Manager</h2>
+      <div id="tasks"></div>
+    </div>
 <div class="body">
   <div class="sidebar">
     <div class="gamelist">
@@ -39,7 +44,7 @@
       <div class="gamedetails" id="gamedetails" style="display: none;">
       <h2 id="gamename">Game Name</h2>
       <p id="gamedev">Game Publisher</p><br>
-      <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton"><i class="fa-solid fa-play"></i></button></a>
+      <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton"><i class="fa-solid fa-up-right-from-square"></i> LAUNCH</button></a>
       </div>
       <iframe id="gamefeed" style="display: none;">
         <link rel="stylesheet" href="scroll.css">
