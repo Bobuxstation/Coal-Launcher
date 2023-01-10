@@ -2,7 +2,7 @@
 const Downloader = require("nodejs-file-downloader");
 
 //download game function
-function downloadgame(gameURL, gameName) {
+function downloadgame(gameURL, gameName, gametype) {
     if (document.getElementById('downloadprogress').innerHTML.includes(gameName)){
     } else {
     let downloadprogress = document.createElement("p");
@@ -17,7 +17,7 @@ function downloadgame(gameURL, gameName) {
     const downloader = new Downloader({
         url: gameURL,
         directory: configDir + "/games",
-        fileName: gameName + ".html",
+        fileName: gameName + gametype,
         cloneFiles: false,
         maxAttempts: 3,
         onError: function (error) {

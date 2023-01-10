@@ -7,10 +7,10 @@ function add() {
     var obj = (jsonData);
     if (document.getElementById("feed").value == "") {
       let feed2 = "false";
-      obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value});
+      obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value, "type" : document.getElementById("type").value});
     } else {
       let feed2 = document.getElementById("feed").value;
-      obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value});
+      obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value, "type" : document.getElementById("type").value});
     }
     jsonStr = JSON.stringify(obj);
     console.log(jsonStr);
