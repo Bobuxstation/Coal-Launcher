@@ -27,7 +27,7 @@
     "win": {
       "target": [
         {
-          "target": ["nsis","portable"],
+          "target": ["portable"],
           "arch": [
             "x64",
             "ia32"
