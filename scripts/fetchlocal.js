@@ -4,6 +4,7 @@ const electron = require('electron');
 console.log(configDir);
 let jsonData = require(configDir + '/games.json');
 
+//function to launch html5 games
 function launchHTML(dir,banner,name) {
     document.getElementById('gameplay').onclick = function(){
         window.open(
@@ -12,6 +13,18 @@ function launchHTML(dir,banner,name) {
              'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
             );};
 }
+
+//function to launch flash games
+function launchSWF(dir,banner,name) {
+    document.getElementById('gameplay').onclick = function(){
+        window.open(
+            "flashplayer.html?game="+dir+"&banner="+banner+"&name="+name,
+             '_blank', 
+             'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+            );};
+}
+
+//function to launch executable games
 function launchEXEC(dir,name) {
     document.getElementById('gameplay').onclick = function(){
         document.getElementById("taskmgr").style.display = "block"
@@ -43,6 +56,8 @@ jsonData.items.forEach(items => {
             launchHTML(items.dir,items.banner,items.name)
         } else if (items.type == "executable") {
             launchEXEC(items.dir,items.name)
+        } else if (items.type == "flash") {
+            launchSWF(items.dir,items.banner,items.name)
         }
         document.getElementById('gamedetails').style.display = "block";
         document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
@@ -60,6 +75,8 @@ jsonData.items.forEach(items => {
         launchHTML(items.dir,items.banner,items.name)
     } else if (items.type == "executable") {
         launchEXEC(items.dir,items.name)
+    } else if (items.type == "flash") {
+        launchSWF(items.dir,items.banner,items.name)
     }
     document.getElementById('gamedetails').style.display = "block";
     document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";

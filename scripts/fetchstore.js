@@ -35,6 +35,8 @@ function loadMarket(jsonURL, jsonName) {
               gameextension = ".html"
             } else if (onlineitems.type == "executable") {
               gameextension = ".exe"
+            } else if (onlineitems.type == "flash") {
+              gameextension = ".swf"
             }
             //Download game function
             btn.onclick = function () {
