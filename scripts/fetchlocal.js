@@ -18,7 +18,7 @@ function launchEXEC(dir,name) {
         var proc = require('child_process').spawn(dir);
 
         let taskname = document.createElement("p");
-        taskname.innerHTML = "<h2>" + name + "</h2>" + "<p>Click To End Session</p>";
+        taskname.innerHTML = "<h2>" + name + "</h2>" + "<button id='endtask'>Click To End Session</button>";
         taskname.id = name
         taskname.onclick = function() {
             proc.kill('SIGINT');
