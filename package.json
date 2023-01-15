@@ -26,15 +26,14 @@
     "productName": "Coal Launcher",
     "win": {
       "target": [
-        {"target": [
-          "nsis",
-          "portable"
-        ],"arch": [
-          "x64",
-          "ia32"
-        ]}
-      ],
-      "publisherName": "Arsyad&Bagus Studios"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "linux": {
       "target": [
