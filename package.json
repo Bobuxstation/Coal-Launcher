@@ -26,8 +26,13 @@
     "productName": "Coal Launcher",
     "win": {
       "target": [
-        "nsis",
-        "portable"
+        {"target": [
+          "nsis",
+          "portable"
+        ],"arch": [
+          "x64",
+          "ia32"
+        ]}
       ],
       "publisherName": "Arsyad&Bagus Studios"
     },
@@ -36,8 +41,7 @@
         "deb",
         "AppImage",
         "snap",
-        "rpm",
-        "apk"
+        "rpm"
       ],
       "maintainer": "Arsyad&Bagus Studios",
       "category": "Game"
