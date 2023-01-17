@@ -134,7 +134,9 @@ background-color: #5d5d5d90;
   background: #1d1d1ddd;
   height: calc(100vh - 194px);
   margin-top: 5px;
-  transition: none;
+  animation-name: zoomIn;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
 }
 .STOREGAME {
   width: 240px;
@@ -179,33 +181,42 @@ background-color: #5d5d5d90;
   z-index:1;
   right: 0;
   position:fixed;
-  margin: 15px;
-  margin-top: 50px;
+  margin-top: 45px;
   background-color: #2d2d2dee;
   backdrop-filter: blur(10px);
-  border-radius: 3px;
-  width: 300px;
-  min-height: fit-content;
+  width: 20%;
+  height: calc(100vh - 45px);
   padding: 5px;
   animation-name: slideInDown;
   animation-duration: 0.25s;
   animation-fill-mode: both;
+  overflow: scroll;
 }
 @keyframes slideInDown {
   0% {
-  opacity: 0;
-  -webkit-transform: scale3d(.3, .3, .3);
-  transform: scale3d(.3, .3, .3);
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+      visibility: visible;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+} 
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
   }
   50% {
-  opacity: 1;
+    opacity: 1;
   }
 } 
 .downloadinfo {
-  border: white solid 1px;
-  border-width: 1px 0px 0px 0px;
-  margin-top: 5px;
-  padding-top: 5px;
+  border: lightgray solid 1px;
+  border-width: 1px 0px 1px 0px;
+  padding: 5px;
 }
 @keyframes fadein {
 0% {
