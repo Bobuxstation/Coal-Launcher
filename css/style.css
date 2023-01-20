@@ -214,7 +214,7 @@ background-color: #5d5d5d90;
   }
 } 
 .downloadinfo {
-  border: lightgray solid 1px;
+  border: gray solid 1px;
   border-width: 1px 0px 1px 0px;
   padding: 5px;
 }
@@ -300,4 +300,12 @@ hr {
   padding: 5px;
   box-sizing: border-box;
   opacity: 0;
+}
+@keyframes blinker {
+  50% {
+    background-color: #80808050;
+  }
+}
+.notifytask {
+  animation: blinker 1s linear infinite;
 }
