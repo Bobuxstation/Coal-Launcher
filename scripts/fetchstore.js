@@ -9,7 +9,7 @@ const sanitizeHtml = require('sanitize-html');
 function loadMarket(jsonURL, jsonName) {
   //change title to the game provider name
   discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle"></h2>';
-  document.getElementById('markettitle').innerText = jsonName;
+  document.getElementById('markettitle').innerText = sanitizeHtml(jsonName);
   //fetch the JSON file
   fetch(jsonURL, {cache: "no-store"})
           .then((res) => {return res.json();})
@@ -50,12 +50,12 @@ function loadMarket(jsonURL, jsonName) {
                 var obj = (jsonData);
                 obj['items'].push({
                   "name" : sanitizedgamename,
-                  "feed": onlineitems.feed,
-                  "Version" : onlineitems.Version,
+                  "feed": sanitizeHtml(onlineitems.feed),
+                  "Version" : sanitizeHtml(onlineitems.Version),
                   "developer" : sanitizeddevname,
-                  "banner" : onlineitems.banner,
+                  "banner" : sanitizeHtml(onlineitems.banner),
                   "dir" : configDir + "/games/" + sanitizedgamename + gameextension,
-                  "type" : onlineitems.type
+                  "type" : sanitizeHtml(onlineitems.type)
                 });
                 jsonStr = JSON.stringify(obj);
                 const gameListDir = configDir + "/games.json";
@@ -66,7 +66,7 @@ function loadMarket(jsonURL, jsonName) {
             discoverList.appendChild(btn);
           })) 
           //Show error if the user is offline
-          .catch(error => {discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + error.message + '</p>';});
+          .catch(error => {discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + sanitizeHtml(error.message) + '</p>';});
 };
 
 //Show game providers
