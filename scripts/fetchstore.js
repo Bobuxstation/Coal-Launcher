@@ -11,62 +11,62 @@ function loadMarket(jsonURL, jsonName) {
   discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle"></h2>';
   document.getElementById('markettitle').innerText = sanitizeHtml(jsonName);
   //fetch the JSON file
-  fetch(jsonURL, {cache: "no-store"})
-          .then((res) => {return res.json();})
-          .then((data) => 
-            data.items.forEach(onlineitems => {
-            //Create game card
-            let btn = document.createElement("div");
-            //Sanitize game details
-            let sanitizedgamename = sanitizeHtml(onlineitems.name);
-            let sanitizeddevname = sanitizeHtml(onlineitems.developer);
-            let sanitizedgameinfo = sanitizeHtml(onlineitems.info);
-            //game card layout
-            btn.innerHTML = 
-              "<div class='gamecard1'>" + "<p>" + sanitizedgameinfo + "</p>" + 
-              "</div>" + "<div class='gamecard2'>" +
-              "<H4>" + sanitizedgamename + "</H4>" + 
-              sanitizeddevname + 
-              "</div>";
-            btn.className = "STOREGAME";
-            let banner = onlineitems.banner;
-            btn.style.backgroundImage = "url(" + banner + ")";
-            if (onlineitems.type == "html5") {
-              gameextension = ".html"
-            } else if (onlineitems.type == "executable") {
-              gameextension = ".exe"
-            } else if (onlineitems.type == "flash") {
-              gameextension = ".swf"
-            }
-            //Download game function
-            btn.onclick = function () {
-              //Check if game exists
-              let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
-              if(checkduplicate == true) {
-                console.log('game exists! updating html file...')
-                downloadgame(onlineitems.download, sanitizedgamename, gameextension);
-              } else {
-                downloadgame(onlineitems.download, sanitizedgamename, gameextension);
-                var obj = (jsonData);
-                obj['items'].push({
-                  "name" : sanitizedgamename,
-                  "feed": sanitizeHtml(onlineitems.feed),
-                  "Version" : sanitizeHtml(onlineitems.Version),
-                  "developer" : sanitizeddevname,
-                  "banner" : sanitizeHtml(onlineitems.banner),
-                  "dir" : configDir + "/games/" + sanitizedgamename + gameextension,
-                  "type" : sanitizeHtml(onlineitems.type)
-                });
-                jsonStr = JSON.stringify(obj);
-                const gameListDir = configDir + "/games.json";
-                fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); }});
-              };
+  fetch(jsonURL, { cache: "no-store" })
+    .then((res) => { return res.json(); })
+    .then((data) =>
+      data.items.forEach(onlineitems => {
+        //Create game card
+        let btn = document.createElement("div");
+        //Sanitize game details
+        let sanitizedgamename = sanitizeHtml(onlineitems.name);
+        let sanitizeddevname = sanitizeHtml(onlineitems.developer);
+        let sanitizedgameinfo = sanitizeHtml(onlineitems.info);
+        //game card layout
+        btn.innerHTML =
+          "<div class='gamecard1'>" + "<p>" + sanitizedgameinfo + "</p>" +
+          "</div>" + "<div class='gamecard2'>" +
+          "<H4>" + sanitizedgamename + "</H4>" +
+          sanitizeddevname +
+          "</div>";
+        btn.className = "STOREGAME";
+        let banner = onlineitems.banner;
+        btn.style.backgroundImage = "url(" + banner + ")";
+        if (onlineitems.type == "html5") {
+          gameextension = ".html"
+        } else if (onlineitems.type == "executable") {
+          gameextension = ".exe"
+        } else if (onlineitems.type == "flash") {
+          gameextension = ".swf"
+        }
+        //Download game function
+        btn.onclick = function () {
+          //Check if game exists
+          let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
+          if (checkduplicate == true) {
+            console.log('game exists! updating html file...')
+            downloadgame(onlineitems.download, sanitizedgamename, gameextension);
+          } else {
+            downloadgame(onlineitems.download, sanitizedgamename, gameextension);
+            var obj = (jsonData);
+            obj['items'].push({
+              "name": sanitizedgamename,
+              "feed": sanitizeHtml(onlineitems.feed),
+              "Version": sanitizeHtml(onlineitems.Version),
+              "developer": sanitizeddevname,
+              "banner": sanitizeHtml(onlineitems.banner),
+              "dir": configDir + "/games/" + sanitizedgamename + gameextension,
+              "type": sanitizeHtml(onlineitems.type)
+            });
+            jsonStr = JSON.stringify(obj);
+            const gameListDir = configDir + "/games.json";
+            fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+          };
 
-            };
-            discoverList.appendChild(btn);
-          })) 
-          //Show error if the user is offline
-          .catch(error => {discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + sanitizeHtml(error.message) + '</p>';});
+        };
+        discoverList.appendChild(btn);
+      }))
+    //Show error if the user is offline
+    .catch(error => { discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + sanitizeHtml(error.message) + '</p>'; });
 };
 
 //Show game providers
