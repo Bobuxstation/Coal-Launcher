@@ -78,7 +78,7 @@
     <div class="sidebar">
       <div class="gamelist">
         <a href="#addgametitle"><button>Add a game</button></a>
-        <a href="#launcherconfigtitle"><button>Launcher Configuration</button></a>
+        <a href="#launcherconfigtitle"><button>Game Providers</button></a>
         <a href="#sendfeedbacktitle"><button>Send Feedback</button></a>
         <a href="#launchevertitle"><button>Launcher Version</button></a>
       </div>
@@ -102,9 +102,9 @@
         </select>
         <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button><br>
 
-        <h2 id="launcherconfigtitle">Launcher Configuration</h2>
+        <h2 id="launcherconfigtitle">Game Providers</h2>
         <p>
-          Changes your configuration for this launcher. This is very experimental!
+          Adds more game providers to the market section.
         </p><br>
         <input placeholder="Game Provider Name" id="gameprovidername" class="input"></input><br>
         <input placeholder="Game Provider JSON Url" id="gameprovider" class="input"></input><br>
@@ -119,7 +119,7 @@
         method="post" id="email_form">
 
         <input type="text" name="subject" placeholder="Subject" class="input" /><br>
-        <textarea name="text" placeholder="Message" class="textarea"></textarea><br>
+        <textarea name="text" placeholder="Message" class="textarea" style="height: 200px;"></textarea><br>
         <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
         <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
         <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
