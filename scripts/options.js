@@ -12,7 +12,7 @@ function add() {
       let feed2 = document.getElementById("feed").value;
       obj['items'].push({"name" : document.getElementById("name").value,"feed" : feed2, "Version" : "1", "developer" : "local", "banner" : document.getElementById("banner").value, "dir" : document.getElementById("dir").value, "type" : document.getElementById("type").value});
     }
-    jsonStr = JSON.stringify(obj);
+    jsonStr = JSON.stringify(obj, null, "\t");
     console.log(jsonStr);
     fs.writeFile(configDir + '/games.json', jsonStr, (err) => { 
         if (err) { 

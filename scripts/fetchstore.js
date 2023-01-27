@@ -31,15 +31,16 @@ function loadMarket(jsonURL, jsonName) {
         btn.className = "STOREGAME";
         let banner = onlineitems.banner;
         btn.style.backgroundImage = "url(" + banner + ")";
-        if (onlineitems.type == "html5") {
-          gameextension = ".html"
-        } else if (onlineitems.type == "executable") {
-          gameextension = ".exe"
-        } else if (onlineitems.type == "flash") {
-          gameextension = ".swf"
-        }
         //Download game function
         btn.onclick = function () {
+          //Check the type of the game
+          if (onlineitems.type == "html5" || onlineitems.type === "undefined") {
+            gameextension = ".html"
+          } else if (onlineitems.type == "executable") {
+            gameextension = ".exe"
+          } else if (onlineitems.type == "flash") {
+            gameextension = ".swf"
+          }
           //Check if game exists
           let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
           if (checkduplicate == true) {
@@ -57,7 +58,7 @@ function loadMarket(jsonURL, jsonName) {
               "dir": configDir + "/games/" + sanitizedgamename + gameextension,
               "type": sanitizeHtml(onlineitems.type)
             });
-            jsonStr = JSON.stringify(obj);
+            jsonStr = JSON.stringify(obj, null, "\t");
             const gameListDir = configDir + "/games.json";
             fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
           };
