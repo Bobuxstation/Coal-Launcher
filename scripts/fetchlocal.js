@@ -41,7 +41,7 @@ function launchELSE(dir, banner, name) {
             window.open(
                 "player.html?game=" + dir + "&banner=" + banner + "&name=" + name,
                 '_blank',
-                'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+                'icon= "./assets/logo.png",nodeIntegration=yes,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
             );
             taskname.remove()
         }
@@ -58,7 +58,7 @@ function launchHTML(dir, banner, name) {
         window.open(
             "player.html?game=" + dir + "&banner=" + banner + "&name=" + name,
             '_blank',
-            'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+            'icon= "./assets/logo.png",webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,nodeIntegration=yes'
         );
     };
 }
@@ -69,7 +69,7 @@ function launchSWF(dir, banner, name) {
         window.open(
             "flashplayer.html?game=" + dir + "&banner=" + banner + "&name=" + name,
             '_blank',
-            'icon= "./assets/logo.png",nodeIntegration=true,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
+            'icon= "./assets/logo.png",nodeIntegration=yes,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
         );
     };
 }

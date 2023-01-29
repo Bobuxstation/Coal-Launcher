@@ -8,8 +8,8 @@ const configDir =  app.getPath('userData');
 if (fs.existsSync(configDir + '/games.json')) {console.log('Game List Found!')
 } else {
     console.log('Game List Is Not Found! Creating Game List...')
-    let jsontemplate = {"items":[],};
-    let data = JSON.stringify(jsontemplate);
+    let jsontemplate = {"items":[], "currenttheme": "css/dark.css"};
+    let data = JSON.stringify(jsontemplate, null, "\t");
     fs.writeFileSync(configDir + '/games.json', data);
 }
 
@@ -27,6 +27,6 @@ if (fs.existsSync(configDir + '/gameProviders.json')) {console.log('Game Provide
                 "JSONDir":"https://bobuxstation.github.io/Coal-Web/communitygames.json"
             }
     ],};
-    let data = JSON.stringify(jsontemplate);
+    let data = JSON.stringify(jsontemplate, null, "\t");
     fs.writeFileSync(configDir + '/gameProviders.json', data);
 }
