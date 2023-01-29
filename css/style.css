@@ -1,66 +1,76 @@
 * {
-  font-family: inter;
-  padding:0;
-  margin:0;
-  transition: all 0.25s ease;
+  font-family: var(--mainFontFamily);
+  padding: 0;
+  margin: 0;
   scroll-behavior: smooth;
 }
+
 body {
   padding: 0;
   user-select: none;
-  color:white;
+  color: var(--mainTextColor);
   background-size: cover;
-  background-color: #1d1d1d;
-  background-image: url('../assets/abpattern.png');
+  background-color: var(--mainBackground);
+  background-image: var(--mainBackgroundImage);
   background-size: cover;
   background-repeat: no-repeat;
+  transition: background-image 0.2s ease-in-out;
 }
+
 .body {
-padding-top: 45px;
+  padding-top: 45px;
 }
+
 .body button {
-  color: white;
+  color: var(--mainTextColor);
   background: none;
   background-size: cover;
   border-radius: 3px;
   display: block;
   margin-bottom: 5px;
   transition: all 0.25s ease;
+  border: none;
 }
+
 input {
   border: none;
 }
-.body button {
-  border: none;
-}
+
 .header {
   height: fit-content;
-  background-color: #2d2d2dee;
+  background-color: var(--navigationBackground);
   -webkit-app-region: drag;
   position: fixed;
   width: 100%;
   backdrop-filter: blur(10px);
   height: 45px;
+  border-top: var(--defaultUIBorder) solid 1px;
+  border-left: var(--defaultUIBorder) solid 1px;
 }
+
 .sidebar {
   box-sizing: border-box;
   width: 20% !important;
   width: fit-content;
   float: left;
   transition: none;
+  border-left: var(--defaultUIBorder) solid 1px;
 }
+
 li {
   float: left;
 }
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
+
 li a {
   display: block;
-  color: white;
+  color: var(--mainTextColor);
   text-align: center;
   padding: 7.5px;
   margin: 5px;
@@ -69,86 +79,83 @@ li a {
   text-decoration: none;
   -webkit-app-region: no-drag;
   font-weight: bold;
-}
-li a:hover {
-  background-color: #3d3d3d;
-}
-.searchbox {
-  padding: 8.5px;
-  box-shadow: none;
-  margin: 5px;
-  width: 300px;
-  border-radius: 3px;
-  text-align: center;
-  background: #4d4d4d;
-  color:white;
   transition: all 0.25s ease;
-  border: #5d5d5d solid 1px;
-  float: right;
 }
+
+li a:hover {
+  background-color: var(--sidebarNavigationButtonHover);
+  transition: all 0.25s ease;
+}
+
 .sidebar2 {
   box-sizing: border-box;
   padding: 10px;
   width: fit-content;
   float: right;
-  width: 80%!important;
+  width: 80% !important;
   height: calc(100vh - 45px);
   transition: none;
 }
+
 .gamelist {
   backdrop-filter: blur(10px);
-  background: #2d2d2dee;
+  background: var(--navigationBackground);
   box-sizing: border-box;
   padding: 5px;
   overflow: auto;
   height: calc(100vh - 45px);
   transition: none;
 }
+
 .gamelist button {
   width: 100%;
   padding: 5px;
   text-align: left;
   font-weight: bold;
-  font-family: Inter;
 }
+
 .gamelist a {
   text-decoration: none;
 }
+
 .gamelist button:hover {
-background-color: #5d5d5d90;
+  background-color: var(--sidebarNavigationButtonHover);
 }
+
 .gamedetails {
   backdrop-filter: blur(10px);
-  background: #1d1d1ddd;
-  border: #5d5d5d solid 1px;
+  background: var(--gameCardBackground);
+  border: var(--defaultUIBorder) solid 1px;
   padding: 5px;
   border-radius: 3px;
   box-sizing: border-box;
 }
+
 #gamefeed {
   width: 100%;
   backdrop-filter: blur(10px);
-  border: #5d5d5d solid 1px !important;
+  border: var(--defaultUIBorder) solid 1px !important;
   border-radius: 3px;
   box-sizing: border-box;
   border: none;
-  background: #1d1d1ddd;
+  background: var(--gameCardBackground);
   height: calc(100vh - 194px);
   margin-top: 5px;
   animation-name: zoomIn;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
+
 .STOREGAME {
   width: 240px;
   box-sizing: border-box !important;
   height: 240px;
   background-size: cover;
-  text-shadow: 2px 2px 10px #000000;
+  text-shadow: 2px 2px 10px var(--gameCardTextShadow);
   justify-content: center;
   text-align: center;
-  background-color: #1d1d1dab;
-  border: #5d5d5d solid 1px;
+  background-color: var(--gameCardBackground);
+  border: var(--defaultUIBorder) solid 1px;
   border-radius: 5PX;
   margin: 7.5px !important;
   float: left;
@@ -156,18 +163,21 @@ background-color: #5d5d5d90;
   animation: skeleton-loading 1s linear infinite alternate;
   font-size: 15px;
 }
+
 .STOREGAME:hover {
   transition: all 0.25s ease;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
 }
+
 #notmygames {
   margin: 0;
 }
+
 .playbutton {
-  background-image: linear-gradient( 135deg, #70F570 10%, #49C628 100%) !important;
+  background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%) !important;
   font-size: 17.5px;
-  padding: 10px; 
+  padding: 10px;
   width: 100%;
   color: white !important;
   text-decoration: none;
@@ -175,15 +185,17 @@ background-color: #5d5d5d90;
   border: darkgreen solid 1px !important;
   color: black !important;
 }
+
 .playbutton:hover {
-    background-image: linear-gradient( 135deg, #49C628 10%, #49C628 100%) !important;
+  background-image: linear-gradient(135deg, #49C628 10%, #49C628 100%) !important;
 }
+
 .downloads {
-  z-index:1;
+  z-index: 2;
   right: 0;
-  position:fixed;
+  position: fixed;
   margin-top: 45px;
-  background-color: #2d2d2dee;
+  background-color: var(--navigationBackground);
   backdrop-filter: blur(10px);
   width: 20%;
   height: calc(100vh - 45px);
@@ -193,98 +205,119 @@ background-color: #5d5d5d90;
   animation-fill-mode: both;
   overflow: scroll;
 }
+
 @keyframes slideInDown {
   0% {
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-      visibility: visible;
-    }
-    100% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-} 
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
 @keyframes zoomIn {
   0% {
     opacity: 0;
     -webkit-transform: scale3d(.3, .3, .3);
     transform: scale3d(.3, .3, .3);
   }
+
   50% {
     opacity: 1;
   }
-} 
+}
+
 .downloadinfo {
-  border: gray solid 1px;
+  border: var(--defaultUIBorder) solid 1px;
   border-width: 1px 0px 1px 0px;
   padding: 5px;
+  box-sizing: border-box;
 }
+
 @keyframes fadein {
-0% {
+  0% {
     opacity: 0;
-}
-100% {
+  }
+
+  100% {
     opacity: 1;
+  }
 }
-}
+
 @keyframes skeleton-loading {
   0% {
     background-color: #4d4d4d90;
   }
+
   100% {
     background-color: #5d5d5d90;
   }
 }
+
 nav {
   border-radius: 3px 3px 0px 0px;
 }
+
 .progress {
   width: 100%;
-  background: #1d1d1d;
+  background: var(--mainBackground);
   border-radius: 3px;
   height: 15px;
 }
+
 .progress::-webkit-progress-bar {
-  background: #1d1d1d;
+  background: var(--mainBackground);
   border-radius: 3px;
 }
+
 .progress::-webkit-progress-value {
-  background: white;
+  background: var(--mainTextColor);
   border-radius: 3px;
 }
-#endtask {
+
+#endtask, .input, .button, .textarea {
   padding: 5px;
+  margin-bottom: 10px;
   border-radius: 2.5px;
-  width: 250px;
-  background: #4d4d4d90 !important;
-  color:white;
-  transition: all 0.5s ease;
-  box-sizing: border-box;
-  border: #5d5d5d90 solid 1px !important;
-  outline: none;
   width: 100%;
-}
-#endtask:hover {
-  background: #5d5d5d90 !important;
+  background: var(--coalUIButton) !important;
+  color: var(--mainTextColor);
   transition: all 0.5s ease;
-  border: #5d5d5d90 solid 1px !important;
+  resize: vertical;
+  box-sizing: border-box;
+  border: var(--coalUIButtonBorder) solid 1px !important;
+  outline: none;
 }
-#endtask:active {
-  background: #3d3d3d !important;
+
+#endtask:hover, .input:hover, .button:hover, .textarea:hover {
+  background: var(--coalUIButtonHover) !important;
   transition: all 0.5s ease;
-  border: #5d5d5d solid 1px !important;
+  border: var(--coalUIButtonBorder) solid 1px !important;
 }
+
+#endtask:active, .input:active, .button:active, .textarea:active {
+  background: var(--coalUIButtonActive) !important;
+  transition: all 0.5s ease;
+  border: var(--coalUIButtonBorderActive) solid 1px !important;
+}
+
 #player {
   height: calc(100vh - 45px) !important;
 }
+
 hr {
   margin-bottom: 13px;
-  border: gray solid 1px;
+  border: var(--defaultUIBorder) solid 1px;
   border-radius: 5px;
   margin-top: 13px;
 }
+
 .gamecard2 {
-  background-color: #1d1d1ddd;
+  background-color: var(--gameCardBackground);
   height: 32.4%;
   backdrop-filter: blur(10px);
   overflow: hidden;
@@ -293,20 +326,56 @@ hr {
   text-align: left;
   border-radius: 4px;
 }
+
 .gamecard1:hover {
   opacity: 1;
+  transition: all 0.25s ease;
 }
+
+.gamecard1 p {
+  background-color: var(--gameCardBackground);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 .gamecard1 {
   height: 68%;
   padding: 5px;
   box-sizing: border-box;
   opacity: 0;
+  transition: all 0.25s ease;
 }
+
 @keyframes blinker {
   50% {
     background-color: #80808050;
   }
 }
+
 .notifytask {
   animation: blinker 1s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  animation: rotating 2s linear infinite;
+}
+
+.playeroverlay {
+  z-index: 1;
+  right: 0;
+  position: fixed;
+  animation-name: slideInDown;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
 }

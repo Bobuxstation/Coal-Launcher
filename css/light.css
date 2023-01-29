@@ -1,0 +1,24 @@
+/* The theme template for Coal-Launcher */
+
+:root {
+    /* Basic UI */
+    --mainBackground: lightgray;
+    --mainTextColor: #000000;
+    --navigationBackground: #909090cc;
+    --gameCardBackground: #909090dd;
+    --defaultUIBorder: lightgray;
+    --gameCardTextShadow: #ffffff00;
+    --mainBackgroundImage: url('../assets/abpattern1.png');
+    --mainFontFamily: Inter;
+
+    /* Other UI Elements */
+    --coalUIButton: #90909055;
+    --coalUIButtonBorder: gray;
+
+    --coalUIButtonHover: #90909099;
+
+    --coalUIButtonActive: #909090;
+    --coalUIButtonBorderActive: gray;
+
+    --sidebarNavigationButtonHover: lightgray;
+}
