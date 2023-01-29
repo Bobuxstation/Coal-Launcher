@@ -1,32 +1,43 @@
 <!DOCTYPE html>
+
 <head>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/scroll.css">
-<link rel="stylesheet" href="css/interfont/inter.css">
-<script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
-<script src="scripts/player.js" defer></script>
-<meta charset="UTF-8">
-<title id="titlename">Coal - Home</title>
-<link rel="icon" href="assets/logo.png">
-<style>
-  * {
-    transition: none !important;
-  }
-</style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/scroll.css">
+  <link rel="stylesheet" href="css/interfont/inter.css">
+  <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
+  <script src="scripts/player.js" defer></script>
+  <meta charset="UTF-8">
+  <title id="titlename">Coal - Home</title>
+  <link rel="icon" href="assets/logo.png">
+  <style>
+    * {
+      transition: none !important;
+    }
+  </style>
 </head>
+
 <body id="body" style="transition: none;">
   <div class="content" id="content">
-    <header class="header" style="border-radius: 0px;">
-        <nav style="border-radius: 0px;">
-          <ul>
-            <li><a onclick="refresh()"><i class="fa-solid fa-arrow-rotate-right"></i></a></li>
-            <li><a id="titlename1"></a></li>
-          </ul>
-          </nav>
+    <header class="header" style="border: none;">
+      <nav style="border-radius: 0px;">
+        <ul>
+          <li><a onclick="refresh()" id="refreshbtn" class="rotating"><i class="fa-solid fa-spinner"></i></a></li>
+          <li><a id="titlename1"></a></li>
+          <li style="float: right;"><a onclick="window.close()"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+          <li style="float: right;"><a onclick="speedruncounter()"><i class="fa-solid fa-stopwatch"></i></a></li>
+          <li style="float: right;"><a id="clock"></a></li>
+        </ul>
+      </nav>
     </header>
-<div class="body" style="padding-top: 45px; transition: none;">
-<webview id="player" src="" style="transition: none;height: 92.5vh; width: 100vw; border: none; box-sizing: border-box;"></webview>
-</div>
-</div>
+    <div class="body" style="padding-top: 45px; transition: none;">
+      <div class="playeroverlay" id="speedruncounter" style="display: none;">
+        <iframe src="assets/playerwidgets/counter.html" style="border: none; height: 50vh;"></iframe>
+      </div>
+      <webview id="player" src="" style="transition: none;width: 100vw; border: none; box-sizing: border-box;">
+      </webview>
+    </div>
+  </div>
 </body>
+
 </html>

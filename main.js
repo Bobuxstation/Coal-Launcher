@@ -11,9 +11,12 @@ function createWindow () {
       icon: "./assets/logo.png",
       autoHideMenuBar: true,
       frame: false,
+      backgroundColor: '#1d1d1d',
       webPreferences: {
-        enableRemoteModule: true,
         nodeIntegration: true,
+        nodeIntegrationInWorker: true,
+        nodeIntegrationInSubFrames: true,
+        enableRemoteModule: true,
         contextIsolation: false,
         webviewTag: true,
       }
