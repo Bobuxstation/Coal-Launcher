@@ -76,5 +76,9 @@ function editproviderjson() {
   shell.openExternal(configDir + "\\gameProviders.json")
 }
 
+function openDocs() {
+  shell.openExternal('https://github.com/Bobuxstation/Coal-Launcher/wiki')
+}
+
 //Get Launcher Version
 document.getElementById('versioninfo').innerText = "coal-launcher version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform;

@@ -37,15 +37,17 @@ input {
 }
 
 .header {
+  box-sizing: border-box;
   height: fit-content;
   background-color: var(--navigationBackground);
   -webkit-app-region: drag;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   backdrop-filter: blur(10px);
   height: 45px;
   border-top: var(--defaultUIBorder) solid 1px;
   border-left: var(--defaultUIBorder) solid 1px;
+  border-right: var(--defaultUIBorder) solid 1px;
 }
 
 .sidebar {

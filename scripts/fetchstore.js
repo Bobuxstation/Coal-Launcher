@@ -10,6 +10,10 @@ function loadMarket(jsonURL, jsonName) {
   //change title to the game provider name
   discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle"></h2>';
   document.getElementById('markettitle').innerText = sanitizeHtml(jsonName);
+  //set refresh button
+  document.getElementById('gameplay').onclick = function () {
+    loadMarket(jsonURL, jsonName);
+  }
 
   //fetch the JSON file
   fetch(jsonURL, { cache: "no-store" })
