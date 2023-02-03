@@ -94,7 +94,7 @@ function loadMarket(jsonURL, jsonName) {
         discoverList.appendChild(btn);
       }))
     //Show error if the user is offline
-    .catch(error => { discoverList.innerHTML = '<h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + sanitizeHtml(error.message) + '</p>'; });
+    .catch(error => { discoverList.innerHTML = '<br><h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + sanitizeHtml(error.message) + '</p>'; });
 };
 
 //Show game providers
