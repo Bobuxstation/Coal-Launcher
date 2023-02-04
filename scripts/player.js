@@ -32,10 +32,6 @@ function refresh() {
     }
 }
 
-function screenshot() {
-    contents.capturePage()
-}
-
 //downloads menu
 function speedruncounter() {
     var x = document.getElementById("speedruncounter");
