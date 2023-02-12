@@ -18,7 +18,7 @@ function launchELSE(dir, banner, name) {
         execoptionbtn.onclick = function () {
             var proc = require('child_process').spawn(dir);
             taskname.remove();
-    
+
             let newtaskname = document.createElement("p");
             newtaskname.innerHTML = "<h2>" + name + "</h2>" + "<button id='endtask'>Click To End Session</button>";
             newtaskname.id = name
@@ -27,7 +27,7 @@ function launchELSE(dir, banner, name) {
             }
             newtaskname.className = "downloadinfo"
             document.getElementById('tasks').appendChild(newtaskname);
-    
+
             proc.on('exit', function (code, signal) {
                 newtaskname.remove()
             });
@@ -95,13 +95,71 @@ function launchEXEC(dir, name) {
     };
 }
 
-jsonData.items.forEach(items => {
-    let btn = document.createElement("button");
-    btn.textContent = items.name;
-    let banner = items.banner;
-    btn.onclick = function () {
+function loadCollection() {
+    gameList.innerHTML = `
+    <a href="add.html#addgametitle">
+        <button>
+            <i class="fa-solid fa-plus"></i> Add a game
+        </button>
+    </a>
+    <a href="market.html">
+        <button>
+            <i class="fa-solid fa-download"></i> Download a game
+        </button>
+    </a>
+    <hr>
+    `
+
+    jsonData.items.forEach(function (items, index) {
+        let btn = document.createElement("button");
+        btn.textContent = items.name;
+        let banner = items.banner;
+        btn.onclick = function () {
+            document.getElementById('gamename').textContent = items.name;
+            document.getElementById('gamedev').textContent = items.developer;
+            document.getElementById('deletegame').onclick = function () {
+                removeItem(index);
+
+                jsonStr = JSON.stringify(jsonData, null, "\t");
+                console.log(jsonStr);
+                fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
+            if (typeof items.type === "undefined" || items.type == "html5") {
+                launchHTML(items.dir, items.banner, items.name)
+            } else if (items.type == "executable") {
+                launchEXEC(items.dir, items.name)
+            } else if (items.type == "flash") {
+                launchSWF(items.dir, items.banner, items.name)
+            } else {
+                launchELSE(items.dir, items.banner, items.name)
+            }
+            document.getElementById('gamedetails').style.display = "block";
+            document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
+            if (items.feed == "false" || items.feed == false) {
+                document.getElementById('gamefeed').style.display = "none";
+            } else {
+                document.getElementById('gamefeed').src = items.feed;
+                document.getElementById('gamefeed').style.display = "block";
+            }
+        };
+
         document.getElementById('gamename').textContent = items.name;
         document.getElementById('gamedev').textContent = items.developer;
+        document.getElementById('deletegame').onclick = function () {
+            removeItem(index);
+
+            jsonStr = JSON.stringify(jsonData, null, "\t");
+            console.log(jsonStr);
+            fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }
         if (typeof items.type === "undefined" || items.type == "html5") {
             launchHTML(items.dir, items.banner, items.name)
         } else if (items.type == "executable") {
@@ -119,30 +177,10 @@ jsonData.items.forEach(items => {
             document.getElementById('gamefeed').src = items.feed;
             document.getElementById('gamefeed').style.display = "block";
         }
-    };
 
-    document.getElementById('gamename').textContent = items.name;
-    document.getElementById('gamedev').textContent = items.developer;
-    if (typeof items.type === "undefined" || items.type == "html5") {
-        launchHTML(items.dir, items.banner, items.name)
-    } else if (items.type == "executable") {
-        launchEXEC(items.dir, items.name)
-    } else if (items.type == "flash") {
-        launchSWF(items.dir, items.banner, items.name)
-    } else {
-        launchELSE(items.dir, items.banner, items.name)
-    }
-    document.getElementById('gamedetails').style.display = "block";
-    document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
-    if (items.feed == "false" || items.feed == false) {
-        document.getElementById('gamefeed').style.display = "none";
-    } else {
-        document.getElementById('gamefeed').src = items.feed;
-        document.getElementById('gamefeed').style.display = "block";
-    }
-
-    gameList.appendChild(btn);
-});
+        gameList.appendChild(btn);
+    });
+}
 
 //downloads menu
 function taskmgr() {
@@ -153,3 +191,11 @@ function taskmgr() {
         x.style.display = "none";
     }
 }
+
+//to remove games
+function removeItem(index) {
+    jsonData.items.splice(index, 1);
+    loadCollection()
+}
+
+loadCollection()

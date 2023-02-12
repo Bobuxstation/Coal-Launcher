@@ -47,7 +47,6 @@ input {
   height: 45px;
   border-top: var(--defaultUIBorder) solid 1px;
   border-left: var(--defaultUIBorder) solid 1px;
-  border-right: var(--defaultUIBorder) solid 1px;
 }
 
 .sidebar {
@@ -184,12 +183,31 @@ li a:hover {
   color: white !important;
   text-decoration: none;
   font-weight: bold;
-  border: darkgreen solid 1px !important;
+  border: #49C628 solid 1px !important;
   color: black !important;
 }
 
 .playbutton:hover {
   background-image: linear-gradient(135deg, #49C628 10%, #49C628 100%) !important;
+}
+
+#gameplay {
+  width: calc(100% - 43px);
+}
+
+.deletebutton {
+  background-image: linear-gradient(135deg, #FEB692 10%, #EA5455 100%) !important;
+  font-size: 17.5px;
+  padding: 10px;
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  border: #EA5455 solid 1px !important;
+  color: black !important;
+}
+
+.deletebutton:hover {
+  background-image: linear-gradient(135deg, #EA5455 10%, #EA5455 100%) !important;
 }
 
 .downloads {
@@ -380,4 +398,8 @@ hr {
   animation-name: slideInDown;
   animation-duration: 0.25s;
   animation-fill-mode: both;
+}
+
+#gameplay, #deletegame {
+  display: inline-block;
 }
