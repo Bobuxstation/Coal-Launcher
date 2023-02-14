@@ -115,18 +115,20 @@ function loadCollection() {
         btn.textContent = items.name;
         let banner = items.banner;
         btn.onclick = function () {
-            document.getElementById('gamename').textContent = items.name;
+            if (typeof items.type === "undefined" || items.type == "html5") {
+                gameextensionicon = '<i class="fa-brands fa-html5"></i> '
+            } else if (items.type == "executable") {
+                gameextensionicon = '<i class="fa-brands fa-windows"></i> '
+            } else if (items.type == "flash") {
+                gameextensionicon = '<i class="fa-solid fa-bolt"></i> '
+            } else {
+                gameextensionicon = ''
+            }
+
+            document.getElementById('gamename').innerHTML = gameextensionicon + items.name;
             document.getElementById('gamedev').textContent = items.developer;
             document.getElementById('deletegame').onclick = function () {
-                removeItem(index);
-
-                jsonStr = JSON.stringify(jsonData, null, "\t");
-                console.log(jsonStr);
-                fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
+                removeItem(index, items);
             }
             if (typeof items.type === "undefined" || items.type == "html5") {
                 launchHTML(items.dir, items.banner, items.name)
@@ -147,18 +149,20 @@ function loadCollection() {
             }
         };
 
-        document.getElementById('gamename').textContent = items.name;
+        if (typeof items.type === "undefined" || items.type == "html5") {
+            gameextensionicon = '<i class="fa-brands fa-html5"></i> '
+        } else if (items.type == "executable") {
+            gameextensionicon = '<i class="fa-brands fa-windows"></i> '
+        } else if (items.type == "flash") {
+            gameextensionicon = '<i class="fa-solid fa-bolt"></i> '
+        } else {
+            gameextensionicon = ''
+        }
+
+        document.getElementById('gamename').innerHTML = gameextensionicon + items.name;
         document.getElementById('gamedev').textContent = items.developer;
         document.getElementById('deletegame').onclick = function () {
-            removeItem(index);
-
-            jsonStr = JSON.stringify(jsonData, null, "\t");
-            console.log(jsonStr);
-            fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
+            removeItem(index, items);
         }
         if (typeof items.type === "undefined" || items.type == "html5") {
             launchHTML(items.dir, items.banner, items.name)
@@ -193,9 +197,41 @@ function taskmgr() {
 }
 
 //to remove games
-function removeItem(index) {
-    jsonData.items.splice(index, 1);
-    loadCollection()
+function removeItem(index, items) {
+    document.getElementById("taskmgr").style.display = "block"
+
+    let taskname = document.createElement("p");
+    taskname.innerHTML = "<h2>" + items.name + "</h2>" + "Are you sure you want to remove this game from your collection?";
+    taskname.id = name
+    taskname.className = "downloadinfo"
+    document.getElementById('tasks').appendChild(taskname);
+
+    let deleteYes = document.createElement("button");
+    deleteYes.id = "endtask";
+    deleteYes.innerHTML = "Yes";
+    deleteYes.onclick = function () {
+        jsonData.items.splice(index, 1);
+        loadCollection()
+    
+        jsonStr = JSON.stringify(jsonData, null, "\t");
+        console.log(jsonStr);
+        fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+
+        taskname.remove()
+    }
+    taskname.appendChild(deleteYes)
+
+    let deleteNo = document.createElement("button");
+    deleteNo.id = "endtask";
+    deleteNo.innerHTML = "No";
+    deleteNo.onclick = function () {
+        taskname.remove()
+    }
+    taskname.appendChild(deleteNo)
 }
 
 loadCollection()

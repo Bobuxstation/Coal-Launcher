@@ -21,7 +21,7 @@ body {
   padding-top: 45px;
 }
 
-.body button {
+.body button, #endtask {
   color: var(--mainTextColor);
   background: none;
   background-size: cover;
@@ -108,7 +108,7 @@ li a:hover {
   transition: none;
 }
 
-.gamelist button {
+.gamelist button, #endtask {
   width: 100%;
   padding: 5px;
   text-align: left;
@@ -119,7 +119,7 @@ li a:hover {
   text-decoration: none;
 }
 
-.gamelist button:hover {
+.gamelist button:hover, #endtask:hover {
   background-color: var(--sidebarNavigationButtonHover);
 }
 
@@ -299,7 +299,7 @@ nav {
   border-radius: 5px;
 }
 
-#endtask, .input, .button, .textarea {
+.input, .button, .textarea {
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -313,13 +313,13 @@ nav {
   outline: none;
 }
 
-#endtask:hover, .input:hover, .button:hover, .textarea:hover {
+.input:hover, .button:hover, .textarea:hover {
   background: var(--coalUIButtonHover) !important;
   transition: all 0.5s ease;
   border: var(--coalUIButtonBorder) solid 1px !important;
 }
 
-#endtask:active, .input:active, .button:active, .textarea:active {
+.input:active, .button:active, .textarea:active {
   background: var(--coalUIButtonActive) !important;
   transition: all 0.5s ease;
   border: var(--coalUIButtonBorderActive) solid 1px !important;
