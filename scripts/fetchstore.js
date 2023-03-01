@@ -6,13 +6,13 @@ let gameProviderList = require(configDir + '/gameProviders.json');
 const sanitizeHtml = require('sanitize-html');
 
 //function for fetching market
-function loadMarket(jsonURL, jsonName) {
+function loadMarket(jsonURL, jsonName, search) {
   //change title to the game provider name
   discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle"></h2>';
   document.getElementById('markettitle').innerText = sanitizeHtml(jsonName);
   //set refresh button
-  document.getElementById('gameplay').onclick = function () {
-    loadMarket(jsonURL, jsonName);
+  document.getElementById('playbutton').onchange = function () {
+    loadMarket(jsonURL, jsonName, document.getElementById('playbutton').value);
   }
 
   //fetch the JSON file
@@ -91,7 +91,13 @@ function loadMarket(jsonURL, jsonName) {
             };
           }
         };
-        discoverList.appendChild(btn);
+
+        //show game if it contains the searched query
+        let searchgame = sanitizedgamename.toLowerCase()
+        let searchsum = sanitizedgameinfo.toLowerCase()
+        if (searchgame.includes(search) || searchsum.includes(search)) {
+          discoverList.appendChild(btn);
+        }
       }))
     //Show error if the user is offline
     .catch(error => { discoverList.innerHTML = '<br><h4 style="text-align: center;">Cannot load market at the moment, Check your internet connection.</h4><p style="text-align: center;">' + sanitizeHtml(error.message) + '</p>'; });
@@ -102,10 +108,10 @@ gameProviderList.items.forEach(items => {
   let btn = document.createElement("button");
   btn.textContent = items.name;
   btn.onclick = function () {
-    loadMarket(items.JSONDir, items.name);
+    loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);
   };
   gameList.appendChild(btn);
 });
 
 //Load default game provider
-loadMarket("https://bobuxstation.github.io/Coal-Web/games.json", "Coal Games");
+loadMarket("https://bobuxstation.github.io/Coal-Web/games.json", "Coal Games", document.getElementById('playbutton').value);

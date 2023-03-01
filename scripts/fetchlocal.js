@@ -19,11 +19,20 @@ function launchELSE(dir, banner, name) {
             var proc = require('child_process').spawn(dir);
             taskname.remove();
 
+            proc.on('error', err => {
+                if (err.code === 'EACCES') {
+                    newtaskname.innerHTML = "<h2>" + name + "</h2>" + ('This command may require elevated privileges to run.');
+                } else {
+                    newtaskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
+                }
+            });
+
             let newtaskname = document.createElement("p");
             newtaskname.innerHTML = "<h2>" + name + "</h2>" + "<button id='endtask'>Click To End Session</button>";
             newtaskname.id = name
             newtaskname.onclick = function () {
                 proc.kill('SIGINT');
+                newtaskname.remove()
             }
             newtaskname.className = "downloadinfo"
             document.getElementById('tasks').appendChild(newtaskname);
@@ -80,11 +89,20 @@ function launchEXEC(dir, name) {
         document.getElementById("taskmgr").style.display = "block"
         var proc = require('child_process').spawn(dir);
 
+        proc.on('error', err => {
+            if (err.code === 'EACCES') {
+                taskname.innerHTML = "<h2>" + name + "</h2>" + ('This command may require elevated privileges to run.');
+            } else {
+                taskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
+            }
+        });
+
         let taskname = document.createElement("p");
         taskname.innerHTML = "<h2>" + name + "</h2>" + "<button id='endtask'>Click To End Session</button>";
         taskname.id = name
         taskname.onclick = function () {
             proc.kill('SIGINT');
+            taskname.remove()
         }
         taskname.className = "downloadinfo"
         document.getElementById('tasks').appendChild(taskname);
@@ -110,11 +128,46 @@ function loadCollection() {
     <hr>
     `
 
-    jsonData.items.forEach(function (items, index) {
-        let btn = document.createElement("button");
-        btn.textContent = items.name;
-        let banner = items.banner;
-        btn.onclick = function () {
+    if (jsonData.items.length != 0) {
+        jsonData.items.forEach(function (items, index) {
+            let btn = document.createElement("button");
+            btn.textContent = items.name;
+            let banner = items.banner;
+            btn.onclick = function () {
+                if (typeof items.type === "undefined" || items.type == "html5") {
+                    gameextensionicon = '<i class="fa-brands fa-html5"></i> '
+                } else if (items.type == "executable") {
+                    gameextensionicon = '<i class="fa-brands fa-windows"></i> '
+                } else if (items.type == "flash") {
+                    gameextensionicon = '<i class="fa-solid fa-bolt"></i> '
+                } else {
+                    gameextensionicon = ''
+                }
+
+                document.getElementById('gamename').innerHTML = gameextensionicon + items.name;
+                document.getElementById('gamedev').textContent = items.developer;
+                document.getElementById('deletegame').onclick = function () {
+                    removeItem(index, items);
+                }
+                if (typeof items.type === "undefined" || items.type == "html5") {
+                    launchHTML(items.dir, items.banner, items.name)
+                } else if (items.type == "executable") {
+                    launchEXEC(items.dir, items.name)
+                } else if (items.type == "flash") {
+                    launchSWF(items.dir, items.banner, items.name)
+                } else {
+                    launchELSE(items.dir, items.banner, items.name)
+                }
+                document.getElementById('gamedetails').style.display = "block";
+                document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
+                if (items.feed == "false" || items.feed == false) {
+                    document.getElementById('gamefeed').style.display = "none";
+                } else {
+                    document.getElementById('gamefeed').src = items.feed;
+                    document.getElementById('gamefeed').style.display = "block";
+                }
+            };
+
             if (typeof items.type === "undefined" || items.type == "html5") {
                 gameextensionicon = '<i class="fa-brands fa-html5"></i> '
             } else if (items.type == "executable") {
@@ -147,43 +200,14 @@ function loadCollection() {
                 document.getElementById('gamefeed').src = items.feed;
                 document.getElementById('gamefeed').style.display = "block";
             }
-        };
 
-        if (typeof items.type === "undefined" || items.type == "html5") {
-            gameextensionicon = '<i class="fa-brands fa-html5"></i> '
-        } else if (items.type == "executable") {
-            gameextensionicon = '<i class="fa-brands fa-windows"></i> '
-        } else if (items.type == "flash") {
-            gameextensionicon = '<i class="fa-solid fa-bolt"></i> '
-        } else {
-            gameextensionicon = ''
-        }
-
-        document.getElementById('gamename').innerHTML = gameextensionicon + items.name;
-        document.getElementById('gamedev').textContent = items.developer;
-        document.getElementById('deletegame').onclick = function () {
-            removeItem(index, items);
-        }
-        if (typeof items.type === "undefined" || items.type == "html5") {
-            launchHTML(items.dir, items.banner, items.name)
-        } else if (items.type == "executable") {
-            launchEXEC(items.dir, items.name)
-        } else if (items.type == "flash") {
-            launchSWF(items.dir, items.banner, items.name)
-        } else {
-            launchELSE(items.dir, items.banner, items.name)
-        }
-        document.getElementById('gamedetails').style.display = "block";
-        document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
-        if (items.feed == "false" || items.feed == false) {
-            document.getElementById('gamefeed').style.display = "none";
-        } else {
-            document.getElementById('gamefeed').src = items.feed;
-            document.getElementById('gamefeed').style.display = "block";
-        }
-
-        gameList.appendChild(btn);
-    });
+            gameList.appendChild(btn);
+        });
+    } else {
+        document.getElementById('gamefeed').style.display = "none";
+        document.getElementById('gamedetails').style.display = "none";
+        document.getElementById('body').style.backgroundImage = "";
+    }
 }
 
 //downloads menu
@@ -212,7 +236,7 @@ function removeItem(index, items) {
     deleteYes.onclick = function () {
         jsonData.items.splice(index, 1);
         loadCollection()
-    
+
         jsonStr = JSON.stringify(jsonData, null, "\t");
         console.log(jsonStr);
         fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
