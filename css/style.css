@@ -194,7 +194,7 @@ li a:hover {
 }
 
 #gameplay {
-  width: calc(100% - 43px);
+  width: calc(100% - 50px);
 }
 
 .deletebutton {
@@ -206,6 +206,7 @@ li a:hover {
   font-weight: bold;
   border: #EA5455 solid 1px !important;
   color: black !important;
+  width: 45px;
 }
 
 .deletebutton:hover {
@@ -346,7 +347,7 @@ hr {
   box-sizing: border-box;
   padding: 10px;
   text-align: left;
-  border-radius: 7.5px;
+  border-radius: 5;
 }
 
 .gamecard1:hover {
