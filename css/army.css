@@ -13,7 +13,7 @@
 
     /* Other UI Elements */
     --coalUIButton: #4c5844;
-    --coalUIButtonBorder: #4c5844;
+    --coalUIButtonBorder: #3e4637;
 
     --coalUIButtonHover: #3e4637;
 
@@ -21,4 +21,8 @@
     --coalUIButtonBorderActive: #4c5844;
 
     --sidebarNavigationButtonHover: #3e4637;
+}
+
+body {
+    background: #3e4637 !important;
 }
