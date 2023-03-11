@@ -2,9 +2,10 @@
 let jsonData = require(configDir + '/games.json');
 let gameProviderList = require(configDir + '/gameProviders.json');
 const { shell } = require('electron')
+const path = require('path');
 
 //search for themes
-const directoryPath = 'css/';
+const directoryPath = path.join(__dirname, 'css');
 fs.readdir(directoryPath, function (err, files) {
   const cssFiles = files.filter(file => file.endsWith('.css'));
   const selectElement = document.getElementById('launcherstyle');
