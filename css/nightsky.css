@@ -6,7 +6,7 @@
   --gameCardBackground: #1d1d1ddd;
   --defaultUIBorder: #ffffff;
   --gameCardTextShadow: #00000000;
-  --mainBackgroundImage: none;
+  --mainBackgroundImage: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80');
   --mainFontFamily: Inter;
 
   /* Other UI Elements */
