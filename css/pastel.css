@@ -6,7 +6,7 @@
   --gameCardBackground: #ffffffdd;
   --defaultUIBorder: #5c5c5c;
   --gameCardTextShadow: #00000000;
-  --mainBackgroundImage: none;
+  --mainBackgroundImage: url('https://source.unsplash.com/1600x900/?pastel');
   --mainFontFamily: 'Montserrat', sans-serif;
 
   /* Other UI Elements */
