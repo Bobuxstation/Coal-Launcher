@@ -6,7 +6,7 @@
   --gameCardBackground: #352d25;
   --defaultUIBorder: #7c5d49;
   --gameCardTextShadow: #00000000;
-  --mainBackgroundImage: url('../assets/rustic.jpg');
+  --mainBackgroundImage: none;
   --mainFontFamily: Inter;
 
   /* Other UI Elements */

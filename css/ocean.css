@@ -6,7 +6,7 @@
   --gameCardBackground: #1a1a2e;
   --defaultUIBorder: #0f3460;
   --gameCardTextShadow: #00000000;
-  --mainBackgroundImage: url('../assets/wave.png');
+  --mainBackgroundImage: none;
   --mainFontFamily: 'Roboto', sans-serif;
 
   /* Other UI Elements */

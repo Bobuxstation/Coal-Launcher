@@ -1,29 +1,22 @@
 :root {
+  /* Basic UI */
   --mainBackground: #f5e9de;
-
   --mainTextColor: #5c5c5c;
-  
   --navigationBackground: #f5e9deee;
-  
   --gameCardBackground: #ffffffdd;
-  
   --defaultUIBorder: #5c5c5c;
-  
   --gameCardTextShadow: #00000000;
-  
   --mainBackgroundImage: none;
-  
   --mainFontFamily: 'Montserrat', sans-serif;
-  
+
+  /* Other UI Elements */
   --coalUIButton: #ff9393;
-  
   --coalUIButtonBorder: #ff939390;
   
   --coalUIButtonHover: #ffccccdd;
-  
+
   --coalUIButtonActive: #ffcccc;
-  
   --coalUIButtonBorderActive: #ffcccc;
-  
+
   --sidebarNavigationButtonHover: #ffcccc;
 }

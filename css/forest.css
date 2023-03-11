@@ -6,7 +6,7 @@
   --gameCardBackground: #202d29;
   --defaultUIBorder: #576b66;
   --gameCardTextShadow: #00000000;
-  --mainBackgroundImage: url('../assets/darkforest.jpg');
+  --mainBackgroundImage: none;
   --mainFontFamily: Inter;
 
   /* Other UI Elements */
