@@ -97,7 +97,7 @@ function loadMarket(jsonURL, jsonName, search) {
         //show game if it contains the searched query
         let searchgame = sanitizedgamename.toLowerCase()
         let searchsum = sanitizedgameinfo.toLowerCase()
-        if (searchgame.includes(search) || searchsum.includes(search)) {
+        if (searchgame.includes(search.toLowerCase()) || searchsum.includes(search.toLowerCase())) {
           discoverList.appendChild(btn);
         }
       }))
