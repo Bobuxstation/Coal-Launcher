@@ -68,26 +68,28 @@ function loadMarket(jsonURL, jsonName, search) {
               addedcollection(sanitizedgamename)
             };
           } else {
-            //Check the type of the game
-            if (onlineitems.type == "html5" || onlineitems.type === "undefined") {
-              gameextension = ".html"
-            } else if (onlineitems.type == "executable") {
-              gameextension = ".exe"
-            } else if (onlineitems.type == "flash") {
-              gameextension = ".swf"
-            }
             //Check if game exists
             let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
             if (checkduplicate == true) {
               console.log('game exists! updating html file...')
-              downloadgame(onlineitems.download, sanitizedgamename, gameextension);
+              downloadgame(onlineitems);
             } else {
-              downloadgame(onlineitems.download, sanitizedgamename, gameextension);
-              var obj = (jsonData);
-              obj['items'].push({ "name": sanitizedgamename, "feed": sanitizeHtml(onlineitems.feed), "Version": sanitizeHtml(onlineitems.Version), "developer": sanitizeddevname, "banner": sanitizeHtml(onlineitems.banner), "dir": configDir + "/games/" + sanitizedgamename + gameextension, "type": sanitizeHtml(onlineitems.type) });
-              jsonStr = JSON.stringify(obj, null, "\t");
-              const gameListDir = configDir + "/games.json";
-              fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+              downloadgame(onlineitems).then(
+                function(value) { 
+                  var obj = (jsonData);
+                  obj['items'].push({
+                    "name": sanitizedgamename, 
+                    "feed": sanitizeHtml(onlineitems.feed), 
+                    "Version": sanitizeHtml(onlineitems.Version), 
+                    "developer": sanitizeddevname, 
+                    "banner": sanitizeHtml(onlineitems.banner), 
+                    "dir": configDir + "/games/" + sanitizedgamename + gameextension, 
+                    "type": sanitizeHtml(onlineitems.type)});
+                  jsonStr = JSON.stringify(obj, null, "\t");
+                  const gameListDir = configDir + "/games.json";
+                  fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+                 },
+              );
             };
           }
         };

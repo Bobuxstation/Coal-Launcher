@@ -3,6 +3,21 @@ let jsonData = require(configDir + '/games.json');
 let gameProviderList = require(configDir + '/gameProviders.json');
 const { shell } = require('electron')
 
+//search for themes
+const directoryPath = 'css/';
+fs.readdir(directoryPath, function (err, files) {
+  const cssFiles = files.filter(file => file.endsWith('.css'));
+  const selectElement = document.getElementById('launcherstyle');
+  cssFiles.forEach(file => {
+    if (file.endsWith('.css') && !file.startsWith('style') && !file.startsWith('scroll')) {
+      const optionElement = document.createElement('option');
+      optionElement.value = "css/" + file;
+      optionElement.text = "css/" + file;
+      selectElement.appendChild(optionElement);
+    }
+  });
+});
+
 //add game function
 function add() {
   var obj = (jsonData);

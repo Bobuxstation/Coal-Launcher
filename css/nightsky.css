@@ -1,0 +1,16 @@
+:root {
+  --mainBackground: #1d1d1d;
+  --mainTextColor: #ffffff;
+  --navigationBackground: #2d2d2dee;
+  --gameCardBackground: #1d1d1ddd;
+  --defaultUIBorder: #ffffff;
+  --gameCardTextShadow: #00000000;
+  --mainBackgroundImage: url('../assets/stars-pattern.png');
+  --mainFontFamily: Inter;
+  --coalUIButton: #ffffff90;
+  --coalUIButtonBorder: #ffffff90;
+  --coalUIButtonHover: darkgray;
+  --coalUIButtonActive: gray;
+  --coalUIButtonBorderActive: #ffffff;
+  --sidebarNavigationButtonHover: gray;
+}

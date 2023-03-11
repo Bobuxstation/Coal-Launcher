@@ -1,0 +1,22 @@
+:root {
+  /* Basic UI */
+  --mainBackground: #1a1a2e;
+  --mainTextColor: #ffffff;
+  --navigationBackground: #283149;
+  --gameCardBackground: #1a1a2e;
+  --defaultUIBorder: #0f3460;
+  --gameCardTextShadow: #00000000;
+  --mainBackgroundImage: url('../assets/wave.png');
+  --mainFontFamily: 'Roboto', sans-serif;
+
+  /* Other UI Elements */
+  --coalUIButton: #0f346090;
+  --coalUIButtonBorder: #0f346090;
+
+  --coalUIButtonHover: #28314990;
+
+  --coalUIButtonActive: #283149;
+  --coalUIButtonBorderActive: #283149;
+
+  --sidebarNavigationButtonHover: #0f3460;
+}

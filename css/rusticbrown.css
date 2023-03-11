@@ -1,0 +1,22 @@
+:root {
+  /* Basic UI */
+  --mainBackground: #352d25;
+  --mainTextColor: #ffffff;
+  --navigationBackground: #563e34;
+  --gameCardBackground: #352d25;
+  --defaultUIBorder: #7c5d49;
+  --gameCardTextShadow: #00000000;
+  --mainBackgroundImage: url('../assets/rustic.jpg');
+  --mainFontFamily: Inter;
+
+  /* Other UI Elements */
+  --coalUIButton: #4d4d4d90;
+  --coalUIButtonBorder: #5d5d5d90;
+
+  --coalUIButtonHover: #5d5d5d90;
+
+  --coalUIButtonActive: #3d3d3d;
+  --coalUIButtonBorderActive: #5d5d5d;
+
+  --sidebarNavigationButtonHover: #4d4d4d;
+}

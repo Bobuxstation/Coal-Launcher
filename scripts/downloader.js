@@ -1,13 +1,20 @@
 //load dependencies
 const Downloader = require("nodejs-file-downloader");
 
-//download game function
-function downloadgame(gameURL, gameName, gametype) {
-  if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) {
-  } else {
+async function downloadgame(game) {
+  //Check the type of the game
+  if (game.type == "html5" || game.type === "undefined") {
+    gameextension = ".html"
+  } else if (game.type == "executable") {
+    gameextension = ".exe"
+  } else if (game.type == "flash") {
+    gameextension = ".swf"
+  }
+
+  if (!document.getElementById('downloadprogress').innerHTML.includes(sanitizeHtml(game.name))) {
     let downloadprogress = document.createElement("p");
-    downloadprogress.innerHTML = "<h2>" + gameName + "</h2>" + "<p>Please wait...</p>";
-    downloadprogress.id = gameName
+    downloadprogress.innerHTML = "<h2>" + sanitizeHtml(game.name) + "</h2>" + "<p>Please wait...</p>";
+    downloadprogress.id = sanitizeHtml(game.name)
     downloadprogress.className = "downloadinfo"
     document.getElementById('downloadprogress').appendChild(downloadprogress);
   }
@@ -15,27 +22,27 @@ function downloadgame(gameURL, gameName, gametype) {
   document.getElementById("downloads").style.display = "block";
 
   const downloader = new Downloader({
-    url: gameURL,
+    url: game.download,
     directory: configDir + "/games",
-    fileName: gameName + gametype,
+    fileName: sanitizeHtml(game.name) + gameextension,
     cloneFiles: false,
     maxAttempts: 3,
     onError: function (error) {
       console.log("Error from attempt ", error);
-      document.getElementById(gameName).innerHTML = "<h2>" + gameName + "</h2>" + "<p>" + error + "</p>";
+      document.getElementById(sanitizeHtml(game.name)).innerHTML = "<h2>" + sanitizeHtml(game.name) + "</h2>" + "<p>" + error + "</p>";
     },
     onProgress: function (percentage, chunk, remainingSize) {
       let downloadprogres = (Math.round(percentage) + "%. " + remainingSize + " Bytes Left");
       console.log(downloadprogres);
-      document.getElementById(gameName).innerHTML = "<h2>" + gameName + "</h2>" + "<p>" + downloadprogres + "</p>" + "<progress class='progress' value='" + Math.round(percentage) + "' max='100'></progress>";
+      document.getElementById(sanitizeHtml(game.name)).innerHTML = "<h2>" + sanitizeHtml(game.name) + "</h2>" + "<p>" + downloadprogres + "</p>" + "<progress class='progress' value='" + Math.round(percentage) + "' max='100'></progress>";
     },
   });
-  downloader.download();
+  await downloader.download();
 };
 
 //download game function
 function addedcollection(gameName) {
-  if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) {} else {
+  if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) { } else {
     let downloadprogress = document.createElement("p");
     downloadprogress.innerHTML = "<h2>" + gameName + "</h2>" + "<p>Game added to collection!</p>";
     downloadprogress.id = gameName
