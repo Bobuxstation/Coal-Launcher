@@ -21,7 +21,7 @@ function launchELSE(dir, banner, name) {
 
             proc.on('error', err => {
                 if (err.code === 'EACCES') {
-                    newtaskname.innerHTML = "<h2>" + name + "</h2>" + ('This command may require elevated privileges to run.');
+                    newtaskname.innerHTML = "<h2>" + name + "</h2>" + ('This game may require elevated privileges to run.');
                 } else {
                     newtaskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
                 }
@@ -91,7 +91,7 @@ function launchEXEC(dir, name) {
 
         proc.on('error', err => {
             if (err.code === 'EACCES') {
-                taskname.innerHTML = "<h2>" + name + "</h2>" + ('This command may require elevated privileges to run.');
+                taskname.innerHTML = "<h2>" + name + "</h2>" + ('This game may require elevated privileges to run.');
             } else {
                 taskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
             }
