@@ -225,12 +225,14 @@ li a:hover {
   background-color: var(--navigationBackground);
   backdrop-filter: blur(10px);
   width: 20%;
-  height: calc(100vh - 45px);
+  height: calc(100vh - 56px);
   padding: 5px;
   animation-name: slideInDown;
   animation-duration: 0.25s;
   animation-fill-mode: both;
   overflow: scroll;
+  border: var(--defaultUIBorder) solid;
+  border-width: 0px 1px 1px 0px;
 }
 
 @keyframes slideInDown {

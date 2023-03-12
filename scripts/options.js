@@ -14,6 +14,9 @@ fs.readdir(directoryPath, function (err, files) {
       const optionElement = document.createElement('option');
       optionElement.value = "css/" + file;
       optionElement.text = "css/" + file;
+      if (jsonData.currenttheme == "css/" + file) {
+        optionElement.selected = true;
+      }
       selectElement.appendChild(optionElement);
     }
   });

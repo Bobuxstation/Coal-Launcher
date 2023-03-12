@@ -1,0 +1,22 @@
+:root {
+  /* Basic UI */
+  --mainBackground: #f5f5f5;
+  --mainTextColor: #1d1d1d;
+  --navigationBackground: #f5f5f5;
+  --gameCardBackground: #ffffff;
+  --defaultUIBorder: #d3d3d3;
+  --gameCardTextShadow: #ffffff;
+  --mainBackgroundImage: none;
+  --mainFontFamily: 'Roboto', sans-serif;
+
+  /* Other UI Elements */
+  --coalUIButton: #6d6d6d;
+  --coalUIButtonBorder: #d3d3d3;
+
+  --coalUIButtonHover: #555555;
+
+  --coalUIButtonActive: #f5f5f5;
+  --coalUIButtonBorderActive: #1d1d1d;
+
+  --sidebarNavigationButtonHover: #d3d3d3;
+}
