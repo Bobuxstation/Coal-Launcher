@@ -10,10 +10,10 @@
   --mainFontFamily: 'Roboto', sans-serif;
 
   /* Other UI Elements */
-  --coalUIButton: #6d6d6d;
+  --coalUIButton: #f5f5f5;
   --coalUIButtonBorder: #d3d3d3;
 
-  --coalUIButtonHover: #555555;
+  --coalUIButtonHover: #ffffff;
 
   --coalUIButtonActive: #f5f5f5;
   --coalUIButtonBorderActive: #1d1d1d;

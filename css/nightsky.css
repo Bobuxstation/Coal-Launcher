@@ -4,18 +4,18 @@
   --mainTextColor: #ffffff;
   --navigationBackground: #2d2d2dee;
   --gameCardBackground: #1d1d1ddd;
-  --defaultUIBorder: #ffffff;
+  --defaultUIBorder: #808080;
   --gameCardTextShadow: #00000000;
   --mainBackgroundImage: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80');
   --mainFontFamily: Inter;
 
   /* Other UI Elements */
-  --coalUIButton: #ffffff90;
-  --coalUIButtonBorder: #ffffff90;
+  --coalUIButton: #1d1d1ddd;
+  --coalUIButtonBorder: #808080;
 
-  --coalUIButtonHover: darkgray;
+  --coalUIButtonHover: #2d2d2dee;
 
-  --coalUIButtonActive: gray;
+  --coalUIButtonActive: #1d1d1d;
   --coalUIButtonBorderActive: #ffffff;
 
   --sidebarNavigationButtonHover: gray;
