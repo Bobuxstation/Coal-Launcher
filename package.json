@@ -8,7 +8,7 @@
     "test": "echo \"No test specified\"",
     "start": "electron .",
     "dist": "electron-builder",
-    "buildwin": "electron-builder --win"
+    "distCI": "electron-builder --win --linux"
   },
   "repository": "https://github.com/Bobuxstation/Coal-Launcher",
   "publish": {
@@ -33,8 +33,20 @@
     "productName": "Coal Launcher",
     "win": {
       "target": [
-        "nsis",
-        "portable"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
       ],
       "publisherName": "Arsyad&Bagus Studios"
     },
