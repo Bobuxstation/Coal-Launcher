@@ -48,8 +48,15 @@
           <p id="gamedev">Game Publisher</p><br>
           <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton"><i
                 class="fa-solid fa-up-right-from-square"></i> LAUNCH</button></a>
-          <a id="deletegame" style="text-decoration:none;" onclick=""><button class="deletebutton"><i
-                class="fa-solid fa-trash"></i></button></a>
+          <a id="contextmenu" style="text-decoration:none;" onclick="toggleContext()"><button class="deletebutton"><i
+                class="fa-solid fa-bars"></i></button></a>
+        </div>
+        <div id="gameextra" style="display: none;">
+          <button id="deletegame"><i class="fa-solid fa-trash"></i> Delete Game</button>
+          <div id="execonly">
+            <button id="createDesktopShortcut"><i class="fa-solid fa-desktop"></i> Create Shortcut</button>
+            <button id="emulatePrompt"><i class="fa-solid fa-wine-glass"></i> Emulate It!</button>
+          </div>
         </div>
         <iframe id="gamefeed" style="display: none;">
           <link rel="stylesheet" href="scroll.css">

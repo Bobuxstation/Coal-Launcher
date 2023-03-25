@@ -5,6 +5,7 @@ console.log(configDir);
 let jsonData = require(configDir + '/games.json');
 
 function launchELSE(dir, banner, name) {
+    document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
         document.getElementById("taskmgr").style.display = "block";
 
@@ -63,6 +64,7 @@ function launchELSE(dir, banner, name) {
 
 //function to launch html5 games
 function launchHTML(dir, banner, name) {
+    document.getElementById("execonly").style.display = "none";
     document.getElementById('gameplay').onclick = function () {
         window.open(
             "player.html?game=" + dir + "&banner=" + banner + "&name=" + name,
@@ -74,6 +76,7 @@ function launchHTML(dir, banner, name) {
 
 //function to launch flash games
 function launchSWF(dir, banner, name) {
+    document.getElementById("execonly").style.display = "none";
     document.getElementById('gameplay').onclick = function () {
         window.open(
             "flashplayer.html?game=" + dir + "&banner=" + banner + "&name=" + name,
@@ -85,6 +88,7 @@ function launchSWF(dir, banner, name) {
 
 //function to launch executable games
 function launchEXEC(dir, name) {
+    document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
         document.getElementById("taskmgr").style.display = "block"
         var proc = require('child_process').spawn(dir);
@@ -148,6 +152,39 @@ function loadCollection() {
                 document.getElementById('gamedev').textContent = items.developer;
                 document.getElementById('deletegame').onclick = function () {
                     removeItem(index, items);
+                    toggleContext()
+                }
+                document.getElementById('createDesktopShortcut').onclick = function () {
+                    createShortcut(items.dir)
+                    toggleContext()
+                }
+                document.getElementById('emulatePrompt').onclick = function () {
+                    const preferredEmulator = jsonData.preferredEmulator || "wine"
+                    const dir = items.dir
+                    const name = items.name
+
+                    document.getElementById("taskmgr").style.display = "block"
+                    var proc = require('child_process').exec(preferredEmulator + " " + dir);
+                    proc.on('error', err => {
+                        if (err.code === 'EACCES') {
+                            taskname.innerHTML = "<h2>" + name + "</h2>" + ('This game may require elevated privileges to run.');
+                        } else {
+                            taskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
+                        }
+                    });
+                    let taskname = document.createElement("p");
+                    taskname.innerHTML = "<h2>" + name + "</h2>" + "<button id='endtask'>Click To End Session</button>";
+                    taskname.id = name
+                    taskname.onclick = function () {
+                        proc.kill('SIGINT');
+                        taskname.remove()
+                    }
+                    taskname.className = "downloadinfo"
+                    document.getElementById('tasks').appendChild(taskname);
+                    proc.on('exit', function (code, signal) {
+                        taskname.remove()
+                    });
+                    toggleContext()
                 }
                 if (typeof items.type === "undefined" || items.type == "html5") {
                     launchHTML(items.dir, items.banner, items.name)
@@ -168,38 +205,7 @@ function loadCollection() {
                 }
             };
 
-            if (typeof items.type === "undefined" || items.type == "html5") {
-                gameextensionicon = '<i class="fa-brands fa-html5"></i> '
-            } else if (items.type == "executable") {
-                gameextensionicon = '<i class="fa-brands fa-windows"></i> '
-            } else if (items.type == "flash") {
-                gameextensionicon = '<i class="fa-solid fa-bolt"></i> '
-            } else {
-                gameextensionicon = ''
-            }
-
-            document.getElementById('gamename').innerHTML = gameextensionicon + items.name;
-            document.getElementById('gamedev').textContent = items.developer;
-            document.getElementById('deletegame').onclick = function () {
-                removeItem(index, items);
-            }
-            if (typeof items.type === "undefined" || items.type == "html5") {
-                launchHTML(items.dir, items.banner, items.name)
-            } else if (items.type == "executable") {
-                launchEXEC(items.dir, items.name)
-            } else if (items.type == "flash") {
-                launchSWF(items.dir, items.banner, items.name)
-            } else {
-                launchELSE(items.dir, items.banner, items.name)
-            }
-            document.getElementById('gamedetails').style.display = "block";
-            document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
-            if (items.feed == "false" || items.feed == false) {
-                document.getElementById('gamefeed').style.display = "none";
-            } else {
-                document.getElementById('gamefeed').src = items.feed;
-                document.getElementById('gamefeed').style.display = "block";
-            }
+            btn.click()
 
             gameList.appendChild(btn);
         });
@@ -213,6 +219,16 @@ function loadCollection() {
 //downloads menu
 function taskmgr() {
     var x = document.getElementById("taskmgr");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+//context menu
+function toggleContext() {
+    var x = document.getElementById("gameextra");
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {

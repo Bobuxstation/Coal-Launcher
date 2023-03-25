@@ -112,18 +112,22 @@ li a:hover {
   transition: none;
 }
 
-.gamelist button, #endtask {
+.gamelist button, #endtask, #gameextra button {
   width: 100%;
   padding: 5px;
   text-align: left;
   font-weight: bold;
 }
 
+#gameextra button:last-child {
+  margin-bottom: 0;
+}
+
 .gamelist a {
   text-decoration: none;
 }
 
-.gamelist button:hover, #endtask:hover {
+.gamelist button:hover, #endtask:hover, #gameextra button:hover {
   background-color: var(--sidebarNavigationButtonHover);
 }
 
@@ -409,6 +413,24 @@ hr {
   animation-fill-mode: both;
 }
 
-#gameplay, #deletegame {
+#gameplay, #contextmenu {
   display: inline-block;
+}
+
+#gameextra {
+  backdrop-filter: blur(10px);
+  border: var(--defaultUIBorder) solid 1px !important;
+  border-radius: 7.5px;
+  background: var(--gameCardBackground);
+  margin: 4.5px;
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 5px;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  margin-right: 12px;
+  animation-name: zoomIn;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
 }

@@ -35,6 +35,7 @@
         <a href="#addgametitle"><button>Add a game</button></a>
         <a href="#launcherconfigtitle"><button>Game Providers</button></a>
         <a href="#themes"><button>Themes</button></a>
+        <a href="#emulatorsettings"><button>Emulator Settings</button></a>
         <a href="#sendfeedbacktitle"><button>Send Feedback</button></a>
         <a href="#launchevertitle"><button>Launcher Version</button></a>
       </div>
@@ -81,6 +82,15 @@
           <select class="input" id="launcherstyle">
           </select><br>
           <button onclick="settheme()" style="cursor: pointer;" id="applytheme" class="button">Apply Theme</button>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="emulatorsettings">Emulator Settings</h2>
+          <p>
+            Emulate your executable games if they are not natively supported.
+          </p><br>
+          <input placeholder="Preferred Emulator Command" id="preferredEmulator" class="input"><br>
+          <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply Theme</button>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">

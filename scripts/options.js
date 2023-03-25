@@ -85,6 +85,18 @@ function settheme() {
   document.getElementById('applytheme').innerText = 'Theme Applied!'
 }
 
+function setEmulator() {
+  jsonData.preferredEmulator = document.getElementById("preferredEmulator").value;
+  newsettings = JSON.stringify(jsonData, null, "\t");
+  fs.writeFile(configDir + '/games.json', newsettings, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+  document.getElementById('applyEmulator').innerText = 'Changes Applied!'
+}
+document.getElementById('preferredEmulator').value = jsonData.preferredEmulator || "wine"
+
 //edit game collection
 function editjson() {
   shell.openExternal(configDir + "\\games.json")

@@ -10,10 +10,17 @@
     "dist": "electron-builder",
     "buildwin": "electron-builder --win"
   },
+  "repository": "https://github.com/Bobuxstation/Coal-Launcher",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
   "author": "Arsyad&Bagus Studios",
   "license": "MIT",
   "dependencies": {
     "@electron/remote": "^2.0.8",
+    "create-desktop-shortcuts": "^1.10.1",
+    "electron-updater": "^5.3.0",
     "nodejs-file-downloader": "^4.10.2",
     "sanitize-html": "^2.8.1"
   },
