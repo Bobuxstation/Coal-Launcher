@@ -117,6 +117,7 @@ li a:hover {
   padding: 5px;
   text-align: left;
   font-weight: bold;
+  box-sizing: border-box;
 }
 
 #gameextra button:last-child {

@@ -13,6 +13,32 @@ webview.addEventListener('did-finish-load', function () {
     document.getElementById('refreshbtn').className = ""
 });
 
+function fullscreen(element) {
+    document.getElementsByClassName('fullscreenbtn')[0].style.display = "none"
+    document.getElementsByClassName('exitfullscreenbtn')[0].style.display = "block"
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
+}
+
+function exitfullscreen() {
+    document.getElementsByClassName('exitfullscreenbtn')[0].style.display = "none"
+    document.getElementsByClassName('fullscreenbtn')[0].style.display = "block"
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}
+
 //Game title and background
 document.getElementById('player').src = game;
 document.getElementById('titlename').innerText = gamename + " On Coal";
@@ -37,6 +63,17 @@ function speedruncounter() {
     var x = document.getElementById("speedruncounter");
     if (x.style.display === "none") {
         x.style.display = "block";
+        document.getElementById("gamemgr").style.display = "none"
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function sidebarmenu() {
+    var x = document.getElementById("gamemgr");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        document.getElementById("speedruncounter").style.display = "none"
     } else {
         x.style.display = "none";
     }

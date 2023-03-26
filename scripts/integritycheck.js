@@ -4,6 +4,7 @@ const app = remote.app;
 let fs = require('fs');
 const createDesktopShortcut = require('create-desktop-shortcuts');
 const configDir = app.getPath('userData');
+const { shell } = require('electron')
 
 //check if game list exists
 if (fs.existsSync(configDir + '/games.json')) {

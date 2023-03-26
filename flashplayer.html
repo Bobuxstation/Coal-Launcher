@@ -14,20 +14,29 @@
   <style>
     * {
       transition: none !important;
-      overflow: hidden;
     }
   </style>
 </head>
 
-<body id="body" style="transition: none;">
+<body id="body" style="transition: none; overflow: hidden;">
   <div class="content" id="content">
+    <div class="downloads" id="gamemgr" style="display: none;">
+      <div id="tasks">
+        <button id="endtask" onclick="speedruncounter()"><i class="fa-solid fa-stopwatch"></i> Stopwatch</button>
+        <button id="endtask" class="fullscreenbtn" onclick="fullscreen(document.documentElement)"><i
+            class="fa-solid fa-expand"></i> Fullscreen</button>
+        <button id="endtask" class="exitfullscreenbtn" onclick="exitfullscreen()" style="display: none;"><i
+            class="fa-solid fa-compress"></i> Exit fullscreen</button>
+        <button id="endtask" onclick="window.close()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Quit
+          game</button>
+      </div>
+    </div>
     <header class="header" style="border: none;">
       <nav style="border-radius: 0px;">
         <ul>
-          <li><a onclick="refresh()"><i class="fa-solid fa-arrow-rotate-right"></i></a></li>
+          <li><a onclick="refresh()" id="refreshbtn" class="rotating"><i class="fa-solid fa-spinner"></i></a></li>
           <li><a id="titlename1"></a></li>
-          <li style="float: right;"><a onclick="window.close()"><i class="fa-solid fa-right-from-bracket"></i></a></li>
-          <li style="float: right;"><a onclick="speedruncounter()"><i class="fa-solid fa-stopwatch"></i></a></li>
+          <li style="float: right;"><a onclick="sidebarmenu()"><i class="fa-solid fa-bars"></i></a></li>
           <li style="float: right;"><a id="clock"></a></li>
         </ul>
       </nav>

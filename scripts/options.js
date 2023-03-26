@@ -1,7 +1,6 @@
 //load dependencies
 let jsonData = require(configDir + '/games.json');
 let gameProviderList = require(configDir + '/gameProviders.json');
-const { shell } = require('electron')
 const path = require('path');
 
 //search for themes

@@ -158,6 +158,10 @@ function loadCollection() {
                     createShortcut(items.dir)
                     toggleContext()
                 }
+                document.getElementById('showinfolder').onclick = function () {
+                    shell.showItemInFolder(configDir + "\\games")
+                    toggleContext()
+                }
                 document.getElementById('emulatePrompt').onclick = function () {
                     const preferredEmulator = jsonData.preferredEmulator || "wine"
                     const dir = items.dir
