@@ -32,6 +32,7 @@
     "appId": "com.ABstudios.coal-launcher",
     "productName": "Coal Launcher",
     "win": {
+      "verifyUpdateCodeSignature": false,
       "target": [
         {
           "target": "nsis",
