@@ -119,12 +119,12 @@ function launchEXEC(dir, name) {
 
 function loadCollection() {
     gameList.innerHTML = `
-    <a href="add.html#addgametitle">
+    <a  onclick="document.getElementById('optionbtn').click()">
         <button>
             <i class="fa-solid fa-plus"></i> Add a game
         </button>
     </a>
-    <a href="market.html">
+    <a  onclick="document.getElementById('marketbtn').click()">
         <button>
             <i class="fa-solid fa-download"></i> Download a game
         </button>
@@ -225,6 +225,7 @@ function taskmgr() {
     var x = document.getElementById("taskmgr");
     if (x.style.display === "none") {
         x.style.display = "block";
+        document.getElementById("downloads").style.display = "none";
     } else {
         x.style.display = "none";
     }

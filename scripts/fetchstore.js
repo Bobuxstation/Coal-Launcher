@@ -1,14 +1,13 @@
 //load dependencies
 let discoverList = document.getElementById("notmygames");
-let jsonData = require(configDir + '/games.json');
-let gameList = document.getElementById("mygames");
+let providerList = document.getElementById("myproviders");
 let gameProviderList = require(configDir + '/gameProviders.json');
 const sanitizeHtml = require('sanitize-html');
 
 //function for fetching market
 function loadMarket(jsonURL, jsonName, search) {
   //change title to the game provider name
-  discoverList.innerHTML = '<h2 style="padding-left: 10px;" id="markettitle"></h2>';
+  discoverList.innerHTML = '';
   document.getElementById('markettitle').innerText = sanitizeHtml(jsonName);
   //set refresh button
   document.getElementById('playbutton').onchange = function () {
@@ -38,6 +37,8 @@ function loadMarket(jsonURL, jsonName, search) {
           gameextensionicon = '<i class="fa-solid fa-bolt"></i> '
         } else if (onlineitems.type == "link") {
           gameextensionicon = '<i class="fa-solid fa-link"></i> '
+        } else if (onlineitems.type == "extension") {
+          gameextensionicon = '<i class="fa-solid fa-puzzle-piece"></i> '
         }
 
         //game card layout
@@ -67,6 +68,20 @@ function loadMarket(jsonURL, jsonName, search) {
               fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
               addedcollection(sanitizedgamename)
             };
+          
+          //installs the game as an extension if it is an extension
+          } else if (onlineitems.type == "extension") {
+            let checkduplicate = JSON.stringify(tabList).includes(sanitizedgamename);
+            if (checkduplicate == true) {
+              addedcollection(sanitizedgamename)
+            } else {
+              var obj = (tabList);
+              obj['extensions'].push({"name": sanitizedgamename, "icon": onlineitems.icon, "URL": onlineitems.link,});
+              jsonStr = JSON.stringify(obj, null, "\t");
+              const gameListDir = configDir + "/extensions.json";
+              fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+              addedcollection(sanitizedgamename)
+            };
           } else {
             //Check if game exists
             let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
@@ -75,20 +90,21 @@ function loadMarket(jsonURL, jsonName, search) {
               downloadgame(onlineitems);
             } else {
               downloadgame(onlineitems).then(
-                function(value) { 
+                function (value) {
                   var obj = (jsonData);
                   obj['items'].push({
-                    "name": sanitizedgamename, 
-                    "feed": sanitizeHtml(onlineitems.feed), 
-                    "Version": sanitizeHtml(onlineitems.Version), 
-                    "developer": sanitizeddevname, 
-                    "banner": sanitizeHtml(onlineitems.banner), 
-                    "dir": configDir + "/games/" + sanitizedgamename + gameextension, 
-                    "type": sanitizeHtml(onlineitems.type)});
+                    "name": sanitizedgamename,
+                    "feed": sanitizeHtml(onlineitems.feed),
+                    "Version": sanitizeHtml(onlineitems.Version),
+                    "developer": sanitizeddevname,
+                    "banner": sanitizeHtml(onlineitems.banner),
+                    "dir": configDir + "/games/" + sanitizedgamename + gameextension,
+                    "type": sanitizeHtml(onlineitems.type)
+                  });
                   jsonStr = JSON.stringify(obj, null, "\t");
                   const gameListDir = configDir + "/games.json";
                   fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
-                 },
+                },
               );
             };
           }
@@ -112,7 +128,7 @@ gameProviderList.items.forEach(items => {
   btn.onclick = function () {
     loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);
   };
-  gameList.appendChild(btn);
+  providerList.appendChild(btn);
 });
 
 //Load default game provider

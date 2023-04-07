@@ -58,6 +58,7 @@ function downloadsmenu() {
   var x = document.getElementById("downloads");
   if (x.style.display === "none") {
     x.style.display = "block";
+    document.getElementById("taskmgr").style.display = "none";
   } else {
     x.style.display = "none";
   }

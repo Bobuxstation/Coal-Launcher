@@ -1,6 +1,4 @@
 //load dependencies
-let jsonData = require(configDir + '/games.json');
-let gameProviderList = require(configDir + '/gameProviders.json');
 const path = require('path');
 
 //search for themes
@@ -65,6 +63,10 @@ function defaultprovider() {
       {
         "name": "Community Games",
         "JSONDir": "https://bobuxstation.github.io/Coal-Web/communitygames.json"
+      },
+      {
+        "name": "Extensions",
+        "JSONDir": "https://bobuxstation.github.io/Coal-Web/extensions.json"
       }
     ],
   };

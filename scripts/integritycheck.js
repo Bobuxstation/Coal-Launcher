@@ -28,11 +28,25 @@ if (fs.existsSync(configDir + '/gameProviders.json')) { console.log('Game Provid
             {
                 "name": "Community Games",
                 "JSONDir": "https://bobuxstation.github.io/Coal-Web/communitygames.json"
+            },
+            {
+                "name": "Extensions",
+                "JSONDir": "https://bobuxstation.github.io/Coal-Web/extensions.json"
             }
         ],
     };
     let data = JSON.stringify(jsontemplate, null, "\t");
     fs.writeFileSync(configDir + '/gameProviders.json', data);
+}
+
+//check if extension list exists
+if (fs.existsSync(configDir + '/extensions.json')) { console.log('launcher extensions List Found!') } else {
+    console.log('launcher extensions List Is Not Found! Creating Game List...')
+    let jsontemplate = {
+        "extensions": [],
+    };
+    let data = JSON.stringify(jsontemplate, null, "\t");
+    fs.writeFileSync(configDir + '/extensions.json', data);
 }
 
 function createShortcut(ExecFilePath) {

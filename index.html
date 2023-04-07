@@ -5,66 +5,245 @@
   <link rel="stylesheet" href="css/scroll.css">
   <link rel="stylesheet" href="css/interfont/inter.css">
   <link rel="stylesheet" href="css/dark.css" id="customthemelink">
+
   <script src="scripts/integritycheck.js"></script>
   <script src="scripts/fetchlocal.js" defer></script>
+  <script src="scripts/options.js" defer></script>
+  <script src="scripts/fetchstore.js" defer></script>
+  <script src="scripts/downloader.js" defer></script>
   <script src="scripts/close.js"></script>
   <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
   <script src="scripts/themes.js" defer></script>
+
   <meta charset="UTF-8">
-  <title>My Collection - Coal Launcher</title>
+  <title id="pagetitle">Collections - Coal Launcher</title>
 </head>
 
-<body id="body">
-  <header class="header">
-    <nav>
-      <ul>
-        <li><a href="index.html"
-            style="background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%); color: black;"
-            class="selectedtab"><i class="fa-solid fa-list"></i> Collection</a></li>
-        <li><a href="market.html"><i class="fa-solid fa-shop"></i></a></li>
-        <li><a href="add.html"><i class="fa-solid fa-gear"></i></a></li>
-        <li style="float: right;"><a onclick="closeWindow()"><i class="fa-solid fa-x"></i></a></li>
-        <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
-        <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
-        <li style="float: right;"><a onclick="taskmgr()"><i class="fa-solid fa-cubes-stacked"></i></a></li>
-      </ul>
-    </nav>
-  </header>
-  <div class="content" id="content">
-    <div class="downloads" id="taskmgr" style="display: none;">
-      <h2 style="text-align: center;">Game Manager</h2>
-      <div id="tasks"></div>
-    </div>
-    <div class="body">
-      <div class="sidebar">
-        <div class="gamelist">
-          <div id="mygames" class="game">
-          </div>
+<!-- Navigations -->
+
+<body id="body" class="tabs">
+
+  <!-- Tab list -->
+  <nav class="header" id="header" role="tablist" aria-label="Sample Tabs">
+    <!-- Tabs -->
+    <a id="collectionbtn" class="navbtn" role="tab" aria-selected="true" aria-controls="collections">
+      <i class="fa-solid fa-list"></i>
+      <span>Collections</span>
+    </a>
+    <a id="marketbtn" class="navbtn" role="tab" aria-controls="market">
+      <i class="fa-solid fa-shop"></i>
+      <span>Market</span>
+    </a>
+    <a id="optionbtn" class="navbtn" role="tab" aria-controls="options">
+      <i class="fa-solid fa-gear"></i>
+      <span>Options</span>
+    </a>
+
+    <ul>
+      <!-- Close, maximize and minimize -->
+      <li style="float: right;"><a onclick="closeWindow()"><i class="fa-solid fa-x"></i></a></li>
+      <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
+      <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
+      <li style="float: right;"><a onclick="taskmgr()"><i class="fa-solid fa-cubes-stacked"></i></a></li>
+      <li style="float: right;"><a onclick="downloadsmenu()"><i class="fa-solid fa-download"></i></a></li>
+    </ul>
+
+  </nav>
+
+  <!-- Collections Page -->
+  <div class="content body" id="collections" role="tabpanel">
+
+    <!-- main part -->
+    <div class="sidebar">
+      <div class="gamelist">
+        <div id="mygames" class="game">
         </div>
       </div>
-      <div class="sidebar2">
-        <div class="gamedetails" id="gamedetails" style="display: none;">
-          <h2 id="gamename">Game Name</h2>
-          <p id="gamedev">Game Publisher</p><br>
-          <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton"><i
-                class="fa-solid fa-up-right-from-square"></i> LAUNCH</button></a>
-          <a id="contextmenu" style="text-decoration:none;" onclick="toggleContext()"><button class="deletebutton"><i
-                class="fa-solid fa-bars"></i></button></a>
+    </div>
+
+    <div class="sidebar2">
+
+      <!-- launch game -->
+      <div class="gamedetails" id="gamedetails" style="display: none;">
+        <h2 id="gamename">Game Name</h2>
+        <p id="gamedev">Game Publisher</p><br>
+        <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton"><i
+              class="fa-solid fa-up-right-from-square"></i> LAUNCH</button></a>
+        <a id="contextmenu" style="text-decoration:none;" onclick="toggleContext()"><button class="deletebutton"><i
+              class="fa-solid fa-bars"></i></button></a>
+      </div>
+
+      <!-- context menu -->
+      <div id="gameextra" style="display: none;">
+        <button id="deletegame"><i class="fa-solid fa-trash"></i> Delete Game</button>
+        <button id="showinfolder"><i class="fa-solid fa-folder-open"></i> Show In Folder</button>
+        <div id="execonly">
+          <button id="createDesktopShortcut"><i class="fa-solid fa-desktop"></i> Create Shortcut</button>
+          <button id="emulatePrompt"><i class="fa-solid fa-wine-glass"></i> Emulate It!</button>
         </div>
-        <div id="gameextra" style="display: none;">
-          <button id="deletegame"><i class="fa-solid fa-trash"></i> Delete Game</button>
-          <button id="showinfolder"><i class="fa-solid fa-folder-open"></i> Show In Folder</button>
-          <div id="execonly">
-            <button id="createDesktopShortcut"><i class="fa-solid fa-desktop"></i> Create Shortcut</button>
-            <button id="emulatePrompt"><i class="fa-solid fa-wine-glass"></i> Emulate It!</button>
-          </div>
+      </div>
+
+      <!-- game feed -->
+      <iframe id="gamefeed" style="display: none;">
+        <link rel="stylesheet" href="scroll.css">
+      </iframe>
+
+    </div>
+
+  </div>
+
+  <!-- Market Page -->
+  <div class="content body" id="market" role="tabpanel" hidden>
+
+    <!-- main part -->
+    <div class="sidebar">
+      <div class="gamelist">
+        <div id="myproviders" class="game">
+          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-plus"></i> Add a game</button></a>
+          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-folder-plus"></i> Add a game
+              provider</button></a>
+          <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
+              your games</button></a>
+          <hr>
         </div>
-        <iframe id="gamefeed" style="display: none;">
-          <link rel="stylesheet" href="scroll.css">
-        </iframe>
+      </div>
+    </div>
+
+    <div class="sidebar2" style="overflow: scroll;">
+
+      <!-- Game provider description -->
+      <div class="gamedetails" id="gamedetails" style="display: block;">
+        <h2 id="markettitle">Game Name</h2>
+        <p>Game Provider</p><br>
+        <a id="gameplay" style="text-decoration:none; width: 100%;" onclick=""><input class="input" id="playbutton"
+            placeholder="Search"></a>
+      </div>
+
+      <!-- game cards -->
+      <div id="notmygames">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Settings Page -->
+  <div class="content body" id="options" role="tabpanel" hidden>
+
+    <!-- main part -->
+    <div class="sidebar">
+      <div class="gamelist">
+        <a href="#addgametitle"><button>Add a game</button></a>
+        <a href="#launcherconfigtitle"><button>Game Providers</button></a>
+        <a href="#themes"><button>Themes</button></a>
+        <a href="#emulatorsettings"><button>Emulator Settings</button></a>
+        <a href="#sendfeedbacktitle"><button>Send Feedback</button></a>
+        <a href="#launchevertitle"><button>Launcher Version</button></a>
+      </div>
+    </div>
+
+    <div class="sidebar2" style="overflow: scroll;">
+
+      <div style="padding: 10px;">
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="addgametitle">Add a game</h2>
+          <p>
+            Like It Says, it adds a game to your collection. Note that
+            if you do not want to add a game news/feed, leave it empty.</p><br>
+          <input placeholder="Game name" id="name" class="input"><br>
+          <input placeholder="Banner" id="banner" class="input"><br>
+          <input placeholder="Game Feed (optional)" id="feed" class="input"><br>
+          <input placeholder="Game URL" id="dir" class="input"><br>
+          <select class="input" id="type">
+            <option>html5</option>
+            <option>executable</option>
+            <option>flash</option>
+            <option>other</option>
+          </select>
+          <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button>
+          <button onclick="editjson()" style="cursor: pointer;" class="button">Edit collection JSON file</button>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="launcherconfigtitle">Game Providers</h2>
+          <p>
+            Adds more game providers to the market section.
+          </p><br>
+          <input placeholder="Game Provider Name" id="gameprovidername" class="input"></input><br>
+          <input placeholder="Game Provider JSON Url" id="gameprovider" class="input"></input><br>
+          <button onclick="changeprovider()" id="gameapply" class="button">Add Game Provider</button>
+          <button onclick="defaultprovider()" id="gamedefault" class="button">Reset Game Providers</button>
+          <button onclick="editproviderjson()" style="cursor: pointer;" class="button">Edit game provider JSON
+            file</button>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="themes">Themes</h2>
+          <p>
+            Customize your launcher with custom themes!
+          </p><br>
+          <select class="input" id="launcherstyle">
+          </select><br>
+          <button onclick="settheme()" style="cursor: pointer;" id="applytheme" class="button">Apply Theme</button>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="emulatorsettings">Emulator Settings</h2>
+          <p>
+            Emulate your executable games if they are not natively supported.
+          </p><br>
+          <input placeholder="Preferred Emulator Command" id="preferredEmulator" class="input"><br>
+          <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply
+            Emulator</button>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="sendfeedbacktitle">Send Feedback</h2>
+          <p>
+            If you have any bugs to report or ideas to add, leave a message!
+          </p><br>
+          <form action="https://postmail.invotes.com/send" method="post" id="email_form">
+
+            <input type="text" name="subject" placeholder="Subject" class="input" /><br>
+            <textarea name="text" placeholder="Message" class="textarea" style="height: 200px;"></textarea><br>
+            <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
+            <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
+            <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
+            <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" class="input" />
+          </form>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="launchevertitle">Launcher Version</h2>
+          <p id="versioninfo">
+            Please Wait...
+          </p>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="content body" id="webview" role="tabpanel" hidden>
+    <webview id="ExtensionWebview" style="height: calc(100vh - 45px);"></webview>
+  </div>
+
+  <!-- sidebars -->
+
+  <!-- Game Manager sidebar -->
+  <div class="downloads" id="taskmgr" style="display: none;">
+    <h2 style="text-align: center;">Game Manager</h2>
+    <div id="tasks"></div>
+  </div>
+
+  <!-- Download Manager sidebar -->
+  <div class="downloads" id="downloads" style="display: none;">
+    <h2 style="text-align: center;">Downloads</h2>
+    <div id="downloadprogress"></div>
+  </div>
+
 </body>
+
+<!-- tab script -->
+<script src="scripts/tabs.js" defer></script>
 
 </html>
