@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka");
+
 :root {
   /* Basic UI */
   --mainBackground: #f5e9de;
@@ -7,7 +9,7 @@
   --defaultUIBorder: #5c5c5c;
   --gameCardTextShadow: #00000000;
   --mainBackgroundImage: none;
-  --mainFontFamily: 'Montserrat', sans-serif;
+  --mainFontFamily: Fredoka, Inter;
 
   /* Other UI Elements */
   --coalUIButton: #ff9393;

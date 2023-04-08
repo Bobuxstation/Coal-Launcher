@@ -1,7 +1,8 @@
 //load dependencies
 const path = require('path');
+document.getElementById("customthemelink").href = jsonData.currenttheme || "css/dark.css";
 
-//search for themes
+//fetch default themes
 const directoryPath = path.join(__dirname, 'css');
 fs.readdir(directoryPath, function (err, files) {
   const cssFiles = files.filter(file => file.endsWith('.css'));
@@ -18,6 +19,26 @@ fs.readdir(directoryPath, function (err, files) {
     }
   });
 });
+
+//search for themes from the appdata folder
+function searchForThemes(folderPath) {
+  fs.readdir(folderPath, function (err, files) {
+    const cssFiles = files.filter(file => file.endsWith('.css'));
+    const selectElement = document.getElementById('launcherstyle');
+    cssFiles.forEach(file => {
+      if (file.endsWith('.css') && !file.startsWith('style') && !file.startsWith('scroll')) {
+        const optionElement = document.createElement('option');
+        optionElement.value = folderPath + file;
+        optionElement.text = folderPath + file;
+        if (jsonData.currenttheme == folderPath + file) {
+          optionElement.selected = true;
+        }
+        selectElement.appendChild(optionElement);
+      }
+    });
+  });
+};
+searchForThemes(path.join(configDir, 'themes/'));
 
 //add game function
 function add() {
@@ -100,12 +121,21 @@ document.getElementById('preferredEmulator').value = jsonData.preferredEmulator 
 
 //edit game collection
 function editjson() {
-  shell.openExternal(configDir + "\\games.json")
+  shell.openExternal(configDir + "/games.json")
+}
+
+//launch extension configuration
+function openExtensionConfig() {
+  shell.openExternal(configDir + "/extensions.json")
 }
 
 //edit game provider
 function editproviderjson() {
-  shell.openExternal(configDir + "\\gameProviders.json")
+  shell.openExternal(configDir + "/gameProviders.json")
+}
+
+function openThemeFolder() {
+  shell.openExternal(configDir + "/themes")
 }
 
 function openDocs() {

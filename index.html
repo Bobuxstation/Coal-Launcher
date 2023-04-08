@@ -13,7 +13,7 @@
   <script src="scripts/downloader.js" defer></script>
   <script src="scripts/close.js"></script>
   <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
-  <script src="scripts/themes.js" defer></script>
+  <script src="scripts/tabs.js" defer></script>
 
   <meta charset="UTF-8">
   <title id="pagetitle">Collections - Coal Launcher</title>
@@ -99,8 +99,10 @@
     <div class="sidebar">
       <div class="gamelist">
         <div id="myproviders" class="game">
-          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-plus"></i> Add a game</button></a>
-          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-folder-plus"></i> Add a game
+          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-plus"></i> Add a
+              game</button></a>
+          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-folder-plus"></i> Add
+              a game
               provider</button></a>
           <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
               your games</button></a>
@@ -137,6 +139,7 @@
         <a href="#launcherconfigtitle"><button>Game Providers</button></a>
         <a href="#themes"><button>Themes</button></a>
         <a href="#emulatorsettings"><button>Emulator Settings</button></a>
+        <a href="#extensionconfig"><button>Manage Extensions</button></a>
         <a href="#sendfeedbacktitle"><button>Send Feedback</button></a>
         <a href="#launchevertitle"><button>Launcher Version</button></a>
       </div>
@@ -185,6 +188,7 @@
           <select class="input" id="launcherstyle">
           </select><br>
           <button onclick="settheme()" style="cursor: pointer;" id="applytheme" class="button">Apply Theme</button>
+          <button onclick="openThemeFolder()" style="cursor: pointer;" class="button">Open Themes Folder</button>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
@@ -195,6 +199,15 @@
           <input placeholder="Preferred Emulator Command" id="preferredEmulator" class="input"><br>
           <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply
             Emulator</button>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <h2 id="extensionconfig">Manage Extensions</h2>
+          <p>
+            Manage all installed extensions.
+          </p><br>
+          <button onclick="openExtensionConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit extensions
+            JSON file</button>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
@@ -242,8 +255,5 @@
   </div>
 
 </body>
-
-<!-- tab script -->
-<script src="scripts/tabs.js" defer></script>
 
 </html>

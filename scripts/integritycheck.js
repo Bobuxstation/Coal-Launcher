@@ -49,6 +49,14 @@ if (fs.existsSync(configDir + '/extensions.json')) { console.log('launcher exten
     fs.writeFileSync(configDir + '/extensions.json', data);
 }
 
+//check if themes folder exists
+if (!fs.existsSync(configDir + '/themes')){
+    fs.mkdirSync(configDir + '/themes');
+    console.log('Folder Created Successfully.');
+} else {
+    console.log('Folder Exists.');
+}
+
 function createShortcut(ExecFilePath) {
     const shortcutsCreated = createDesktopShortcut({
         windows: { filePath: ExecFilePath },

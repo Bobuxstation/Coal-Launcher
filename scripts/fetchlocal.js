@@ -3,10 +3,14 @@ let gameList = document.getElementById("mygames");
 const electron = require('electron');
 console.log(configDir);
 let jsonData = require(configDir + '/games.json');
+var lastGameBackground;
 
 function launchELSE(dir, banner, name) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
+        let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.play()
+
         document.getElementById("taskmgr").style.display = "block";
 
         let taskname = document.createElement("p");
@@ -66,6 +70,9 @@ function launchELSE(dir, banner, name) {
 function launchHTML(dir, banner, name) {
     document.getElementById("execonly").style.display = "none";
     document.getElementById('gameplay').onclick = function () {
+        let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.play()
+
         window.open(
             "player.html?game=" + dir + "&banner=" + banner + "&name=" + name,
             '_blank',
@@ -78,6 +85,9 @@ function launchHTML(dir, banner, name) {
 function launchSWF(dir, banner, name) {
     document.getElementById("execonly").style.display = "none";
     document.getElementById('gameplay').onclick = function () {
+        let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.play()
+
         window.open(
             "flashplayer.html?game=" + dir + "&banner=" + banner + "&name=" + name,
             '_blank',
@@ -90,6 +100,9 @@ function launchSWF(dir, banner, name) {
 function launchEXEC(dir, name) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
+        let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.play()
+
         document.getElementById("taskmgr").style.display = "block"
         var proc = require('child_process').spawn(dir);
 
@@ -138,6 +151,9 @@ function loadCollection() {
             btn.textContent = items.name;
             let banner = items.banner;
             btn.onclick = function () {
+                let clickSound = new Audio("assets/click_002.ogg")
+                clickSound.play()
+
                 if (typeof items.type === "undefined" || items.type == "html5") {
                     gameextensionicon = '<i class="fa-brands fa-html5"></i> '
                 } else if (items.type == "executable") {
@@ -159,7 +175,7 @@ function loadCollection() {
                     toggleContext()
                 }
                 document.getElementById('showinfolder').onclick = function () {
-                    shell.showItemInFolder(configDir + "\\games")
+                    shell.showItemInFolder(configDir + "/games")
                     toggleContext()
                 }
                 document.getElementById('emulatePrompt').onclick = function () {
@@ -201,6 +217,7 @@ function loadCollection() {
                 }
                 document.getElementById('gamedetails').style.display = "block";
                 document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
+                lastGameBackground = items.banner;
                 if (items.feed == "false" || items.feed == false) {
                     document.getElementById('gamefeed').style.display = "none";
                 } else {
@@ -217,6 +234,7 @@ function loadCollection() {
         document.getElementById('gamefeed').style.display = "none";
         document.getElementById('gamedetails').style.display = "none";
         document.getElementById('body').style.backgroundImage = "";
+        lastGameBackground = "";
     }
 }
 

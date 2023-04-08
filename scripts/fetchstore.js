@@ -39,6 +39,8 @@ function loadMarket(jsonURL, jsonName, search) {
           gameextensionicon = '<i class="fa-solid fa-link"></i> '
         } else if (onlineitems.type == "extension") {
           gameextensionicon = '<i class="fa-solid fa-puzzle-piece"></i> '
+        } else if (onlineitems.type == "theme") {
+          gameextensionicon = '<i class="fa-solid fa-paintbrush"></i> '
         }
 
         //game card layout
@@ -54,6 +56,8 @@ function loadMarket(jsonURL, jsonName, search) {
 
         //Download game function
         btn.onclick = function () {
+          let clickSound = new Audio("assets/toggle_002.ogg")
+          clickSound.play()
 
           //adds game to the collection without downloading if it is a link
           if (onlineitems.type == "link") {
@@ -82,6 +86,14 @@ function loadMarket(jsonURL, jsonName, search) {
               fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
               addedcollection(sanitizedgamename)
             };
+          
+          //only download it to the themes folder if its a theme
+          } else if (onlineitems.type == "theme") {
+            downloadFileToThemeFolder(onlineitems).then(
+              function (value) {
+                addedcollection(sanitizedgamename)
+              }
+            )
           } else {
             //Check if game exists
             let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
@@ -126,6 +138,9 @@ gameProviderList.items.forEach(items => {
   let btn = document.createElement("button");
   btn.textContent = items.name;
   btn.onclick = function () {
+    let clickSound = new Audio("assets/click_002.ogg")
+    clickSound.play()
+
     loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);
   };
   providerList.appendChild(btn);

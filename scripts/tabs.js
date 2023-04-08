@@ -36,6 +36,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function changeTabs(e) {
+    let clickSound = new Audio("assets/click_002.ogg")
+    clickSound.play()
+
     document.getElementById("pagetitle").innerText = (e.target.querySelector("span").innerHTML + " - Coal Launcher");
     const target = e.target;
     const parent = target.parentNode;
@@ -60,6 +63,10 @@ function changeTabs(e) {
         .removeAttribute("hidden");
 
     document.getElementById('body').style.backgroundImage = "";
+
+    if (e.target.id == "collectionbtn") {
+        document.getElementById('body').style.backgroundImage = "url('" + lastGameBackground + "')";
+    }
 }
 
 let tabList = require(configDir + '/extensions.json');

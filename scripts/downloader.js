@@ -40,6 +40,18 @@ async function downloadgame(game) {
   await downloader.download();
 };
 
+async function downloadFileToThemeFolder(game) {
+  const downloader = new Downloader({
+    url: game.link,
+    directory: configDir + "/themes",
+    fileName: sanitizeHtml(game.name) + ".css",
+    cloneFiles: false,
+    maxAttempts: 3,
+  });
+
+  await downloader.download();
+};
+
 //download game function
 function addedcollection(gameName) {
   if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) { } else {

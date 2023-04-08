@@ -1,1 +1,0 @@
-document.getElementById("customthemelink").href = jsonData.currenttheme || "css/dark.css";

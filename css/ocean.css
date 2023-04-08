@@ -7,7 +7,7 @@
   --defaultUIBorder: #0f3460;
   --gameCardTextShadow: #00000000;
   --mainBackgroundImage: none;
-  --mainFontFamily: 'Roboto', sans-serif;
+  --mainFontFamily: Inter;
 
   /* Other UI Elements */
   --coalUIButton: #0f346090;

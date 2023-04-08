@@ -95,7 +95,7 @@ li a, .navbtn {
   color: var(--mainTextColor);
   text-align: center;
   padding: 7.5px;
-  margin: 4px;
+  margin: 5px;
   border-radius: 7.5px;
   min-width: 20px;
   text-decoration: none;
@@ -202,8 +202,6 @@ li a:hover, .navbtn:hover {
 
 #notmygames {
   margin: 0;
-  display: grid;
-  grid-template-columns: auto auto auto;
 }
 
 .playbutton {
