@@ -1,10 +1,25 @@
 //load dependencies
 let gameList = document.getElementById("mygames");
+const { exec } = require('child_process');
 const electron = require('electron');
+const sudo = require('sudo-prompt');
 console.log(configDir);
 let jsonData = require(configDir + '/games.json');
 var lastGameBackground;
 
+//launch game with admin or sudo
+function elevateGame(name, dir, taskname) {
+    let execoptionbtn = document.createElement("button");
+    execoptionbtn.innerText = "Elevate access"
+    execoptionbtn.id = "endtask"
+    execoptionbtn.onclick = function () {
+        var options = { name: name };
+        sudo.exec(dir, options, function (error, stdout, stderr) { taskname.remove() });
+    }
+    taskname.appendChild(execoptionbtn)
+}
+
+//launch game that is not supported
 function launchELSE(dir, banner, name) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
@@ -27,6 +42,7 @@ function launchELSE(dir, banner, name) {
             proc.on('error', err => {
                 if (err.code === 'EACCES') {
                     newtaskname.innerHTML = "<h2>" + name + "</h2>" + ('This game may require elevated privileges to run.');
+                    elevateGame(name, dir, newtaskname);
                 } else {
                     newtaskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
                 }
@@ -109,6 +125,7 @@ function launchEXEC(dir, name) {
         proc.on('error', err => {
             if (err.code === 'EACCES') {
                 taskname.innerHTML = "<h2>" + name + "</h2>" + ('This game may require elevated privileges to run.');
+                elevateGame(name, dir, taskname)
             } else {
                 taskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
             }
@@ -188,6 +205,7 @@ function loadCollection() {
                     proc.on('error', err => {
                         if (err.code === 'EACCES') {
                             taskname.innerHTML = "<h2>" + name + "</h2>" + ('This game may require elevated privileges to run.');
+                            elevateGame(name, dir, taskname)
                         } else {
                             taskname.innerHTML = "<h2>" + name + "</h2>" + (`An error occurred: ${err.message}`);
                         }

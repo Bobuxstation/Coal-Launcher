@@ -143,4 +143,4 @@ function openDocs() {
 }
 
 //Get Launcher Version
-document.getElementById('versioninfo').innerText = "coal-launcher version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform;
+document.getElementById('versioninfo').innerText = app.getName() + " version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform;

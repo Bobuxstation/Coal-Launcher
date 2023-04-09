@@ -95,7 +95,7 @@ li a, .navbtn {
   color: var(--mainTextColor);
   text-align: center;
   padding: 7.5px;
-  margin: 5px;
+  margin: 4px;
   border-radius: 7.5px;
   min-width: 20px;
   text-decoration: none;
@@ -156,7 +156,7 @@ li a:hover, .navbtn:hover {
   backdrop-filter: blur(10px);
   background: var(--gameCardBackground);
   border: var(--defaultUIBorder) solid 1px;
-  padding: 5px;
+  padding: 7.5px;
   border-radius: 7.5px;
   box-sizing: border-box;
 }
@@ -169,7 +169,7 @@ li a:hover, .navbtn:hover {
   box-sizing: border-box;
   border: none;
   background: var(--gameCardBackground);
-  height: calc(100vh - 194px);
+  height: calc(100vh - 205px);
   margin-top: 5px;
   animation-name: zoomIn;
   animation-duration: 0.25s;

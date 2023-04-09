@@ -1,6 +1,6 @@
 {
   "name": "coal-launcher",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Epik HTML5 Game Launcher",
   "homepage": "https://github.com/Bobuxstation/Coal-Launcher#coal-launcher",
   "main": "main.js",
@@ -22,7 +22,8 @@
     "create-desktop-shortcuts": "^1.10.1",
     "electron-updater": "^5.3.0",
     "nodejs-file-downloader": "^4.10.2",
-    "sanitize-html": "^2.8.1"
+    "sanitize-html": "^2.8.1",
+    "sudo-prompt": "^9.2.1"
   },
   "devDependencies": {
     "electron": "^22.1.0",
