@@ -451,7 +451,7 @@ hr {
   animation-fill-mode: both;
 }
 
-#ExtensionWebview {
+webview {
   border-left: var(--defaultUIBorder) solid 1px;
   border-right: var(--defaultUIBorder) solid 1px;
   border-bottom: var(--defaultUIBorder) solid 1px;

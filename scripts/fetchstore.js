@@ -57,6 +57,7 @@ function loadMarket(jsonURL, jsonName, search) {
         //Download game function
         btn.onclick = function () {
           let clickSound = new Audio("assets/toggle_002.ogg")
+          clickSound.volume = 0.1;
           clickSound.play()
 
           //adds game to the collection without downloading if it is a link
@@ -139,6 +140,7 @@ gameProviderList.items.forEach(items => {
   btn.textContent = items.name;
   btn.onclick = function () {
     let clickSound = new Audio("assets/click_002.ogg")
+    clickSound.volume = 0.1;
     clickSound.play()
 
     loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);

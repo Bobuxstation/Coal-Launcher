@@ -24,6 +24,7 @@ function launchELSE(dir, banner, name) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
         let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.volume = 0.1;
         clickSound.play()
 
         document.getElementById("taskmgr").style.display = "block";
@@ -87,6 +88,7 @@ function launchHTML(dir, banner, name) {
     document.getElementById("execonly").style.display = "none";
     document.getElementById('gameplay').onclick = function () {
         let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.volume = 0.1;
         clickSound.play()
 
         window.open(
@@ -102,6 +104,7 @@ function launchSWF(dir, banner, name) {
     document.getElementById("execonly").style.display = "none";
     document.getElementById('gameplay').onclick = function () {
         let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.volume = 0.1;
         clickSound.play()
 
         window.open(
@@ -117,6 +120,7 @@ function launchEXEC(dir, name) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
         let clickSound = new Audio("assets/open_003.ogg")
+        clickSound.volume = 0.1;
         clickSound.play()
 
         document.getElementById("taskmgr").style.display = "block"
@@ -169,6 +173,7 @@ function loadCollection() {
             let banner = items.banner;
             btn.onclick = function () {
                 let clickSound = new Audio("assets/click_002.ogg")
+                clickSound.volume = 0.1;
                 clickSound.play()
 
                 if (typeof items.type === "undefined" || items.type == "html5") {

@@ -36,13 +36,29 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function changeTabs(e) {
+    document.getElementById("taskNavBtn").style.display = "none";
+    document.getElementById("downloadsNavBtn").style.display = "none";
+    document.getElementById("taskmgr").style.display = "none";
+    document.getElementById("downloads").style.display = "none";
+
     let clickSound = new Audio("assets/click_002.ogg")
+    clickSound.volume = 0.1;
     clickSound.play()
 
     document.getElementById("pagetitle").innerText = (e.target.querySelector("span").innerHTML + " - Coal Launcher");
     const target = e.target;
     const parent = target.parentNode;
     const grandparent = parent.parentNode;
+
+    if (target.getAttribute("aria-controls") == "collections") {
+        document.getElementById("taskNavBtn").style.display = "block";
+        document.getElementById("refreshNavBtn").style.display = "none";
+    } else if (target.getAttribute("aria-controls") == "market") {
+        document.getElementById("downloadsNavBtn").style.display = "block";
+        document.getElementById("refreshNavBtn").style.display = "none";
+    } else if (target.getAttribute("aria-controls") == "options") {
+        document.getElementById("refreshNavBtn").style.display = "none";
+    }
 
     // Remove all current selected tabs
     parent
@@ -75,7 +91,7 @@ tabList.extensions.forEach(element => {
     let btn = document.createElement("a");
     btn.className = "navbtn";
     btn.setAttribute("role", "tab");
-    btn.setAttribute("aria-controls", "webview");
+    btn.setAttribute("aria-controls", element.name);
 
     btn.innerHTML = `
         <i class="${element.icon}"></i>
@@ -83,8 +99,26 @@ tabList.extensions.forEach(element => {
     `
 
     btn.onclick = function () {
-        document.getElementById("ExtensionWebview").src = element.URL
-    };
+        document.getElementById("refreshNavBtn").style.display = "block";
+
+        document.getElementById("refreshNavBtn").onclick = function () {
+            webview.reload();
+        }
+    }
 
     header.prepend(btn);
+
+    let tab = document.createElement("div");
+    tab.className = "content body";
+    tab.setAttribute("role", "tabpanel");
+    tab.setAttribute("hidden", "true");
+    tab.setAttribute("id", element.name);
+
+    let webview = document.createElement("webview");
+    webview.setAttribute("src", element.URL);
+    webview.style.height = "calc(100vh - 45px)"
+
+    tab.appendChild(webview);
+
+    document.getElementById('body').appendChild(tab);
 });
