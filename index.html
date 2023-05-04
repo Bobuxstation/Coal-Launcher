@@ -104,8 +104,7 @@
           <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-plus"></i> Add a
               game</button></a>
           <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-folder-plus"></i> Add
-              a game
-              provider</button></a>
+              a repository</button></a>
           <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
               your games</button></a>
           <hr>
@@ -115,10 +114,10 @@
 
     <div class="sidebar2" style="overflow: scroll;">
 
-      <!-- Game provider description -->
+      <!-- Repository description -->
       <div class="gamedetails" id="gamedetails" style="display: block;">
         <h2 id="markettitle">Game Name</h2>
-        <p>Game Provider</p><br>
+        <p>Repository</p><br>
         <a id="gameplay" style="text-decoration:none; width: 100%;" onclick=""><input class="input" id="playbutton"
             placeholder="Search"></a>
       </div>
@@ -138,7 +137,7 @@
     <div class="sidebar">
       <div class="gamelist">
         <a href="#addgametitle"><button>Add a game</button></a>
-        <a href="#launcherconfigtitle"><button>Game Providers</button></a>
+        <a href="#launcherconfigtitle"><button>Repositories</button></a>
         <a href="#themes"><button>Themes</button></a>
         <a href="#emulatorsettings"><button>Emulator Settings</button></a>
         <a href="#extensionconfig"><button>Manage Extensions</button></a>
@@ -153,7 +152,7 @@
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <h2 id="addgametitle">Add a game</h2>
           <p>
-            Like It Says, it adds a game to your collection. Note that
+            Like it says, it adds a game to your collection. Note that
             if you do not want to add a game news/feed, leave it empty.</p><br>
           <input placeholder="Game name" id="name" class="input"><br>
           <input placeholder="Banner" id="banner" class="input"><br>
@@ -170,15 +169,15 @@
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="launcherconfigtitle">Game Providers</h2>
+          <h2 id="launcherconfigtitle">Repositories</h2>
           <p>
-            Adds more game providers to the market section.
+            Adds more repositories to the market section.
           </p><br>
-          <input placeholder="Game Provider Name" id="gameprovidername" class="input"></input><br>
-          <input placeholder="Game Provider JSON Url" id="gameprovider" class="input"></input><br>
-          <button onclick="changeprovider()" id="gameapply" class="button">Add Game Provider</button>
-          <button onclick="defaultprovider()" id="gamedefault" class="button">Reset Game Providers</button>
-          <button onclick="editproviderjson()" style="cursor: pointer;" class="button">Edit game provider JSON
+          <input placeholder="Repository Name" id="gameprovidername" class="input"></input><br>
+          <input placeholder="Repository JSON Url" id="gameprovider" class="input"></input><br>
+          <button onclick="changeprovider()" id="gameapply" class="button">Add Repository</button>
+          <button onclick="defaultprovider()" id="gamedefault" class="button">Reset Repositories</button>
+          <button onclick="editproviderjson()" style="cursor: pointer;" class="button">Edit Repositories JSON
             file</button>
         </div><br>
 
