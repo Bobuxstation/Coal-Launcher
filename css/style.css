@@ -248,7 +248,7 @@ li a:hover, .navbtn:hover {
   position: fixed;
   background-color: var(--navigationBackground);
   backdrop-filter: blur(10px);
-  width: 20%;
+  width: calc(80% - 11px);
   height: calc(100vh - 56px);
   padding: 5px;
   animation-name: slideInDown;
