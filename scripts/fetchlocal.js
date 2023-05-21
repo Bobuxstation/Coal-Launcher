@@ -28,6 +28,7 @@ function launchELSE(dir, banner, name) {
         clickSound.play()
 
         document.getElementById("taskmgr").style.display = "block";
+        document.getElementById("taskNavBtn").ariaSelected = "true";
 
         let taskname = document.createElement("p");
         taskname.innerHTML = "<h2>" + name + "</h2><p>Select a way to open this game</p>";
@@ -124,6 +125,7 @@ function launchEXEC(dir, name) {
         clickSound.play()
 
         document.getElementById("taskmgr").style.display = "block"
+        document.getElementById("taskNavBtn").ariaSelected = "true";
         var proc = require('child_process').spawn(dir);
 
         proc.on('error', err => {
@@ -206,6 +208,7 @@ function loadCollection() {
                     const name = items.name
 
                     document.getElementById("taskmgr").style.display = "block"
+                    document.getElementById("taskNavBtn").ariaSelected = "true";
                     var proc = require('child_process').exec(preferredEmulator + " " + dir);
                     proc.on('error', err => {
                         if (err.code === 'EACCES') {
@@ -239,7 +242,9 @@ function loadCollection() {
                     launchELSE(items.dir, items.banner, items.name)
                 }
                 document.getElementById('gamedetails').style.display = "block";
-                document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
+                if (document.getElementById("collectionbtn").ariaSelected == "true") {
+                    document.getElementById('body').style.backgroundImage = "url('" + items.banner + "')";
+                }
                 lastGameBackground = items.banner;
                 if (items.feed == "false" || items.feed == false) {
                     document.getElementById('gamefeed').style.display = "none";
@@ -266,9 +271,10 @@ function taskmgr() {
     var x = document.getElementById("taskmgr");
     if (x.style.display === "none") {
         x.style.display = "block";
-        document.getElementById("downloads").style.display = "none";
+        document.getElementById("taskNavBtn").ariaSelected = "true";
     } else {
         x.style.display = "none";
+        document.getElementById("taskNavBtn").ariaSelected = "false";
     }
 }
 
@@ -285,6 +291,7 @@ function toggleContext() {
 //to remove games
 function removeItem(index, items) {
     document.getElementById("taskmgr").style.display = "block"
+    document.getElementById("taskNavBtn").ariaSelected = "true";
 
     let taskname = document.createElement("p");
     taskname.innerHTML = "<h2>" + items.name + "</h2>" + "Are you sure you want to remove this game from your collection?";

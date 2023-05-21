@@ -20,6 +20,7 @@ async function downloadgame(game) {
   }
 
   document.getElementById("downloads").style.display = "block";
+  document.getElementById("downloadsNavBtn").ariaSelected = "true";
 
   const downloader = new Downloader({
     url: game.download,
@@ -63,6 +64,19 @@ function addedcollection(gameName) {
   }
 
   document.getElementById("downloads").style.display = "block";
+  document.getElementById("downloadsNavBtn").ariaSelected = "true";
+};
+function extensionadded(gameName) {
+  if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) { } else {
+    let downloadprogress = document.createElement("p");
+    downloadprogress.innerHTML = "<h2>" + gameName + "</h2>" + "<p>Theme/Extension saved! restart launcher to see changes.</p>";
+    downloadprogress.id = gameName
+    downloadprogress.className = "downloadinfo"
+    document.getElementById('downloadprogress').appendChild(downloadprogress);
+  }
+
+  document.getElementById("downloads").style.display = "block";
+  document.getElementById("downloadsNavBtn").ariaSelected = "true";
 };
 
 //downloads menu
@@ -70,8 +84,9 @@ function downloadsmenu() {
   var x = document.getElementById("downloads");
   if (x.style.display === "none") {
     x.style.display = "block";
-    document.getElementById("taskmgr").style.display = "none";
+    document.getElementById("downloadsNavBtn").ariaSelected = "true";
   } else {
     x.style.display = "none";
+    document.getElementById("downloadsNavBtn").ariaSelected = "false";
   }
 }

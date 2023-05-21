@@ -40,6 +40,8 @@ function changeTabs(e) {
     document.getElementById("downloadsNavBtn").style.display = "none";
     document.getElementById("taskmgr").style.display = "none";
     document.getElementById("downloads").style.display = "none";
+    document.getElementById("taskNavBtn").ariaSelected = "false";
+    document.getElementById("downloadsNavBtn").ariaSelected = "false";
 
     let clickSound = new Audio("assets/click_002.ogg")
     clickSound.volume = 0.1;

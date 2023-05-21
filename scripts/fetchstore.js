@@ -72,27 +72,28 @@ function loadMarket(jsonURL, jsonName, search) {
               const gameListDir = configDir + "/games.json";
               fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
               addedcollection(sanitizedgamename)
+              loadCollection()
             };
           
           //installs the game as an extension if it is an extension
           } else if (onlineitems.type == "extension") {
             let checkduplicate = JSON.stringify(tabList).includes(sanitizedgamename);
             if (checkduplicate == true) {
-              addedcollection(sanitizedgamename)
+              extensionadded(sanitizedgamename)
             } else {
               var obj = (tabList);
               obj['extensions'].push({"name": sanitizedgamename, "icon": onlineitems.icon, "URL": onlineitems.link,});
               jsonStr = JSON.stringify(obj, null, "\t");
               const gameListDir = configDir + "/extensions.json";
               fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
-              addedcollection(sanitizedgamename)
+              extensionadded(sanitizedgamename)
             };
           
           //only download it to the themes folder if its a theme
           } else if (onlineitems.type == "theme") {
             downloadFileToThemeFolder(onlineitems).then(
               function (value) {
-                addedcollection(sanitizedgamename)
+                extensionadded(sanitizedgamename)
               }
             )
           } else {
@@ -117,6 +118,7 @@ function loadMarket(jsonURL, jsonName, search) {
                   jsonStr = JSON.stringify(obj, null, "\t");
                   const gameListDir = configDir + "/games.json";
                   fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+                  loadCollection()
                 },
               );
             };

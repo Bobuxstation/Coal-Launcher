@@ -58,6 +58,7 @@ function add() {
     }
   });
   document.getElementById('addgame').innerText = 'Game Added!'
+  loadCollection()
 };
 
 //change game provider
@@ -70,7 +71,7 @@ function changeprovider() {
       console.log(err);
     }
   });
-  document.getElementById('gameapply').innerText = 'Changes Applied!'
+  document.getElementById('gameapply').innerText = 'Changes Applied! (Restart launcher to see changes)'
 };
 
 //reset game provider
@@ -105,6 +106,7 @@ function settheme() {
     }
   });
   document.getElementById('applytheme').innerText = 'Theme Applied!'
+  document.getElementById("customthemelink").href = document.getElementById("launcherstyle").value;
 }
 
 function setEmulator() {
