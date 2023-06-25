@@ -38,6 +38,9 @@
       <i class="fa-solid fa-gear"></i>
       <span>Options</span>
     </a>
+    <a id="detailbtn" class="navbtn" role="tab" aria-controls="gamedetail">
+      <span>Details</span>
+    </a>
 
     <ul class="titleBarControls">
       <!-- Close, maximize and minimize -->
@@ -45,8 +48,10 @@
       <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
       <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
 
-      <li style="float: right;" id="taskNavBtn"><a onclick="taskmgr()"><i class="fa-solid fa-cubes-stacked"></i></a></li>
-      <li style="float: right; display: none;" id="downloadsNavBtn"><a onclick="downloadsmenu()"><i class="fa-solid fa-download"></i></a></li>
+      <li style="float: right;" id="taskNavBtn"><a onclick="taskmgr()"><i class="fa-solid fa-cubes-stacked"></i></a>
+      </li>
+      <li style="float: right; display: none;" id="downloadsNavBtn"><a onclick="downloadsmenu()"><i
+            class="fa-solid fa-download"></i></a></li>
       <li style="float: right; display: none;" id="refreshNavBtn"><a><i class="fa-solid fa-refresh"></i></a></li>
     </ul>
 
@@ -130,6 +135,24 @@
 
   </div>
 
+  <!-- Game Details -->
+  <div class="content body" id="gamedetail" role="tabpanel" hidden>
+
+    <div class="gamepage">
+      <div class="gamedetails">
+        <h2 id="downloadname">Game Name</h2>
+        <p id="downloaddev">Game Publisher</p><br>
+        <a id="downloadgamebutton" style="text-decoration:none;" onclick=""><button class="playbutton"><i
+              class="fa-solid fa-download"></i> DOWNLOAD</button></a>
+      </div>
+
+      <div class="gamedetails" id="downloaddetails">
+        <p id="downloaddesc"></p>
+      </div>
+    </div>
+
+  </div>
+
   <!-- Settings Page -->
   <div class="content body" id="options" role="tabpanel" hidden>
 
@@ -148,7 +171,7 @@
 
     <div class="sidebar2" style="overflow: scroll;">
 
-      <div style="padding: 10px;">
+      <div>
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <h2 id="addgametitle">Add a game</h2>
           <p>
@@ -207,7 +230,8 @@
           <p>
             Manage all installed extensions.
           </p><br>
-          <button onclick="openExtensionConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit extensions
+          <button onclick="openExtensionConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit
+            extensions
             JSON file</button>
         </div><br>
 

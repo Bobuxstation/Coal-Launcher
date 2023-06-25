@@ -177,17 +177,15 @@ li a:hover, .navbtn:hover {
 }
 
 .STOREGAME {
-  width: 240px;
+  width: 100%;
   box-sizing: border-box !important;
-  height: 240px;
+  height: 130px;
   background-size: cover;
   text-shadow: 2px 2px 10px var(--gameCardTextShadow);
-  justify-content: center;
-  text-align: center;
   background-color: var(--gameCardBackground);
   border: var(--defaultUIBorder) solid 1px;
   border-radius: 7.5px;
-  margin: 7.5px !important;
+  margin-top: 7.5px;
   float: left;
   transition: all 0.25s ease;
   animation: skeleton-loading 1s linear infinite alternate;
@@ -248,7 +246,7 @@ li a:hover, .navbtn:hover {
   position: fixed;
   background-color: var(--navigationBackground);
   backdrop-filter: blur(10px);
-  width: calc(80% - 11px);
+  width: 20vw;
   height: calc(100vh - 56px);
   padding: 5px;
   animation-name: slideInDown;
@@ -365,9 +363,9 @@ hr {
   margin-top: 13px;
 }
 
-.gamecard2 {
+.gamecard {
   background-color: var(--gameCardBackground);
-  height: 32.4%;
+  height: 100%;
   backdrop-filter: blur(10px);
   overflow: hidden;
   box-sizing: border-box;
@@ -376,25 +374,8 @@ hr {
   border-radius: 5px;
 }
 
-.gamecard1:hover {
-  opacity: 1;
-  transition: all 0.25s ease;
-}
-
-.gamecard1 p {
-  background-color: var(--gameCardBackground);
-  backdrop-filter: blur(10px);
-  overflow: hidden;
-  border-radius: 7.5px;
-  padding: 5px;
-}
-
-.gamecard1 {
-  height: 68%;
-  padding: 5px;
-  box-sizing: border-box;
-  opacity: 0;
-  transition: all 0.25s ease;
+.gamecard p {
+  opacity: 0.75;
 }
 
 @keyframes blinker {
@@ -455,4 +436,21 @@ webview {
   border-left: var(--defaultUIBorder) solid 1px;
   border-right: var(--defaultUIBorder) solid 1px;
   border-bottom: var(--defaultUIBorder) solid 1px;
+}
+
+.gamepage {
+  padding: 10px;
+  border-left: var(--defaultUIBorder) solid 1px;
+  border-right: var(--defaultUIBorder) solid 1px;
+  border-bottom: var(--defaultUIBorder) solid 1px;
+  height: calc(100vh - 44px);
+  box-sizing: border-box;
+}
+
+#detailbtn {
+  display: none !important;
+}
+
+#downloaddetails {
+  margin-top: 7.5px;
 }

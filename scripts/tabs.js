@@ -84,6 +84,8 @@ function changeTabs(e) {
 
     if (e.target.id == "collectionbtn") {
         document.getElementById('body').style.backgroundImage = "url('" + lastGameBackground + "')";
+    } else if (e.target.id == "detailbtn") {
+        document.getElementById('body').style.backgroundImage = "url('" + lastDownloadsBackground + "')";
     }
 }
 

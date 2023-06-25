@@ -263,6 +263,10 @@ function loadCollection() {
         document.getElementById('gamedetails').style.display = "none";
         document.getElementById('body').style.backgroundImage = "";
         lastGameBackground = "";
+
+        let btn = document.createElement("button");
+        btn.textContent = 'You have no games!';
+        gameList.appendChild(btn);
     }
 }
 

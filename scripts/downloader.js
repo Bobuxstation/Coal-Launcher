@@ -19,6 +19,7 @@ async function downloadgame(game) {
     document.getElementById('downloadprogress').appendChild(downloadprogress);
   }
 
+  document.getElementById('marketbtn').click();
   document.getElementById("downloads").style.display = "block";
   document.getElementById("downloadsNavBtn").ariaSelected = "true";
 
@@ -63,6 +64,7 @@ function addedcollection(gameName) {
     document.getElementById('downloadprogress').appendChild(downloadprogress);
   }
 
+  document.getElementById('marketbtn').click();
   document.getElementById("downloads").style.display = "block";
   document.getElementById("downloadsNavBtn").ariaSelected = "true";
 };
@@ -75,6 +77,7 @@ function extensionadded(gameName) {
     document.getElementById('downloadprogress').appendChild(downloadprogress);
   }
 
+  document.getElementById('marketbtn').click();
   document.getElementById("downloads").style.display = "block";
   document.getElementById("downloadsNavBtn").ariaSelected = "true";
 };
