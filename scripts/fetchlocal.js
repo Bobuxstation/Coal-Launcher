@@ -1,7 +1,7 @@
 //load dependencies
 let gameList = document.getElementById("mygames");
 const { exec } = require('child_process');
-const {electron, ipcRenderer} = require('electron');
+const { electron, ipcRenderer } = require('electron');
 const sudo = require('sudo-prompt');
 console.log(configDir);
 let jsonData = require(configDir + '/games.json');
@@ -20,7 +20,7 @@ function elevateGame(name, dir, taskname) {
 }
 
 //launch game that is not supported
-function launchELSE(dir, banner, name) {
+function launchELSE(dir, banner, name, args) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
         let clickSound = new Audio("assets/open_003.ogg")
@@ -31,27 +31,27 @@ function launchELSE(dir, banner, name) {
         document.getElementById("taskNavBtn").ariaSelected = "true";
 
         let taskname = document.createElement("p");
-        taskname.innerHTML = "<h3>" + name + "</h3><p>Select a way to open this game</p>";
+        taskname.innerHTML = "<h3>" + name + "</h3><p>Select a way to open this game</p><br>";
         taskname.id = name;
 
         let execoptionbtn = document.createElement("button");
         execoptionbtn.id = "endtask";
         execoptionbtn.innerHTML = "Launch as an executable";
         execoptionbtn.onclick = function () {
-            var proc = require('child_process').spawn(dir);
+            var proc = require('child_process').spawn(dir, [args]);
             taskname.remove();
 
             proc.on('error', err => {
                 if (err.code === 'EACCES') {
-                    newtaskname.innerHTML = "<h3>" + name + "</h3>" + ('This game may require elevated privileges to run.');
+                    newtaskname.innerHTML = "<h3>" + name + "</h3>" + ('This game may require elevated privileges to run.<br><br>');
                     elevateGame(name, dir, newtaskname);
                 } else {
-                    newtaskname.innerHTML = "<h3>" + name + "</h3>" + (`An error occurred: ${err.message}`);
+                    newtaskname.innerHTML = "<h3>" + name + "</h3>" + (`An error occurred: ${err.message}<br><br>`);
                 }
             });
 
             let newtaskname = document.createElement("p");
-            newtaskname.innerHTML = "<h3>" + name + "</h3>" + "<button id='endtask'>Click To End Session</button>";
+            newtaskname.innerHTML = "<h3>" + name + "</h3><br>" + "<button id='endtask'>Click To End Session</button>";
             newtaskname.id = name
             newtaskname.onclick = function () {
                 proc.kill('SIGINT');
@@ -126,19 +126,19 @@ function launchEXEC(dir, name, args) {
 
         document.getElementById("taskmgr").style.display = "block"
         document.getElementById("taskNavBtn").ariaSelected = "true";
-        var proc = require('child_process').spawn(dir, args);
+        var proc = require('child_process').spawn(dir, [args]);
 
         proc.on('error', err => {
             if (err.code === 'EACCES') {
-                taskname.innerHTML = "<h3>" + name + "</h3>" + ('This game may require elevated privileges to run.');
+                taskname.innerHTML = "<h3>" + name + "</h3>" + ('This game may require elevated privileges to run.<br><br>');
                 elevateGame(name, dir, taskname)
             } else {
-                taskname.innerHTML = "<h3>" + name + "</h3>" + (`An error occurred: ${err.message}`);
+                taskname.innerHTML = "<h3>" + name + "</h3>" + (`An error occurred: ${err.message}<br><br>`);
             }
         });
 
         let taskname = document.createElement("p");
-        taskname.innerHTML = "<h3>" + name + "</h3>" + "<button id='endtask'>Click To End Session</button>";
+        taskname.innerHTML = "<h3>" + name + "</h3><br>" + "<button id='endtask'>Click To End Session</button>";
         taskname.id = name
         taskname.onclick = function () {
             proc.kill('SIGINT');
@@ -165,10 +165,10 @@ function loadCollection() {
             <i class="fa-solid fa-download"></i> Download a game
         </button>
     </a>
-    <a onclick="loadCollection()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh Library</button></a>
+    <a onclick="loadCollection()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh collections</button></a>
     <hr>
     `
-    console.log('Collection reloaded')
+
     if (jsonData.items.length != 0) {
         jsonData.items.forEach(function (items, index) {
             let btn = document.createElement("button");
@@ -203,6 +203,53 @@ function loadCollection() {
                     shell.showItemInFolder(configDir + "/games")
                     toggleContext()
                 }
+                document.getElementById('editPrompt').onclick = function () {
+                    document.getElementById("taskmgr").style.display = "block"
+                    document.getElementById("taskNavBtn").ariaSelected = "true";
+
+                    if (document.getElementById('tasks').innerHTML.includes(sanitizeHtml(items.name))) return;
+
+                    let taskname = document.createElement("p");
+                    taskname.innerHTML = "<h3>" + items.name + "</h3>" + "Enter new argument.<br><br>";
+                    taskname.id = items.name
+                    taskname.className = "downloadinfo"
+                    document.getElementById('tasks').appendChild(taskname);
+
+                    let argsInput = document.createElement("input");
+                    argsInput.id = "endtask";
+                    argsInput.value = items.arguments || "";
+                    taskname.appendChild(argsInput);
+                    argsInput.focus();
+
+                    let saveArgs = document.createElement("button");
+                    saveArgs.id = "endtask";
+                    saveArgs.innerHTML = "Save";
+                    saveArgs.onclick = function () {
+                        items.arguments = argsInput.value;
+                        loadCollection();
+
+                        jsonStr = JSON.stringify(jsonData, null, "\t");
+                        console.log(jsonStr);
+                        fs.writeFile(configDir + '/games.json', jsonStr, (err) => {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+
+                        taskname.remove()
+                    }
+                    taskname.appendChild(saveArgs)
+
+                    let deleteNo = document.createElement("button");
+                    deleteNo.id = "endtask";
+                    deleteNo.innerHTML = "Cancel";
+                    deleteNo.onclick = function () {
+                        taskname.remove()
+                    }
+                    taskname.appendChild(deleteNo)
+
+                    toggleContext()
+                }
                 document.getElementById('emulatePrompt').onclick = function () {
                     const preferredEmulator = jsonData.preferredEmulator || "wine"
                     const dir = items.dir
@@ -213,14 +260,14 @@ function loadCollection() {
                     var proc = require('child_process').exec(preferredEmulator + " " + dir);
                     proc.on('error', err => {
                         if (err.code === 'EACCES') {
-                            taskname.innerHTML = "<h3>" + name + "</h3>" + ('This game may require elevated privileges to run.');
+                            taskname.innerHTML = "<h3>" + name + "</h3>" + ('This game may require elevated privileges to run.<br><br>');
                             elevateGame(name, dir, taskname)
                         } else {
-                            taskname.innerHTML = "<h3>" + name + "</h3>" + (`An error occurred: ${err.message}`);
+                            taskname.innerHTML = "<h3>" + name + "</h3>" + (`An error occurred: ${err.message}<br><br>`);
                         }
                     });
                     let taskname = document.createElement("p");
-                    taskname.innerHTML = "<h3>" + name + "</h3>" + "<button id='endtask'>Click To End Session</button>";
+                    taskname.innerHTML = "<h3>" + name + "</h3><br>" + "<button id='endtask'>Click To End Session</button>";
                     taskname.id = name
                     taskname.onclick = function () {
                         proc.kill('SIGINT');
@@ -236,11 +283,11 @@ function loadCollection() {
                 if (typeof items.type === "undefined" || items.type == "html5") {
                     launchHTML(items.dir, items.banner, items.name)
                 } else if (items.type == "executable") {
-                    launchEXEC(items.dir, items.name, items.arguments)
+                    launchEXEC(items.dir, items.name, (items.arguments || ""))
                 } else if (items.type == "flash") {
                     launchSWF(items.dir, items.banner, items.name)
                 } else {
-                    launchELSE(items.dir, items.banner, items.name)
+                    launchELSE(items.dir, items.banner, items.name, (items.arguments || ""))
                 }
                 document.getElementById('gamedetails').style.display = "block";
                 if (document.getElementById("collectionbtn").ariaSelected == "true") {
@@ -298,8 +345,10 @@ function removeItem(index, items) {
     document.getElementById("taskmgr").style.display = "block"
     document.getElementById("taskNavBtn").ariaSelected = "true";
 
+    if (document.getElementById('tasks').innerHTML.includes(sanitizeHtml(items.name))) return;
+
     let taskname = document.createElement("p");
-    taskname.innerHTML = "<h3>" + items.name + "</h3>" + "Are you sure you want to remove this game from your collection?";
+    taskname.innerHTML = "<h3>" + items.name + "</h3>" + "Are you sure you want to remove this game from your collection?<br><br>";
     taskname.id = name
     taskname.className = "downloadinfo"
     document.getElementById('tasks').appendChild(taskname);

@@ -32,6 +32,10 @@ if (fs.existsSync(configDir + '/gameProviders.json')) { console.log('Game Provid
             {
                 "name": "Extensions",
                 "JSONDir": "https://bobuxstation.github.io/Coal-Web/extensions.json"
+            },
+            {
+                "name": "Emupedia",
+                "JSONDir": "https://mobiz-advanced-technologies.github.io/Mobiz-Advanced-Coal-Launcher-Repositories/emupedia/index.json"
             }
         ],
     };
