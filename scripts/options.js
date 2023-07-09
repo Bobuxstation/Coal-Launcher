@@ -144,5 +144,17 @@ function openDocs() {
   shell.openExternal('https://github.com/Bobuxstation/Coal-Launcher/wiki')
 }
 
-//Get Launcher Version
-document.getElementById('versioninfo').innerText = app.getName() + " version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform;
+//Get Launcher Version and updates
+document.getElementById('versioninfo').innerText = app.getName() + " version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform + ".";
+
+ipcRenderer.on('update_available', () => {
+  document.getElementById('updateinfo').innerText = 'Update availible! Downloading update...';
+});
+
+ipcRenderer.on('update_downloaded', () => {
+  document.getElementById('updateinfo').innerText = 'Update downloaded! Restart the launcher to install...';
+});
+
+ipcRenderer.on('no_update_available', () => {
+  document.getElementById('updateinfo').innerText = 'You are running the latest version! No need to update.';
+});

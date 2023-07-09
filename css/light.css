@@ -8,7 +8,7 @@
     --gameCardBackground: #909090dd;
     --defaultUIBorder: lightgray;
     --gameCardTextShadow: #ffffff00;
-    --mainBackgroundImage: url('../assets/abpattern1.png');
+    --mainBackgroundImage: none;
     --mainFontFamily: Inter;
 
     /* Other UI Elements */

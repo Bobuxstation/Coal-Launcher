@@ -7,9 +7,11 @@ const { autoUpdater, AppUpdater } = require("electron-updater");
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
 
+var win
+
 function createWindow() {
 
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1000,
     height: 600,
     icon: "./assets/logo.png",
@@ -39,14 +41,17 @@ app.whenReady().then(() => {
 
 autoUpdater.on("update-available", (info) => {
   console.log(`Update available. Current version ${app.getVersion()}`);
+  win.webContents.send('update_available');
 });
 
 autoUpdater.on("update-not-available", (info) => {
   console.log(`No update available. Current version ${app.getVersion()}`);
+  win.webContents.send('no_update_available');
 });
 
 autoUpdater.on("update-downloaded", (info) => {
   console.log(`Update downloaded. Current version ${app.getVersion()}`);
+  win.webContents.send('update_downloaded');
 });
 
 app.on('window-all-closed', () => {

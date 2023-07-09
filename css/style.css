@@ -53,7 +53,7 @@ input {
   position: fixed;
   width: 100vw;
   backdrop-filter: blur(10px);
-  height: 45px;
+  height: 46px;
   border-top: var(--defaultUIBorder) solid 1px;
   border-left: var(--defaultUIBorder) solid 1px;
   border-right: var(--defaultUIBorder) solid 1px;
@@ -95,7 +95,7 @@ li a, .navbtn {
   color: var(--mainTextColor);
   text-align: center;
   padding: 7.5px;
-  margin: 4px;
+  margin: 5px;
   border-radius: 7.5px;
   min-width: 20px;
   text-decoration: none;
@@ -188,7 +188,7 @@ li a:hover, .navbtn:hover {
   margin-top: 7.5px;
   float: left;
   transition: all 0.25s ease;
-  animation: skeleton-loading 1s linear infinite alternate;
+  animation: fadein .25s;
   font-size: 15px;
 }
 
@@ -259,26 +259,26 @@ li a:hover, .navbtn:hover {
 
 @keyframes slideInDown {
   0% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-    visibility: visible;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+      visibility: visible;
   }
 
   100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
   }
 }
 
 @keyframes zoomIn {
   0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3);
   }
 
   50% {
-    opacity: 1;
+      opacity: 1;
   }
 }
 
@@ -289,23 +289,33 @@ li a:hover, .navbtn:hover {
   box-sizing: border-box;
 }
 
+.downloadinfo h3 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.downloadinfo p {
+  opacity: 0.75;
+}
+
 @keyframes fadein {
   0% {
-    opacity: 0;
+      opacity: 0;
   }
 
   100% {
-    opacity: 1;
+      opacity: 1;
   }
 }
 
 @keyframes skeleton-loading {
   0% {
-    background-color: #4d4d4d90;
+      background-color: #4d4d4d90;
   }
 
   100% {
-    background-color: #5d5d5d90;
+      background-color: #5d5d5d90;
   }
 }
 
@@ -369,7 +379,7 @@ hr {
   backdrop-filter: blur(10px);
   overflow: hidden;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 15px;
   text-align: left;
   border-radius: 5px;
 }
@@ -380,7 +390,7 @@ hr {
 
 @keyframes blinker {
   50% {
-    background-color: #80808050;
+      background-color: #80808050;
   }
 }
 
@@ -390,10 +400,11 @@ hr {
 
 @keyframes rotating {
   from {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
+
   to {
-    transform: rotate(360deg);
+      transform: rotate(360deg);
   }
 }
 

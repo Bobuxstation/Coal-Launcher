@@ -9,7 +9,6 @@ let lastDownloadsBackground
 function loadMarket(jsonURL, jsonName, search) {
   //change title to the game provider name
   discoverList.innerHTML = '';
-  document.getElementById('markettitle').innerText = sanitizeHtml(jsonName);
   //set refresh button
   document.getElementById('playbutton').onchange = function () {
     loadMarket(jsonURL, jsonName, document.getElementById('playbutton').value);
@@ -48,8 +47,8 @@ function loadMarket(jsonURL, jsonName, search) {
         btn.innerHTML =
           "</div>" + "<div class='gamecard'>" +
           "<h3>" + gameextensionicon + sanitizedgamename + "</h3>" +
-          sanitizeddevname +
-          `<br><br><p title="${sanitizedgameinfo}">` + sanitizedgameinfo.slice(0, 128) + "...</p></div>";
+          `<p>${sanitizeddevname}</p>` +
+          `<br><p title="${sanitizedgameinfo}">` + sanitizedgameinfo.slice(0, 128) + "...</p></div>";
         btn.className = "STOREGAME";
         let banner = onlineitems.banner;
         btn.style.backgroundImage = "url(" + banner + ")";
@@ -145,18 +144,19 @@ function loadMarket(jsonURL, jsonName, search) {
 };
 
 //Show game providers
-gameProviderList.items.forEach(items => {
+gameProviderList.items.forEach((items, i) => {
   let btn = document.createElement("button");
   btn.textContent = items.name;
   btn.onclick = function () {
     let clickSound = new Audio("assets/click_002.ogg")
     clickSound.volume = 0.1;
-    clickSound.play()
+    clickSound.play();
+
+    document.getElementById('playbutton').value = "";
 
     loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);
   };
   providerList.appendChild(btn);
-});
 
-//Load default game provider
-loadMarket("https://bobuxstation.github.io/Coal-Web/games.json", "Coal Games", document.getElementById('playbutton').value);
+  if (i == 0) btn.click();
+});
