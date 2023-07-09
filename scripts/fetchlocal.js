@@ -117,7 +117,7 @@ function launchSWF(dir, banner, name) {
 }
 
 //function to launch executable games
-function launchEXEC(dir, name) {
+function launchEXEC(dir, name, args) {
     document.getElementById("execonly").style.display = "block";
     document.getElementById('gameplay').onclick = function () {
         let clickSound = new Audio("assets/open_003.ogg")
@@ -126,7 +126,7 @@ function launchEXEC(dir, name) {
 
         document.getElementById("taskmgr").style.display = "block"
         document.getElementById("taskNavBtn").ariaSelected = "true";
-        var proc = require('child_process').spawn(dir);
+        var proc = require('child_process').spawn(dir, args);
 
         proc.on('error', err => {
             if (err.code === 'EACCES') {
@@ -165,9 +165,10 @@ function loadCollection() {
             <i class="fa-solid fa-download"></i> Download a game
         </button>
     </a>
+    <a onclick="loadCollection()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh Library</button></a>
     <hr>
     `
-
+    console.log('Collection reloaded')
     if (jsonData.items.length != 0) {
         jsonData.items.forEach(function (items, index) {
             let btn = document.createElement("button");
@@ -235,7 +236,7 @@ function loadCollection() {
                 if (typeof items.type === "undefined" || items.type == "html5") {
                     launchHTML(items.dir, items.banner, items.name)
                 } else if (items.type == "executable") {
-                    launchEXEC(items.dir, items.name)
+                    launchEXEC(items.dir, items.name, items.arguments)
                 } else if (items.type == "flash") {
                     launchSWF(items.dir, items.banner, items.name)
                 } else {
