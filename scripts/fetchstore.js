@@ -61,6 +61,14 @@ function loadMarket(jsonURL, jsonName, search) {
           lastDownloadsBackground = banner;
           document.getElementById('detailbtn').click();
 
+          if (onlineitems.feed == "false" || onlineitems.feed == false) {
+            document.getElementById('previewgamefeed').style.display = "none";
+          } else {
+            document.getElementById('previewgamefeed').src = onlineitems.feed;
+            document.getElementById('previewgamefeed').style.display = "block";
+            document.getElementById('previewgamefeed').style.height = "calc(100vh - " + "207.5px - " + document.getElementById('downloaddetails').offsetHeight + "px)";
+          }
+
           document.getElementById('downloadgamebutton').onclick = function () {
             let clickSound = new Audio("assets/toggle_002.ogg")
             clickSound.volume = 0.1;

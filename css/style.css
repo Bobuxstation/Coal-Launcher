@@ -15,6 +15,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   transition: background-image 0.2s ease-in-out;
+  overflow: hidden;
 }
 
 .navbtn[aria-selected=true], .titleBarControls li[aria-selected=true] a {
@@ -27,7 +28,7 @@ body {
 }
 
 .body {
-  padding-top: 44px;
+  padding-top: 46px;
 }
 
 .body button, #endtask {
@@ -116,7 +117,7 @@ li a:hover, .navbtn:hover {
   width: fit-content;
   float: right;
   width: 80% !important;
-  height: calc(100vh - 44px);
+  height: calc(100vh - 46px);
   transition: none;
   border: var(--defaultUIBorder) solid;
   border-width: 0px 1px 1px 0px;
@@ -128,7 +129,7 @@ li a:hover, .navbtn:hover {
   box-sizing: border-box;
   padding: 5px;
   overflow: auto;
-  height: calc(100vh - 45px);
+  height: calc(100vh - 47px);
   transition: none;
 }
 
@@ -161,7 +162,7 @@ li a:hover, .navbtn:hover {
   box-sizing: border-box;
 }
 
-#gamefeed {
+#gamefeed, #previewgamefeed {
   width: 100%;
   backdrop-filter: blur(10px);
   border: var(--defaultUIBorder) solid 1px !important;
@@ -247,7 +248,7 @@ li a:hover, .navbtn:hover {
   background-color: var(--navigationBackground);
   backdrop-filter: blur(10px);
   width: 20vw;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 57px);
   padding: 5px;
   animation-name: slideInDown;
   animation-duration: 0.25s;
