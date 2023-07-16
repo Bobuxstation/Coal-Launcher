@@ -17,6 +17,7 @@
 
   <meta charset="UTF-8">
   <title id="pagetitle">Collections - Coal Launcher</title>
+
 </head>
 
 <!-- Navigations -->
@@ -48,7 +49,7 @@
       <li style="float: right;"><a onclick="maximizeWindow()"><i class="fa-solid fa-window-maximize"></i></a></li>
       <li style="float: right;"><a onclick="minimizeWindow()"><i class="fa-solid fa-window-minimize"></i></a></li>
 
-      <li style="float: right;" id="taskNavBtn"><a onclick="taskmgr()"><i class="fa-solid fa-cubes-stacked"></i></a>
+      <li style="float: right;" id="taskNavBtn"><a onclick="taskmgr()"><i class="fa-solid fa-gamepad"></i></a>
       </li>
       <li style="float: right; display: none;" id="downloadsNavBtn"><a onclick="downloadsmenu()"><i
             class="fa-solid fa-download"></i></a></li>
@@ -75,7 +76,7 @@
         <h2 id="gamename">Game Name</h2>
         <p id="gamedev">Game Publisher</p><br>
         <a id="gameplay" style="text-decoration:none;" onclick=""><button class="playbutton"><i
-              class="fa-solid fa-up-right-from-square"></i> LAUNCH</button></a>
+              class="fa-solid fa-up-right-from-square"></i> Play</button></a>
         <a id="contextmenu" style="text-decoration:none;" onclick="toggleContext()"><button class="deletebutton"><i
               class="fa-solid fa-bars"></i></button></a>
       </div>
@@ -107,9 +108,9 @@
     <div class="sidebar">
       <div class="gamelist">
         <div id="myproviders" class="game">
-          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-plus"></i> Add a
+          <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i class="fa-solid fa-plus"></i> Add a
               game</button></a>
-          <a onclick="document.getElementById('optionbtn').click()"><button><i class="fa-solid fa-folder-plus"></i> Add
+          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i class="fa-solid fa-folder-plus"></i> Add
               a repository</button></a>
           <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
               your games</button></a>
@@ -118,7 +119,7 @@
       </div>
     </div>
 
-    <div class="sidebar2" style="overflow: scroll;">
+    <div class="sidebar2" style="overflow: scroll; overflow-x: hidden;">
 
       <!-- Repository description -->
       <input class="input" id="playbutton" placeholder="Search games..." type="search" style="margin-bottom: 0;">
@@ -169,86 +170,110 @@
       </div>
     </div>
 
-    <div class="sidebar2" style="overflow: scroll;">
+    <div class="sidebar2" style="overflow: scroll; overflow-x: hidden;">
 
       <div>
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="addgametitle">Add a game</h2>
-          <p>
-            Like it says, it adds a game to your collection. Note that
-            if you do not want to add a game news/feed, leave it empty.</p><br>
-          <input placeholder="Game name" id="name" class="input"><br>
-          <input placeholder="Banner" id="banner" class="input"><br>
-          <input placeholder="Game Feed (optional)" id="feed" class="input"><br>
-          <input placeholder="Game URL" id="dir" class="input"><br>
-          <select class="input" id="type">
-            <option>html5</option>
-            <option>executable</option>
-            <option>flash</option>
-            <option>other</option>
-          </select>
-          <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button>
-          <button onclick="editjson()" style="cursor: pointer;" class="button">Edit collection JSON file</button>
+          <details>
+            <summary>
+              <h2 id="addgametitle">Add a game</h2>
+              <p>Like it says, it adds a game to your collection. Note that if you do not want to add a game news/feed, leave it empty.</p>
+            </summary>
+
+            <br>
+            <input placeholder="Game name" id="name" class="input"><br>
+            <input placeholder="Banner" id="banner" class="input"><br>
+            <input placeholder="Game Feed (optional)" id="feed" class="input"><br>
+            <input placeholder="Game URL" id="dir" class="input"><br>
+            <select class="input" id="type">
+              <option>html5</option>
+              <option>executable</option>
+              <option>flash</option>
+              <option>other</option>
+            </select>
+            <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button>
+            <button onclick="editjson()" style="cursor: pointer;" class="button">Edit collection JSON file</button>
+          </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="launcherconfigtitle">Repositories</h2>
-          <p>
-            Adds more repositories to the market section.
-          </p><br>
-          <input placeholder="Repository Name" id="gameprovidername" class="input"></input><br>
-          <input placeholder="Repository JSON Url" id="gameprovider" class="input"></input><br>
-          <button onclick="changeprovider()" id="gameapply" class="button">Add Repository</button>
-          <button onclick="defaultprovider()" id="gamedefault" class="button">Reset Repositories</button>
-          <button onclick="editproviderjson()" style="cursor: pointer;" class="button">Edit Repositories JSON
-            file</button>
+          <details>
+            <summary>
+              <h2 id="launcherconfigtitle">Repositories</h2>
+              <p>Adds more repositories to the market section.</p>
+            </summary>
+          
+            <br>
+            <input placeholder="Repository Name" id="gameprovidername" class="input"></input><br>
+            <input placeholder="Repository JSON Url" id="gameprovider" class="input"></input><br>
+            <button onclick="changeprovider()" id="gameapply" class="button">Add Repository</button>
+            <button onclick="defaultprovider()" id="gamedefault" class="button">Reset Repositories</button>
+            <button onclick="editproviderjson()" style="cursor: pointer;" class="button">Edit Repositories JSON
+              file</button>
+          </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="themes">Themes</h2>
-          <p>
-            Customize your launcher with custom themes!
-          </p><br>
-          <select class="input" id="launcherstyle">
-          </select><br>
-          <button onclick="settheme()" style="cursor: pointer;" id="applytheme" class="button">Apply Theme</button>
-          <button onclick="openThemeFolder()" style="cursor: pointer;" class="button">Open Themes Folder</button>
+          <details>
+            <summary>
+              <h2 id="themes">Themes</h2>
+              <p>Customize your launcher with custom themes!</p>
+            </summary>
+
+            <br>
+            <select class="input" id="launcherstyle">
+            </select><br>
+            <button onclick="settheme()" style="cursor: pointer;" id="applytheme" class="button">Apply Theme</button>
+            <button onclick="openThemeFolder()" style="cursor: pointer;" class="button">Open Themes Folder</button>
+          </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="emulatorsettings">Emulator Settings</h2>
-          <p>
-            Emulate your executable games if they are not natively supported.
-          </p><br>
-          <input placeholder="Preferred Emulator Command" id="preferredEmulator" class="input"><br>
-          <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply
-            Emulator</button>
+          <details>
+            <summary>
+              <h2 id="emulatorsettings">Emulator Settings</h2>
+              <p>Emulate your executable games if they are not natively supported.</p>
+            </summary>
+          
+            <br>
+            <input placeholder="Preferred Emulator Command" id="preferredEmulator" class="input"><br>
+            <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply
+              Emulator</button>
+          </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="extensionconfig">Manage Extensions</h2>
-          <p>
-            Manage all installed extensions.
-          </p><br>
-          <button onclick="openExtensionConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit
-            extensions
-            JSON file</button>
+          <details>
+            <summary>
+              <h2 id="extensionconfig">Manage Extensions</h2>
+              <p>Manage all installed extensions.</p>
+            </summary>
+          
+            <br>
+            <button onclick="openExtensionConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit
+              extensions
+              JSON file</button>
+            </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="sendfeedbacktitle">Send Feedback</h2>
-          <p>
-            If you have any bugs to report or ideas to add, leave a message!
-          </p><br>
-          <form action="https://postmail.invotes.com/send" method="post" id="email_form">
+          <details>
+            <summary>
+              <h2 id="sendfeedbacktitle">Send Feedback</h2>
+              <p>If you have any bugs to report or ideas to add, leave a message!</p>
+            </summary>
+          
+            <br>
+            <form action="https://postmail.invotes.com/send" method="post" id="email_form">
 
-            <input type="text" name="subject" placeholder="Subject" class="input" /><br>
-            <textarea name="text" placeholder="Message" class="textarea" style="height: 200px;"></textarea><br>
-            <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
-            <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
-            <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
-            <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" class="input" />
-          </form>
+              <input type="text" name="subject" placeholder="Subject" class="input" /><br>
+              <textarea name="text" placeholder="Message" class="textarea" style="height: 200px;"></textarea><br>
+              <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
+              <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
+              <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
+              <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" class="input" />
+            </form>
+          </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">

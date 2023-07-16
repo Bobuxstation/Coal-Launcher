@@ -155,7 +155,7 @@ function launchEXEC(dir, name, args) {
 
 function loadCollection() {
     gameList.innerHTML = `
-    <a  onclick="document.getElementById('optionbtn').click()">
+    <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle">
         <button>
             <i class="fa-solid fa-plus"></i> Add a game
         </button>

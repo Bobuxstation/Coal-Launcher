@@ -7,23 +7,23 @@
   height: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4d4d4d;
+  background: var(--coalUIButton);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6d6d6d;
+  background: var(--coalUIButtonHover);
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #8d8d8d;
+  background: var(--coalUIButtonActive);
 }
 ::-webkit-scrollbar-track {
-  background: #2d2d2d;
+  background: var(--mainBackground);
 }
 ::-webkit-scrollbar-track:hover {
-  background: #2d2d2d;
+  background: var(--mainBackground);
 }
 ::-webkit-scrollbar-track:active {
-  background: #2d2d2d;
+  background: var(--mainBackground);
 }
 ::-webkit-scrollbar-corner {
-  background: #2d2d2d;
+  background: var(--mainBackground);
 }

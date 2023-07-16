@@ -16,11 +16,12 @@ body {
   background-repeat: no-repeat;
   transition: background-image 0.2s ease-in-out;
   overflow: hidden;
+  background-position: center;
 }
 
 .navbtn[aria-selected=true], .titleBarControls li[aria-selected=true] a {
-  background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);
-  color: black !important;
+  border: var(--coalUIButtonBorder) solid 1px !important;
+  background: var(--sidebarNavigationButtonHover) !important;
 }
 
 .navbtn[aria-selected=true] span {
@@ -35,7 +36,7 @@ body {
   color: var(--mainTextColor);
   background: none;
   background-size: cover;
-  border-radius: 7.5px;
+  border-radius: 4px;
   display: block;
   margin-bottom: 5px;
   transition: all 0.25s ease;
@@ -55,9 +56,7 @@ input {
   width: 100vw;
   backdrop-filter: blur(10px);
   height: 46px;
-  border-top: var(--defaultUIBorder) solid 1px;
-  border-left: var(--defaultUIBorder) solid 1px;
-  border-right: var(--defaultUIBorder) solid 1px;
+  border: var(--defaultUIBorder) solid 1px;
 }
 
 .sidebar {
@@ -68,6 +67,7 @@ input {
   transition: none;
   border: var(--defaultUIBorder) solid;
   border-width: 0px 0px 1px 1px;
+  backdrop-filter: blur(25px);
 }
 
 li {
@@ -96,19 +96,21 @@ li a, .navbtn {
   color: var(--mainTextColor);
   text-align: center;
   padding: 7.5px;
-  margin: 5px;
-  border-radius: 7.5px;
+  margin: 3px;
+  border-radius: 5px;
   min-width: 20px;
   text-decoration: none;
   -webkit-app-region: no-drag;
   font-weight: bold;
   transition: all 0.25s ease;
   float: left;
+  border: #1d1d1d00 solid 1px;
 }
 
 li a:hover, .navbtn:hover {
   background-color: var(--sidebarNavigationButtonHover);
   transition: all 0.25s ease;
+  border: var(--coalUIButtonBorder) solid 1px;
 }
 
 .sidebar2 {
@@ -121,6 +123,7 @@ li a:hover, .navbtn:hover {
   transition: none;
   border: var(--defaultUIBorder) solid;
   border-width: 0px 1px 1px 0px;
+  backdrop-filter: blur(25px);
 }
 
 .gamelist {
@@ -129,8 +132,13 @@ li a:hover, .navbtn:hover {
   box-sizing: border-box;
   padding: 5px;
   overflow: auto;
-  height: calc(100vh - 47px);
+  height: calc(100vh - 67px);
   transition: none;
+  margin: 10px;
+  box-sizing: border-box;
+  border: var(--defaultUIBorder) solid 1px;
+  border-radius: 5px;
+  margin-right: 0px;
 }
 
 .gamelist button, #endtask, #gameextra button {
@@ -139,6 +147,9 @@ li a:hover, .navbtn:hover {
   text-align: left;
   font-weight: bold;
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #gameextra button:last-child {
@@ -158,7 +169,7 @@ li a:hover, .navbtn:hover {
   background: var(--gameCardBackground);
   border: var(--defaultUIBorder) solid 1px;
   padding: 7.5px;
-  border-radius: 7.5px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
@@ -166,11 +177,11 @@ li a:hover, .navbtn:hover {
   width: 100%;
   backdrop-filter: blur(10px);
   border: var(--defaultUIBorder) solid 1px !important;
-  border-radius: 7.5px;
+  border-radius: 5px;
   box-sizing: border-box;
   border: none;
   background: var(--gameCardBackground);
-  height: calc(100vh - 205px);
+  height: calc(100vh - 204px);
   margin-top: 5px;
   animation-name: zoomIn;
   animation-duration: 0.25s;
@@ -185,12 +196,13 @@ li a:hover, .navbtn:hover {
   text-shadow: 2px 2px 10px var(--gameCardTextShadow);
   background-color: var(--gameCardBackground);
   border: var(--defaultUIBorder) solid 1px;
-  border-radius: 7.5px;
+  border-radius: 5px;
   margin-top: 7.5px;
   float: left;
   transition: all 0.25s ease;
   animation: fadein .25s;
   font-size: 15px;
+  background-position: center;
 }
 
 .STOREGAME:hover {
@@ -204,21 +216,23 @@ li a:hover, .navbtn:hover {
 }
 
 .playbutton {
-  background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%) !important;
   font-size: 17.5px;
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 7.5px;
+  border-radius: 5px;
   text-align: center;
   text-decoration: none;
   font-weight: bold;
-  border: #49C628 solid 1px !important;
   color: black !important;
+  border: #2ae42a solid 1px !important;
+  background: #16c716 !important;
+  margin-bottom: 3px !important;
 }
 
 .playbutton:hover {
-  background-image: linear-gradient(135deg, #49C628 10%, #49C628 100%) !important;
+  border: #16c716 solid 1px !important;
+  background: #2ae42a !important;
 }
 
 #gameplay {
@@ -226,29 +240,31 @@ li a:hover, .navbtn:hover {
 }
 
 .deletebutton {
-  background-image: linear-gradient(135deg, #FEB692 10%, #EA5455 100%) !important;
   font-size: 17.5px;
   padding: 10px;
   color: white !important;
   text-decoration: none;
   font-weight: bold;
-  border: #EA5455 solid 1px !important;
+  border: #ff6465 solid 1px !important;
   color: black !important;
   width: 45px;
+  background: #EA5455 !important;
+  margin-bottom: 3px !important;
 }
 
 .deletebutton:hover {
-  background-image: linear-gradient(135deg, #EA5455 10%, #EA5455 100%) !important;
+  background: #ff6465 !important;
+  border: #EA5455 solid 1px !important;
 }
 
 .downloads {
   z-index: 2;
   right: 0;
   position: fixed;
-  background-color: var(--navigationBackground);
+  background-color: var(--gameCardBackground);
   backdrop-filter: blur(10px);
-  width: 20vw;
-  height: calc(100vh - 57px);
+  width: calc(100vw - 23px);
+  height: calc(100vh - 69px);
   padding: 5px;
   animation-name: slideInDown;
   animation-duration: 0.25s;
@@ -256,6 +272,9 @@ li a:hover, .navbtn:hover {
   overflow: scroll;
   border: var(--defaultUIBorder) solid;
   border-width: 0px 1px 1px 0px;
+  margin: 5px;
+  border-radius: 5px;
+  border: var(--defaultUIBorder) solid 1px;
 }
 
 @keyframes slideInDown {
@@ -323,24 +342,24 @@ li a:hover, .navbtn:hover {
 .progress {
   width: 100%;
   background: var(--mainBackground);
-  border-radius: 7.5px;
+  border-radius: 5px;
   height: 15px;
 }
 
 .progress::-webkit-progress-bar {
   background: var(--mainBackground);
-  border-radius: 7.5px;
+  border-radius: 5px;
 }
 
 .progress::-webkit-progress-value {
   background: var(--mainTextColor);
-  border-radius: 7.5px;
+  border-radius: 5px;
 }
 
 .input, .button, .textarea {
   padding: 7.5px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 4px;
   width: 100%;
   background: var(--coalUIButton) !important;
   color: var(--mainTextColor);
@@ -365,12 +384,13 @@ li a:hover, .navbtn:hover {
 
 #player {
   height: calc(100vh - 45px) !important;
+  backdrop-filter: blur(25px);
 }
 
 hr {
   margin-bottom: 13px;
   border: var(--defaultUIBorder) solid 1px;
-  border-radius: 7.5px;
+  border-radius: 5px;
   margin-top: 13px;
 }
 
@@ -429,7 +449,7 @@ hr {
 #gameextra {
   backdrop-filter: blur(10px);
   border: var(--defaultUIBorder) solid 1px !important;
-  border-radius: 7.5px;
+  border-radius: 5px;
   background: var(--gameCardBackground);
   margin: 4.5px;
   box-sizing: border-box;
@@ -457,6 +477,7 @@ webview {
   border-bottom: var(--defaultUIBorder) solid 1px;
   height: calc(100vh - 44px);
   box-sizing: border-box;
+  backdrop-filter: blur(25px);
 }
 
 #detailbtn {
@@ -465,4 +486,8 @@ webview {
 
 #downloaddetails {
   margin-top: 7.5px;
+}
+
+summary h2 {
+  display: inline;
 }

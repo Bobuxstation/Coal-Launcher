@@ -8,9 +8,9 @@ const gamename = urlArgs.get("name")
 //webview
 const webview = document.getElementById('player');
 webview.addEventListener('did-finish-load', function () {
-    document.getElementById('refreshbtn').innerHTML = '<i class="fa-solid fa-arrow-rotate-right"></i>'
+    document.getElementById('refreshbtn').className = 'fa-solid fa-arrow-rotate-right'
     document.getElementById('refreshbtn').style.pointerEvents = "auto"
-    document.getElementById('refreshbtn').className = ""
+    document.getElementById('refreshbtn').classList.remove("fa-spin");
 });
 
 function fullscreen(element) {
@@ -49,12 +49,12 @@ document.getElementById('body').style.backgroundImage = "url('" + banner + "')";
 function refresh() {
     console.log(webview.tagName)
     if (webview.tagName == "EMBED") {
-        webview.src = game
+        webview.src = game;
     } else if (webview.tagName == "WEBVIEW") {
         webview.reload();
-        document.getElementById('refreshbtn').innerHTML = '<i class="fa-solid fa-spinner"></i>'
+        document.getElementById('refreshbtn').className = 'fa-solid fa-spinner'
         document.getElementById('refreshbtn').style.pointerEvents = "none"
-        document.getElementById('refreshbtn').className = "rotating"
+        document.getElementById('refreshbtn').classList.add("fa-spin");
     }
 }
 
