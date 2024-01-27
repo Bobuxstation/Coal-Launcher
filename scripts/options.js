@@ -1,6 +1,7 @@
 //load dependencies
 const path = require('path');
-document.getElementById("customthemelink").href = jsonData.currenttheme || "css/dark.css";
+var themePath = jsonData.currenttheme || "css/dark.css"
+document.getElementById("customthemelink").href = themePath;
 
 //fetch default themes
 const directoryPath = path.join(__dirname, 'css');
@@ -111,6 +112,7 @@ function settheme() {
   });
   document.getElementById('applytheme').innerText = 'Theme Applied!'
   document.getElementById("customthemelink").href = document.getElementById("launcherstyle").value;
+  themePath = document.getElementById("launcherstyle").value
 }
 
 function setEmulator() {
@@ -135,6 +137,11 @@ function openExtensionConfig() {
   shell.openExternal(configDir + "/extensions.json")
 }
 
+//launch extension configuration
+function openAchievementConfig() {
+  shell.openExternal(configDir + "/achievements.json")
+}
+
 //edit game provider
 function editproviderjson() {
   shell.openExternal(configDir + "/gameProviders.json")
@@ -149,7 +156,8 @@ function openDocs() {
 }
 
 //Get Launcher Version and updates
-document.getElementById('versioninfo').innerText = app.getName() + " version " + app.getVersion() + " using electron version " + process.versions.electron + " running on " + process.platform + ".";
+document.getElementById('versioninfo').innerHTML = 
+app.getName() + " version: " + app.getVersion() + " <br>Electron version: " + process.versions.electron + " <br>Platform: " + process.platform;
 
 ipcRenderer.on('update_available', () => {
   document.getElementById('updateinfo').innerText = 'Update availible! Downloading update...';
@@ -162,3 +170,13 @@ ipcRenderer.on('update_downloaded', () => {
 ipcRenderer.on('no_update_available', () => {
   document.getElementById('updateinfo').innerText = 'You are running the latest version! No need to update.';
 });
+
+//show app when finished loading
+window.addEventListener('load', function () {
+  document.getElementById("body").style.animation = "fadein 0.25s"
+  document.getElementById("body").style.display = "block"
+
+  setTimeout(() => {
+    document.getElementById("body").style.animation = ""
+  }, 250);
+})

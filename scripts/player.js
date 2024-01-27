@@ -3,15 +3,32 @@ const urlArgs = new URLSearchParams(window.location.search);
 const game = urlArgs.get("game")
 const banner = urlArgs.get("banner")
 const gamename = urlArgs.get("name")
+const currenttheme = urlArgs.get("theme")
 
+document.getElementById("customthemelink").href = currenttheme || "css/dark.css";
 
 //webview
-const webview = document.getElementById('player');
-webview.addEventListener('did-finish-load', function () {
-    document.getElementById('refreshbtn').className = 'fa-solid fa-arrow-rotate-right'
-    document.getElementById('refreshbtn').style.pointerEvents = "auto"
-    document.getElementById('refreshbtn').classList.remove("fa-spin");
-});
+const webview = document.getElementById('player') || false;
+if (webview) {
+    webview.src = game
+    webview.addEventListener('did-finish-load', function () {
+        document.getElementById('refreshbtn').className = 'fa-solid fa-arrow-rotate-right'
+        document.getElementById('refreshbtn').style.pointerEvents = "auto"
+        document.getElementById('refreshbtn').classList.remove("fa-spin");
+    });
+}
+
+//flash
+if (window.RufflePlayer) {
+    window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById("main-body");
+        container.appendChild(player);
+        player.style = "transition: none;height: 92.5vh; width: 100vw; border: none; box-sizing: border-box;"
+        player.load(game);
+    });
+}
 
 function fullscreen(element) {
     document.getElementsByClassName('fullscreenbtn')[0].style.display = "none"
@@ -40,7 +57,6 @@ function exitfullscreen() {
 }
 
 //Game title and background
-document.getElementById('player').src = game;
 document.getElementById('titlename').innerText = gamename + " On Coal";
 document.getElementById('titlename1').innerText = gamename;
 document.getElementById('body').style.backgroundImage = "url('" + banner + "')";

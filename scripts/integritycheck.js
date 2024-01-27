@@ -18,7 +18,7 @@ if (fs.existsSync(configDir + '/games.json')) {
 
 //check if game provider list exists
 if (fs.existsSync(configDir + '/gameProviders.json')) { console.log('Game Provider List Found!') } else {
-    console.log('Game Provider List Is Not Found! Creating Game List...')
+    console.log('Game Provider List Is Not Found! Creating Game Provider List...')
     let jsontemplate = {
         "items": [
             {
@@ -45,7 +45,7 @@ if (fs.existsSync(configDir + '/gameProviders.json')) { console.log('Game Provid
 
 //check if extension list exists
 if (fs.existsSync(configDir + '/extensions.json')) { console.log('launcher extensions List Found!') } else {
-    console.log('launcher extensions List Is Not Found! Creating Game List...')
+    console.log('launcher extensions List Is Not Found! Creating extension List...')
     let jsontemplate = {
         "extensions": [],
     };
@@ -53,12 +53,22 @@ if (fs.existsSync(configDir + '/extensions.json')) { console.log('launcher exten
     fs.writeFileSync(configDir + '/extensions.json', data);
 }
 
+//check if achievements list exists
+if (fs.existsSync(configDir + '/achievements.json')) { console.log('launcher achievements List Found!') } else {
+    console.log('launcher achievements List Is Not Found! Creating achievement List...')
+    let jsontemplate = {
+        "items": [],
+    };
+    let data = JSON.stringify(jsontemplate, null, "\t");
+    fs.writeFileSync(configDir + '/achievements.json', data);
+}
+
 //check if themes folder exists
-if (!fs.existsSync(configDir + '/themes')){
+if (!fs.existsSync(configDir + '/themes')) {
     fs.mkdirSync(configDir + '/themes');
-    console.log('Folder Created Successfully.');
+    console.log('Theme Folder Created Successfully.');
 } else {
-    console.log('Folder Exists.');
+    console.log('Theme Folder Exists.');
 }
 
 function createShortcut(ExecFilePath) {
@@ -73,4 +83,14 @@ function createShortcut(ExecFilePath) {
     } else {
         console.log('Could not create the icon or set its permissions (in Linux if "chmod" is set to true, or not set)');
     }
+}
+
+function compare(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
 }

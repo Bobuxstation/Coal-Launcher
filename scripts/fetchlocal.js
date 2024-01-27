@@ -70,11 +70,7 @@ function launchELSE(dir, banner, name, args) {
         execoptionbtn1.id = "endtask";
         execoptionbtn1.innerHTML = "Launch as a web game";
         execoptionbtn1.onclick = function () {
-            window.open(
-                "player.html?game=" + dir + "&banner=" + banner + "&name=" + name,
-                '_blank',
-                'icon= "./assets/logo.png",nodeIntegration=yes,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
-            );
+            HTMLChildWindow(dir, banner, name)
             taskname.remove()
         }
         taskname.appendChild(execoptionbtn1);
@@ -92,12 +88,33 @@ function launchHTML(dir, banner, name) {
         clickSound.volume = 0.1;
         clickSound.play()
 
-        window.open(
-            "player.html?game=" + dir + "&banner=" + banner + "&name=" + name,
-            '_blank',
-            'icon= "./assets/logo.png",webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,nodeIntegration=yes'
-        );
+        HTMLChildWindow(dir, banner, name)
     };
+}
+function HTMLChildWindow(dir, banner, name) {
+    const newWindow = new remote.BrowserWindow({
+        icon: "./assets/logo.png",
+        autoHideMenuBar: true,
+        width: 1000,
+        height: 600,
+        webPreferences: {
+            webviewTag: true,
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
+
+    // Construct the URL
+    const url = new URL(
+        path.join(__dirname, "player.html")
+    );
+    url.searchParams.append('game', dir);
+    url.searchParams.append('banner', banner);
+    url.searchParams.append('name', name);
+    url.searchParams.append('theme', themePath);
+
+    // Load your HTML file or URL into the new BrowserWindow
+    newWindow.loadURL(url.href);
 }
 
 //function to launch flash games
@@ -108,12 +125,33 @@ function launchSWF(dir, banner, name) {
         clickSound.volume = 0.1;
         clickSound.play()
 
-        window.open(
-            "flashplayer.html?game=" + dir + "&banner=" + banner + "&name=" + name,
-            '_blank',
-            'icon= "./assets/logo.png",nodeIntegration=yes,webviewTag=true, autoHideMenuBar= true, width= 1000, height= 600,'
-        );
+        FlashChildWindow(dir, banner, name)
     };
+}
+function FlashChildWindow(dir, banner, name) {
+    const newWindow = new remote.BrowserWindow({
+        icon: "./assets/logo.png",
+        autoHideMenuBar: true,
+        width: 1000,
+        height: 600,
+        webPreferences: {
+            webviewTag: true,
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
+
+    // Construct the URL
+    const url = new URL(
+        path.join(__dirname, "flashplayer.html")
+    );
+    url.searchParams.append('game', dir);
+    url.searchParams.append('banner', banner);
+    url.searchParams.append('name', name);
+    url.searchParams.append('theme', themePath);
+
+    // Load your HTML file or URL into the new BrowserWindow
+    newWindow.loadURL(url.href);
 }
 
 //function to launch executable games
@@ -168,6 +206,8 @@ function loadCollection() {
     <a onclick="loadCollection()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh collections</button></a>
     <hr>
     `
+
+    jsonData.items = jsonData.items.sort(compare)
 
     if (jsonData.items.length != 0) {
         jsonData.items.forEach(function (items, index) {

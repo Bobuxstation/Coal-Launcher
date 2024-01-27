@@ -2,8 +2,14 @@
 let discoverList = document.getElementById("notmygames");
 let providerList = document.getElementById("myproviders");
 let gameProviderList = require(configDir + '/gameProviders.json');
+let achievementsList = require(configDir + '/achievements.json');
 const sanitizeHtml = require('sanitize-html');
 let lastDownloadsBackground
+
+//game feed resizing function
+addEventListener("resize", (event) => {
+  document.getElementById('previewgamefeed').style.height = "calc(100vh - " + "207.5px - " + document.getElementById('downloaddetails').offsetHeight + "px)";
+});
 
 //function for fetching market
 function loadMarket(jsonURL, jsonName, search) {
@@ -81,7 +87,15 @@ function loadMarket(jsonURL, jsonName, search) {
                 addedcollection(sanitizedgamename)
               } else {
                 var obj = (jsonData);
-                obj['items'].push({ "name": sanitizedgamename, "feed": sanitizeHtml(onlineitems.feed), "Version": sanitizeHtml(onlineitems.Version), "developer": sanitizeddevname, "banner": sanitizeHtml(onlineitems.banner), "dir": onlineitems.download, "type": "html5" });
+                obj['items'].push({
+                  "name": sanitizedgamename,
+                  "feed": sanitizeHtml(onlineitems.feed),
+                  "Version": sanitizeHtml(onlineitems.Version),
+                  "developer": sanitizeddevname,
+                  "banner": sanitizeHtml(onlineitems.banner),
+                  "dir": onlineitems.download,
+                  "type": "html5"
+                });
                 jsonStr = JSON.stringify(obj, null, "\t");
                 const gameListDir = configDir + "/games.json";
                 fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
@@ -96,7 +110,11 @@ function loadMarket(jsonURL, jsonName, search) {
                 extensionadded(sanitizedgamename)
               } else {
                 var obj = (tabList);
-                obj['extensions'].push({ "name": sanitizedgamename, "icon": onlineitems.icon, "URL": onlineitems.link, });
+                obj['extensions'].push({
+                  "name": sanitizedgamename,
+                  "icon": onlineitems.icon,
+                  "URL": onlineitems.link,
+                });
                 jsonStr = JSON.stringify(obj, null, "\t");
                 const gameListDir = configDir + "/extensions.json";
                 fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
@@ -168,3 +186,38 @@ gameProviderList.items.forEach((items, i) => {
 
   if (i == 0) btn.click();
 });
+
+function loadAchievements(search) {
+  document.getElementById("myachievements").innerHTML = ""
+
+  if (achievementsList.items.length == 0) {
+    document.getElementById("myachievements").innerHTML = '<h4 style="text-align: center;">You have no achievements!</h4>'
+  }
+
+  achievementsList.items.forEach(function (onlineitems) {
+    //Sanitize game details
+    let sanitizedgamename = sanitizeHtml(onlineitems.title);
+    let sanitizeddevname = sanitizeHtml(onlineitems.game);
+    let sanitizedgameinfo = sanitizeHtml(onlineitems.desc);
+
+    //make the element
+    let btn = document.createElement("div");
+    btn.innerHTML =
+      "</div>" + "<div class='gamecard'>" +
+      `<h3><i class="fa-solid fa-award"></i> ` + sanitizedgamename + "</h3>" +
+      `<p>From ${sanitizeddevname}</p>` +
+      `<br><p title="${sanitizedgameinfo}">` + sanitizedgameinfo.slice(0, 128) + "...</p></div>";
+    btn.className = "STOREGAME";
+
+    let banner = onlineitems.banner;
+    btn.style.backgroundImage = "url(" + banner + ")";
+
+    let searchgame = sanitizedgamename.toLowerCase()
+    let searchsum = sanitizedgameinfo.toLowerCase()
+    let searchdev = sanitizeddevname.toLowerCase()
+    if (searchgame.includes(search.toLowerCase()) || searchsum.includes(search.toLowerCase()) || searchdev.includes(search.toLowerCase())) {
+      document.getElementById("myachievements").appendChild(btn)
+    }
+  })
+}
+loadAchievements("")

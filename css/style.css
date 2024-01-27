@@ -3,6 +3,7 @@
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  outline: none;
 }
 
 body {
@@ -95,8 +96,8 @@ li a, .navbtn {
   display: block;
   color: var(--mainTextColor);
   text-align: center;
-  padding: 7.5px;
-  margin: 3px;
+  padding: 8px;
+  margin: 3.5px;
   border-radius: 5px;
   min-width: 20px;
   text-decoration: none;
@@ -195,8 +196,7 @@ li a:hover, .navbtn:hover {
   background-size: cover;
   text-shadow: 2px 2px 10px var(--gameCardTextShadow);
   background-color: var(--gameCardBackground);
-  border: var(--defaultUIBorder) solid 1px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top: 7.5px;
   float: left;
   transition: all 0.25s ease;
@@ -263,8 +263,8 @@ li a:hover, .navbtn:hover {
   position: fixed;
   background-color: var(--gameCardBackground);
   backdrop-filter: blur(10px);
-  width: calc(100vw - 23px);
-  height: calc(100vh - 69px);
+  width: calc(100vw - 32px - 20vw);
+  height: calc(100vh - 79px);
   padding: 5px;
   animation-name: slideInDown;
   animation-duration: 0.25s;
@@ -272,7 +272,7 @@ li a:hover, .navbtn:hover {
   overflow: scroll;
   border: var(--defaultUIBorder) solid;
   border-width: 0px 1px 1px 0px;
-  margin: 5px;
+  margin: 10px;
   border-radius: 5px;
   border: var(--defaultUIBorder) solid 1px;
 }
@@ -403,6 +403,7 @@ hr {
   padding: 15px;
   text-align: left;
   border-radius: 5px;
+  border: var(--defaultUIBorder) solid 1px;
 }
 
 .gamecard p {

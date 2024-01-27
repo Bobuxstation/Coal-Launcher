@@ -108,6 +108,10 @@ tabList.extensions.forEach(element => {
         document.getElementById("refreshNavBtn").onclick = function () {
             webview.reload();
         }
+
+        if (element.debug) {
+            webview.openDevTools()
+        }
     }
 
     header.prepend(btn);
@@ -120,6 +124,7 @@ tabList.extensions.forEach(element => {
 
     let webview = document.createElement("webview");
     webview.setAttribute("src", element.URL);
+    webview.setAttribute("preload", './scripts/extensionPreload.js');
     webview.style.height = "calc(100vh - 45px)"
 
     tab.appendChild(webview);

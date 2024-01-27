@@ -13,6 +13,7 @@
   <script src="scripts/downloader.js" defer></script>
   <script src="scripts/close.js"></script>
   <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
+  <script src="scripts/ExtensionAndPlayerAPI.js" defer></script>
   <script src="scripts/tabs.js" defer></script>
 
   <meta charset="UTF-8">
@@ -22,7 +23,7 @@
 
 <!-- Navigations -->
 
-<body id="body" class="tabs">
+<body id="body" class="tabs" style="display: none;">
 
   <!-- Tab list -->
   <nav class="header" id="header" role="tablist" aria-label="Tabs">
@@ -34,6 +35,10 @@
     <a id="marketbtn" class="navbtn" role="tab" aria-controls="market">
       <i class="fa-solid fa-shop"></i>
       <span>Market</span>
+    </a>
+    <a id="achievementbtn" class="navbtn" role="tab" aria-controls="achievement">
+      <i class="fa-solid fa-award"></i>
+      <span>Achievements</span>
     </a>
     <a id="optionbtn" class="navbtn" role="tab" aria-controls="options">
       <i class="fa-solid fa-gear"></i>
@@ -108,9 +113,11 @@
     <div class="sidebar">
       <div class="gamelist">
         <div id="myproviders" class="game">
-          <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i class="fa-solid fa-plus"></i> Add a
+          <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i
+                class="fa-solid fa-plus"></i> Add a
               game</button></a>
-          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i class="fa-solid fa-folder-plus"></i> Add
+          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
+                class="fa-solid fa-folder-plus"></i> Add
               a repository</button></a>
           <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
               your games</button></a>
@@ -132,10 +139,54 @@
 
   </div>
 
+  <!-- Achievements -->
+  <div class="content body" id="achievement" role="tabpanel" hidden>
+
+    <div class="sidebar">
+      <div class="gamelist">
+        <div class="game">
+          <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i
+                class="fa-solid fa-plus"></i> Add a
+              game</button></a>
+          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
+                class="fa-solid fa-folder-plus"></i> Add
+              a repository</button></a>
+          <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
+              your games</button></a>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar2" style="overflow: scroll; overflow-x: hidden;">
+      <input class="input" onchange="loadAchievements(this.value)" placeholder="Search achievements..." type="search" style="margin-bottom: 0;">
+      <div id="myachievements">
+      </div>
+    </div>
+
+  </div>
+
   <!-- Game Details -->
   <div class="content body" id="gamedetail" role="tabpanel" hidden>
 
-    <div class="gamepage">
+    <div class="sidebar">
+      <div class="gamelist">
+        <div class="game">
+          <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i
+                class="fa-solid fa-plus"></i> Add a
+              game</button></a>
+          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
+                class="fa-solid fa-folder-plus"></i> Add
+              a repository</button></a>
+          <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
+              your games</button></a>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar2" style="overflow: scroll; overflow-x: hidden;">
+
       <div class="gamedetails">
         <h2 id="downloadname">Game Name</h2>
         <p id="downloaddev">Game Publisher</p><br>
@@ -150,6 +201,7 @@
       <iframe id="previewgamefeed" style="display: none;">
         <link rel="stylesheet" href="scroll.css">
       </iframe>
+
     </div>
 
   </div>
@@ -177,7 +229,8 @@
           <details>
             <summary>
               <h2 id="addgametitle">Add a game</h2>
-              <p>Like it says, it adds a game to your collection. Note that if you do not want to add a game news/feed, leave it empty.</p>
+              <p>Like it says, it adds a game to your collection. Note that if you do not want to add a game news/feed,
+                leave it empty.</p>
             </summary>
 
             <br>
@@ -202,7 +255,7 @@
               <h2 id="launcherconfigtitle">Repositories</h2>
               <p>Adds more repositories to the market section.</p>
             </summary>
-          
+
             <br>
             <input placeholder="Repository Name" id="gameprovidername" class="input"></input><br>
             <input placeholder="Repository JSON Url" id="gameprovider" class="input"></input><br>
@@ -234,7 +287,7 @@
               <h2 id="emulatorsettings">Emulator Settings</h2>
               <p>Emulate your executable games if they are not natively supported.</p>
             </summary>
-          
+
             <br>
             <input placeholder="Preferred Emulator Command" id="preferredEmulator" class="input"><br>
             <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply
@@ -248,12 +301,26 @@
               <h2 id="extensionconfig">Manage Extensions</h2>
               <p>Manage all installed extensions.</p>
             </summary>
-          
+
             <br>
             <button onclick="openExtensionConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit
               extensions
               JSON file</button>
-            </details>
+          </details>
+        </div><br>
+
+        <div class="gamedetails" id="gamedetails" style="display: block;">
+          <details>
+            <summary>
+              <h2 id="extensionconfig">Manage Achievements</h2>
+              <p>Manage all of your achievements.</p>
+            </summary>
+
+            <br>
+            <button onclick="openAchievementConfig()" style="cursor: pointer;" id="applyEmulator" class="button">Edit
+              achievements
+              JSON file</button>
+          </details>
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
@@ -262,7 +329,7 @@
               <h2 id="sendfeedbacktitle">Send Feedback</h2>
               <p>If you have any bugs to report or ideas to add, leave a message!</p>
             </summary>
-          
+
             <br>
             <form action="https://postmail.invotes.com/send" method="post" id="email_form">
 

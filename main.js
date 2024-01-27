@@ -10,7 +10,6 @@ autoUpdater.autoInstallOnAppQuit = true;
 var win
 
 function createWindow() {
-
   win = new BrowserWindow({
     width: 1000,
     height: 600,

@@ -2,11 +2,13 @@
 
 <head>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/dark.css">
   <link rel="stylesheet" href="css/scroll.css">
   <link rel="stylesheet" href="css/interfont/inter.css">
+  <link rel="stylesheet" href="css/dark.css" id="customthemelink">
+
   <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
   <script src="scripts/player.js" defer></script>
+
   <meta charset="UTF-8">
   <title id="titlename">Coal - Home</title>
   <link rel="icon" href="assets/logo.png">
@@ -14,13 +16,14 @@
 
 <body id="body" style="transition: none;">
   <div class="content" id="content">
-    <div class="downloads" id="gamemgr" style="display: none; margin-top: 52px;">
+    <div class="downloads" id="gamemgr" style="display: none; margin-top: 52px;width: calc(100vw - 32px - 0vw);">
       <div id="tasks">
         <button id="endtask" onclick="speedruncounter()"><i class="fa-solid fa-stopwatch"></i> Stopwatch</button>
         <button id="endtask" class="fullscreenbtn" onclick="fullscreen(document.documentElement)"><i
             class="fa-solid fa-expand"></i> Fullscreen</button>
         <button id="endtask" class="exitfullscreenbtn" onclick="exitfullscreen()" style="display: none;"><i
             class="fa-solid fa-compress"></i> Exit fullscreen</button>
+            <button id="endtask" onclick="webview.openDevTools()"><i class="fa-solid fa-code"></i> Developer tools</button>
         <button id="endtask" onclick="webview.goBack()"><i class="fa-solid fa-arrow-left"></i> Go back</button>
         <button id="endtask" onclick="webview.goForward()"><i class="fa-solid fa-arrow-right"></i> Go forward</button>
         <button id="endtask" onclick="window.close()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Quit
@@ -41,7 +44,7 @@
       <div class="playeroverlay" id="speedruncounter" style="display: none;">
         <iframe src="assets/playerwidgets/counter.html" style="border: none; height: 50vh;"></iframe>
       </div>
-      <webview id="player" src="" style="transition: none;width: 100vw; border: none; box-sizing: border-box;">
+      <webview id="player" preload="./scripts/playerPreload.js" src="" style="transition: none;width: 100vw; border: none; box-sizing: border-box;">
       </webview>
     </div>
   </div>

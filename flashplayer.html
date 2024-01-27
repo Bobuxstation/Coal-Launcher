@@ -2,12 +2,14 @@
 
 <head>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/dark.css">
   <link rel="stylesheet" href="css/scroll.css">
   <link rel="stylesheet" href="css/interfont/inter.css">
+  <link rel="stylesheet" href="css/dark.css" id="customthemelink">
+
   <script src="scripts/fontawesome.js" crossorigin="anonymous"></script>
   <script src="scripts/player.js" defer></script>
   <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
   <meta charset="UTF-8">
   <title id="titlename">Coal - Home</title>
   <link rel="icon" href="assets/logo.png">
@@ -20,7 +22,7 @@
 
 <body id="body" style="transition: none; overflow: hidden;">
   <div class="content" id="content">
-    <div class="downloads" id="gamemgr" style="display: none; margin-top: 52px;">
+    <div class="downloads" id="gamemgr" style="display: none; margin-top: 52px;width: calc(100vw - 32px - 0vw);">
       <div id="tasks">
         <button id="endtask" onclick="speedruncounter()"><i class="fa-solid fa-stopwatch"></i> Stopwatch</button>
         <button id="endtask" class="fullscreenbtn" onclick="fullscreen(document.documentElement)"><i
@@ -40,12 +42,10 @@
         </ul>
       </nav>
     </header>
-    <div class="body" style="padding-top: 45px; transition: none;">
+    <div class="body" id="main-body" style="padding-top: 45px; transition: none;">
       <div class="playeroverlay" id="speedruncounter" style="display: none;">
         <iframe src="assets/playerwidgets/counter.html" style="border: none; height: 50vh;"></iframe>
       </div>
-      <embed id="player" src=""
-        style="transition: none;height: 92.5vh; width: 100vw; border: none; box-sizing: border-box;"></embed>
     </div>
   </div>
 </body>
