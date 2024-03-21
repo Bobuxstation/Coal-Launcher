@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement Tool</title>
+
+    <style>
+        body {
+            background: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <input placeholder="Game name" id="gameName"><br><br>
+    <input placeholder="Achievement title" id="title"><br><br>
+    <input placeholder="Achievement description" id="desc"><br><br>
+    <input placeholder="Banner URL" id="bannerurl"><br><br>
+
+    <button onclick="grantachievement()">Grant achievement</button>
+
+    <script>
+        function grantachievement() {
+            coalAPI.newMedal
+                ({
+                    "game": document.getElementById("gameName").value,
+                    "title": document.getElementById("title").value,
+                    "desc": document.getElementById("desc").value,
+                    "banner": document.getElementById("bannerurl").value
+                })
+        }
+    </script>
+
+</body>
+
+</html>

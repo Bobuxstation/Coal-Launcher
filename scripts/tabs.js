@@ -60,6 +60,9 @@ function changeTabs(e) {
         document.getElementById("refreshNavBtn").style.display = "none";
     } else if (target.getAttribute("aria-controls") == "options") {
         document.getElementById("refreshNavBtn").style.display = "none";
+    } else if (target.getAttribute("aria-controls") == "achievement") {
+        document.getElementById("refreshNavBtn").style.display = "none";
+        loadAchievements("")
     }
 
     // Remove all current selected tabs

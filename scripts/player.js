@@ -4,6 +4,8 @@ const game = urlArgs.get("game")
 const banner = urlArgs.get("banner")
 const gamename = urlArgs.get("name")
 const currenttheme = urlArgs.get("theme")
+const configDir = urlArgs.get("configDir")
+var initialLength
 
 document.getElementById("customthemelink").href = currenttheme || "css/dark.css";
 
@@ -107,3 +109,25 @@ function time() {
 };
 
 setInterval(time)
+
+setInterval(async () => {
+    const fetchedachievements = await fetch(configDir + "/achievements.json")
+    const data = await fetchedachievements.json()
+
+    if (!initialLength) { initialLength = data.items.length }
+    if (data.items.length > initialLength) {
+        initialLength = data.items.length
+
+        var added = data.items[data.items.length - 1]
+        document.getElementById("achievementTitle").innerText = added.title
+        document.getElementById("achievementbanner").style.display = "block"
+
+        let clickSound = new Audio("assets/click_002.ogg")
+        clickSound.volume = 0.1;
+        clickSound.play()
+
+        setTimeout(() => {
+            document.getElementById("achievementbanner").style.display = "none"
+        }, 2500);
+    }
+}, 500);

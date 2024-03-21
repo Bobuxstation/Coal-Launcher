@@ -8,7 +8,7 @@ let lastDownloadsBackground
 
 //game feed resizing function
 addEventListener("resize", (event) => {
-  document.getElementById('previewgamefeed').style.height = "calc(100vh - " + "207.5px - " + document.getElementById('downloaddetails').offsetHeight + "px)";
+  document.getElementById('previewgamefeed').style.height = "calc(100vh - " + "209.5px - " + document.getElementById('downloaddetails').offsetHeight + "px)";
 });
 
 //function for fetching market
@@ -72,7 +72,7 @@ function loadMarket(jsonURL, jsonName, search) {
           } else {
             document.getElementById('previewgamefeed').src = onlineitems.feed;
             document.getElementById('previewgamefeed').style.display = "block";
-            document.getElementById('previewgamefeed').style.height = "calc(100vh - " + "207.5px - " + document.getElementById('downloaddetails').offsetHeight + "px)";
+            document.getElementById('previewgamefeed').style.height = "calc(100vh - " + "209.5px - " + document.getElementById('downloaddetails').offsetHeight + "px)";
           }
 
           document.getElementById('downloadgamebutton').onclick = function () {

@@ -88,13 +88,13 @@
 
       <!-- context menu -->
       <div id="gameextra" style="display: none;">
-        <button id="deletegame"><i class="fa-solid fa-trash"></i> Delete Game</button>
-        <button id="showinfolder"><i class="fa-solid fa-folder-open"></i> Show In Folder</button>
         <div id="execonly">
           <button id="createDesktopShortcut"><i class="fa-solid fa-desktop"></i> Create Shortcut</button>
           <button id="emulatePrompt"><i class="fa-solid fa-wine-glass"></i> Emulate It!</button>
-          <button id="editPrompt"><i class="fa-solid fa-edit"></i> Change launch arguments</button>
+          <button id="editPrompt" style="margin-bottom: 5px;"><i class="fa-solid fa-edit"></i> Change launch arguments</button>
         </div>
+        <button id="deletegame"><i class="fa-solid fa-trash"></i> Delete Game</button>
+        <button id="showinfolder"><i class="fa-solid fa-folder-open"></i> Show In Folder</button>
       </div>
 
       <!-- game feed -->
@@ -148,12 +148,10 @@
           <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i
                 class="fa-solid fa-plus"></i> Add a
               game</button></a>
-          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
-                class="fa-solid fa-folder-plus"></i> Add
-              a repository</button></a>
-          <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
-              your games</button></a>
+          <a onclick="document.getElementById('optionbtn').click()" href="#achievementsection"><button><i
+                class="fa-solid fa-award"></i> Manage achievements</button></a>
           <hr>
+          <a onclick="loadAchievements('')"><button><i class="fa-solid fa-refresh"></i> Refresh achievements</button></a>
         </div>
       </div>
     </div>
@@ -185,7 +183,7 @@
       </div>
     </div>
 
-    <div class="sidebar2" style="overflow: scroll; overflow-x: hidden;">
+    <div class="sidebar2" style="overflow: hidden; overflow-x: hidden;">
 
       <div class="gamedetails">
         <h2 id="downloadname">Game Name</h2>
@@ -217,6 +215,7 @@
         <a href="#themes"><button>Themes</button></a>
         <a href="#emulatorsettings"><button>Emulator settings</button></a>
         <a href="#extensionconfig"><button>Manage extensions</button></a>
+        <a href="#achievementsection"><button>Manage achievements</button></a>
         <a href="#sendfeedbacktitle"><button>Send feedback</button></a>
         <a href="#launchevertitle"><button>Launcher version</button></a>
       </div>
@@ -284,7 +283,7 @@
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
             <summary>
-              <h2 id="emulatorsettings">Emulator Settings</h2>
+              <h2 id="emulatorsettings">Emulator settings</h2>
               <p>Emulate your executable games if they are not natively supported.</p>
             </summary>
 
@@ -298,7 +297,7 @@
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
             <summary>
-              <h2 id="extensionconfig">Manage Extensions</h2>
+              <h2 id="extensionconfig">Manage extensions</h2>
               <p>Manage all installed extensions.</p>
             </summary>
 
@@ -312,7 +311,7 @@
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
             <summary>
-              <h2 id="extensionconfig">Manage Achievements</h2>
+              <h2 id="achievementsection">Manage achievements</h2>
               <p>Manage all of your achievements.</p>
             </summary>
 
@@ -326,7 +325,7 @@
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
             <summary>
-              <h2 id="sendfeedbacktitle">Send Feedback</h2>
+              <h2 id="sendfeedbacktitle">Send feedback</h2>
               <p>If you have any bugs to report or ideas to add, leave a message!</p>
             </summary>
 
@@ -344,7 +343,7 @@
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="launchevertitle">Launcher Version</h2>
+          <h2 id="launchevertitle">Launcher version</h2>
           <p id="versioninfo">
             Please Wait...
           </p>

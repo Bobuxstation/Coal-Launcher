@@ -20,7 +20,8 @@ body {
   background-position: center;
 }
 
-.navbtn[aria-selected=true], .titleBarControls li[aria-selected=true] a {
+.navbtn[aria-selected=true],
+.titleBarControls li[aria-selected=true] a {
   border: var(--coalUIButtonBorder) solid 1px !important;
   background: var(--sidebarNavigationButtonHover) !important;
 }
@@ -33,7 +34,8 @@ body {
   padding-top: 46px;
 }
 
-.body button, #endtask {
+.body button,
+#endtask {
   color: var(--mainTextColor);
   background: none;
   background-size: cover;
@@ -92,7 +94,8 @@ ul {
   display: none;
 }
 
-li a, .navbtn {
+li a,
+.navbtn {
   display: block;
   color: var(--mainTextColor);
   text-align: center;
@@ -108,7 +111,8 @@ li a, .navbtn {
   border: #1d1d1d00 solid 1px;
 }
 
-li a:hover, .navbtn:hover {
+li a:hover,
+.navbtn:hover {
   background-color: var(--sidebarNavigationButtonHover);
   transition: all 0.25s ease;
   border: var(--coalUIButtonBorder) solid 1px;
@@ -142,7 +146,9 @@ li a:hover, .navbtn:hover {
   margin-right: 0px;
 }
 
-.gamelist button, #endtask, #gameextra button {
+.gamelist button,
+#endtask,
+#gameextra button {
   width: 100%;
   padding: 5px;
   text-align: left;
@@ -151,6 +157,7 @@ li a:hover, .navbtn:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border: #00000000 solid 1px;
 }
 
 #gameextra button:last-child {
@@ -161,8 +168,11 @@ li a:hover, .navbtn:hover {
   text-decoration: none;
 }
 
-.gamelist button:hover, #endtask:hover, #gameextra button:hover {
+.gamelist button:hover,
+#endtask:hover,
+#gameextra button:hover {
   background-color: var(--sidebarNavigationButtonHover);
+  border: var(--coalUIButtonBorder) solid 1px;
 }
 
 .gamedetails {
@@ -174,7 +184,8 @@ li a:hover, .navbtn:hover {
   box-sizing: border-box;
 }
 
-#gamefeed, #previewgamefeed {
+#gamefeed,
+#previewgamefeed {
   width: 100%;
   backdrop-filter: blur(10px);
   border: var(--defaultUIBorder) solid 1px !important;
@@ -279,26 +290,39 @@ li a:hover, .navbtn:hover {
 
 @keyframes slideInDown {
   0% {
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-      visibility: visible;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible;
   }
 
   100% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
 @keyframes zoomIn {
   0% {
-      opacity: 0;
-      -webkit-transform: scale3d(.3, .3, .3);
-      transform: scale3d(.3, .3, .3);
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
   }
 
   50% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -321,21 +345,21 @@ li a:hover, .navbtn:hover {
 
 @keyframes fadein {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
 
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
 @keyframes skeleton-loading {
   0% {
-      background-color: #4d4d4d90;
+    background-color: #4d4d4d90;
   }
 
   100% {
-      background-color: #5d5d5d90;
+    background-color: #5d5d5d90;
   }
 }
 
@@ -356,7 +380,9 @@ li a:hover, .navbtn:hover {
   border-radius: 5px;
 }
 
-.input, .button, .textarea {
+.input,
+.button,
+.textarea {
   padding: 7.5px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -370,13 +396,17 @@ li a:hover, .navbtn:hover {
   outline: none;
 }
 
-.input:hover, .button:hover, .textarea:hover {
+.input:hover,
+.button:hover,
+.textarea:hover {
   background: var(--coalUIButtonHover) !important;
   transition: all 0.5s ease;
   border: var(--coalUIButtonBorder) solid 1px !important;
 }
 
-.input:active, .button:active, .textarea:active {
+.input:active,
+.button:active,
+.textarea:active {
   background: var(--coalUIButtonActive) !important;
   transition: all 0.5s ease;
   border: var(--coalUIButtonBorderActive) solid 1px !important;
@@ -412,7 +442,7 @@ hr {
 
 @keyframes blinker {
   50% {
-      background-color: #80808050;
+    background-color: #80808050;
   }
 }
 
@@ -422,11 +452,11 @@ hr {
 
 @keyframes rotating {
   from {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   to {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -443,7 +473,8 @@ hr {
   animation-fill-mode: both;
 }
 
-#gameplay, #contextmenu {
+#gameplay,
+#contextmenu {
   display: inline-block;
 }
 
@@ -491,4 +522,20 @@ webview {
 
 summary h2 {
   display: inline;
+}
+
+#achievementbanner {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  margin: 10px;
+  width: calc(100vw - 20px);
+  box-sizing: border-box;
+  background: var(--gameCardBackground);
+  border: var(--defaultUIBorder) solid 1px;
+  padding: 7.5px;
+  border-radius: 5px;
+  animation-name: slideDown;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
 }

@@ -112,6 +112,7 @@ function HTMLChildWindow(dir, banner, name) {
     url.searchParams.append('banner', banner);
     url.searchParams.append('name', name);
     url.searchParams.append('theme', themePath);
+    url.searchParams.append('configDir', configDir);
 
     // Load your HTML file or URL into the new BrowserWindow
     newWindow.loadURL(url.href);
@@ -149,6 +150,7 @@ function FlashChildWindow(dir, banner, name) {
     url.searchParams.append('banner', banner);
     url.searchParams.append('name', name);
     url.searchParams.append('theme', themePath);
+    url.searchParams.append('configDir', configDir);
 
     // Load your HTML file or URL into the new BrowserWindow
     newWindow.loadURL(url.href);
@@ -203,8 +205,8 @@ function loadCollection() {
             <i class="fa-solid fa-download"></i> Download a game
         </button>
     </a>
-    <a onclick="loadCollection()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh collections</button></a>
     <hr>
+    <a onclick="loadCollection()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh collections</button></a>
     `
 
     jsonData.items = jsonData.items.sort(compare)
