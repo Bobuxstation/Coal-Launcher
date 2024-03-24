@@ -3,6 +3,10 @@ const path = require('path');
 var themePath = jsonData.currenttheme || "css/dark.css"
 document.getElementById("customthemelink").href = themePath;
 
+function redirect(url) {
+  shell.openExternal(url)
+}
+
 //fetch default themes
 const directoryPath = path.join(__dirname, 'css');
 fs.readdir(directoryPath, function (err, files) {
@@ -129,30 +133,30 @@ document.getElementById('preferredEmulator').value = jsonData.preferredEmulator 
 
 //edit game collection
 function editjson() {
-  shell.openExternal(configDir + "/games.json")
+  redirect(configDir + "/games.json")
 }
 
 //launch extension configuration
 function openExtensionConfig() {
-  shell.openExternal(configDir + "/extensions.json")
+  redirect(configDir + "/extensions.json")
 }
 
 //launch extension configuration
 function openAchievementConfig() {
-  shell.openExternal(configDir + "/achievements.json")
+  redirect(configDir + "/achievements.json")
 }
 
 //edit game provider
 function editproviderjson() {
-  shell.openExternal(configDir + "/gameProviders.json")
+  redirect(configDir + "/gameProviders.json")
 }
 
 function openThemeFolder() {
-  shell.openExternal(configDir + "/themes")
+  redirect(configDir + "/themes")
 }
 
 function openDocs() {
-  shell.openExternal('https://github.com/Bobuxstation/Coal-Launcher/wiki')
+  redirect('https://github.com/Bobuxstation/Coal-Launcher/wiki')
 }
 
 //Get Launcher Version and updates
@@ -160,7 +164,7 @@ document.getElementById('versioninfo').innerHTML =
 app.getName() + " version: " + app.getVersion() + " <br>Electron version: " + process.versions.electron + " <br>Platform: " + process.platform;
 
 ipcRenderer.on('update_available', () => {
-  document.getElementById('updateinfo').innerText = 'Update availible! Downloading update...';
+  document.getElementById('updateinfo').innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Downloading update...';
 });
 
 ipcRenderer.on('update_downloaded', () => {

@@ -538,4 +538,5 @@ summary h2 {
   animation-name: slideDown;
   animation-duration: 0.25s;
   animation-fill-mode: both;
+  backdrop-filter: blur(10px);
 }

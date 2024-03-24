@@ -49,6 +49,15 @@ function loadMarket(jsonURL, jsonName, search) {
           gameextensionicon = '<i class="fa-solid fa-paintbrush"></i> '
         }
 
+        //set game extension
+        if (onlineitems.type == "html5" || onlineitems.type === "undefined") {
+          gameextension = ".html"
+        } else if (onlineitems.type == "executable") {
+          gameextension = ".exe"
+        } else if (onlineitems.type == "flash") {
+          gameextension = ".swf"
+        }
+
         //game card layout
         btn.innerHTML =
           "</div>" + "<div class='gamecard'>" +
@@ -67,7 +76,7 @@ function loadMarket(jsonURL, jsonName, search) {
           lastDownloadsBackground = banner;
           document.getElementById('detailbtn').click();
 
-          if (onlineitems.feed == "false" || onlineitems.feed == false) {
+          if (onlineitems.feed == "false" || onlineitems.feed == false || !onlineitems.feed) {
             document.getElementById('previewgamefeed').style.display = "none";
           } else {
             document.getElementById('previewgamefeed').src = onlineitems.feed;
@@ -82,39 +91,44 @@ function loadMarket(jsonURL, jsonName, search) {
 
             //adds game to the collection without downloading if it is a link
             if (onlineitems.type == "link") {
-              let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
-              if (checkduplicate == true) {
+              let itemToAppend = {
+                "name": sanitizedgamename,
+                "feed": sanitizeHtml(onlineitems.feed),
+                "Version": sanitizeHtml(onlineitems.Version),
+                "developer": sanitizeddevname,
+                "banner": sanitizeHtml(onlineitems.banner),
+                "dir": onlineitems.download,
+                "type": "html5"
+              }
+              let isDuplicate = jsonData.items.some(item => {
+                return JSON.stringify(item) === JSON.stringify(itemToAppend);
+              });
+              if (isDuplicate) {
                 addedcollection(sanitizedgamename)
               } else {
                 var obj = (jsonData);
-                obj['items'].push({
-                  "name": sanitizedgamename,
-                  "feed": sanitizeHtml(onlineitems.feed),
-                  "Version": sanitizeHtml(onlineitems.Version),
-                  "developer": sanitizeddevname,
-                  "banner": sanitizeHtml(onlineitems.banner),
-                  "dir": onlineitems.download,
-                  "type": "html5"
-                });
+                obj['items'].push(itemToAppend);
                 jsonStr = JSON.stringify(obj, null, "\t");
                 const gameListDir = configDir + "/games.json";
                 fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
                 addedcollection(sanitizedgamename)
                 loadCollection()
               };
-
               //installs the game as an extension if it is an extension
             } else if (onlineitems.type == "extension") {
-              let checkduplicate = JSON.stringify(tabList).includes(sanitizedgamename);
-              if (checkduplicate == true) {
+              let itemToAppend = {
+                "name": sanitizedgamename,
+                "icon": onlineitems.icon,
+                "URL": onlineitems.link,
+              }
+              let isDuplicate = tabList.extensions.some(item => {
+                return JSON.stringify(item) === JSON.stringify(itemToAppend);
+              });
+              if (isDuplicate) {
                 extensionadded(sanitizedgamename)
               } else {
                 var obj = (tabList);
-                obj['extensions'].push({
-                  "name": sanitizedgamename,
-                  "icon": onlineitems.icon,
-                  "URL": onlineitems.link,
-                });
+                obj['extensions'].push(itemToAppend);
                 jsonStr = JSON.stringify(obj, null, "\t");
                 const gameListDir = configDir + "/extensions.json";
                 fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
@@ -130,23 +144,26 @@ function loadMarket(jsonURL, jsonName, search) {
               )
             } else {
               //Check if game exists
-              let checkduplicate = JSON.stringify(jsonData).includes(sanitizedgamename);
-              if (checkduplicate == true) {
+              let itemToAppend = {
+                "name": sanitizedgamename,
+                "feed": sanitizeHtml(onlineitems.feed),
+                "Version": sanitizeHtml(onlineitems.Version),
+                "developer": sanitizeddevname,
+                "banner": sanitizeHtml(onlineitems.banner),
+                "dir": configDir + "/games/" + sanitizedgamename + gameextension,
+                "type": sanitizeHtml(onlineitems.type)
+              }
+              let isDuplicate = jsonData.items.some(item => {
+                return JSON.stringify(item) === JSON.stringify(itemToAppend);
+              });
+              if (isDuplicate) {
                 console.log('game exists! updating html file...')
                 downloadgame(onlineitems);
               } else {
                 downloadgame(onlineitems).then(
                   function (value) {
                     var obj = (jsonData);
-                    obj['items'].push({
-                      "name": sanitizedgamename,
-                      "feed": sanitizeHtml(onlineitems.feed),
-                      "Version": sanitizeHtml(onlineitems.Version),
-                      "developer": sanitizeddevname,
-                      "banner": sanitizeHtml(onlineitems.banner),
-                      "dir": configDir + "/games/" + sanitizedgamename + gameextension,
-                      "type": sanitizeHtml(onlineitems.type)
-                    });
+                    obj['items'].push(itemToAppend);
                     jsonStr = JSON.stringify(obj, null, "\t");
                     const gameListDir = configDir + "/games.json";
                     fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });

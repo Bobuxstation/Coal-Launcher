@@ -216,8 +216,7 @@
         <a href="#emulatorsettings"><button>Emulator settings</button></a>
         <a href="#extensionconfig"><button>Manage extensions</button></a>
         <a href="#achievementsection"><button>Manage achievements</button></a>
-        <a href="#sendfeedbacktitle"><button>Send feedback</button></a>
-        <a href="#launchevertitle"><button>Launcher version</button></a>
+        <a href="#launchevertitle"><button>About</button></a>
       </div>
     </div>
 
@@ -323,33 +322,22 @@
         </div><br>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
-          <details>
-            <summary>
-              <h2 id="sendfeedbacktitle">Send feedback</h2>
-              <p>If you have any bugs to report or ideas to add, leave a message!</p>
-            </summary>
-
-            <br>
-            <form action="https://postmail.invotes.com/send" method="post" id="email_form">
-
-              <input type="text" name="subject" placeholder="Subject" class="input" /><br>
-              <textarea name="text" placeholder="Message" class="textarea" style="height: 200px;"></textarea><br>
-              <input type="hidden" name="access_token" value="v4olibghzwt6tl409ovonh5e" />
-              <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
-              <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
-              <input id="submit_form" type="submit" value="Send ( Powered By PostMail! )" class="input" />
-            </form>
-          </details>
-        </div><br>
-
-        <div class="gamedetails" id="gamedetails" style="display: block;">
-          <h2 id="launchevertitle">Launcher version</h2>
+          <h2 id="launchevertitle">About</h2>
           <p id="versioninfo">
             Please Wait...
           </p>
+          <br>
           <p id="updateinfo">
-            Checking for updates...
+            <i class="fa-solid fa-spinner fa-spin"></i> Checking for updates...
           </p>
+          <br>
+          <a onclick="redirect('https://github.com/Bobuxstation/Coal-Launcher/issues/new')">
+            <i class="fa-solid fa-up-right-from-square"></i> Submit an issue
+          </a>
+          <br>
+          <a onclick="redirect('https://github.com/Bobuxstation/Coal-Launcher/wiki')">
+            <i class="fa-solid fa-up-right-from-square"></i> View documentation
+          </a>
         </div>
       </div>
     </div>

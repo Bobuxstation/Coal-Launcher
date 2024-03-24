@@ -128,7 +128,7 @@ tabList.extensions.forEach(element => {
     let webview = document.createElement("webview");
     webview.setAttribute("src", element.URL);
     webview.setAttribute("preload", './scripts/extensionPreload.js');
-    webview.style.height = "calc(100vh - 45px)"
+    webview.style.height = "calc(100vh - 47px)"
 
     tab.appendChild(webview);
 

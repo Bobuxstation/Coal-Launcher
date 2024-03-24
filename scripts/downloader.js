@@ -68,6 +68,7 @@ function addedcollection(gameName) {
   document.getElementById("downloads").style.display = "block";
   document.getElementById("downloadsNavBtn").ariaSelected = "true";
 };
+
 function extensionadded(gameName) {
   if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) { } else {
     let downloadprogress = document.createElement("p");

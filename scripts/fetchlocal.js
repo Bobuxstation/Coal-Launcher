@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const { electron, ipcRenderer } = require('electron');
 const sudo = require('sudo-prompt');
 console.log(configDir);
+
 let jsonData = require(configDir + '/games.json');
 var lastGameBackground;
 
@@ -91,6 +92,7 @@ function launchHTML(dir, banner, name) {
         HTMLChildWindow(dir, banner, name)
     };
 }
+
 function HTMLChildWindow(dir, banner, name) {
     const newWindow = new remote.BrowserWindow({
         icon: "./assets/logo.png",
@@ -102,6 +104,10 @@ function HTMLChildWindow(dir, banner, name) {
             nodeIntegration: true,
             contextIsolation: false
         }
+    });
+
+    newWindow.setAppDetails({
+        appId: name
     });
 
     // Construct the URL
@@ -129,6 +135,7 @@ function launchSWF(dir, banner, name) {
         FlashChildWindow(dir, banner, name)
     };
 }
+
 function FlashChildWindow(dir, banner, name) {
     const newWindow = new remote.BrowserWindow({
         icon: "./assets/logo.png",
@@ -140,6 +147,10 @@ function FlashChildWindow(dir, banner, name) {
             nodeIntegration: true,
             contextIsolation: false
         }
+    });
+
+    newWindow.setAppDetails({
+        appId: name
     });
 
     // Construct the URL

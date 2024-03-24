@@ -15,7 +15,7 @@ ipcMain.on('add-game', (event, data) => {
                 "type": data.type
             });
         } else {
-            obj['items'].push({ 
+            obj['items'].push({
                 "name": data.name,
                 "feed": data.feed,
                 "Version": data.ver,
@@ -40,16 +40,16 @@ ipcMain.on('add-provider', (event, data) => {
     if (data.name && data.JSONDir) {
         var obj = (gameProviderList);
 
-        obj['items'].push({ 
-            "name": data.name, 
+        obj['items'].push({
+            "name": data.name,
             "JSONDir": data.JSONDir
         });
 
         jsonStr = JSON.stringify(obj, null, "\t");
         fs.writeFile(configDir + '/gameProviders.json', jsonStr, (err) => {
-          if (err) {
-            console.log(err);
-          }
+            if (err) {
+                console.log(err);
+            }
         });
     }
 });
@@ -57,26 +57,26 @@ ipcMain.on('add-provider', (event, data) => {
 ipcMain.on('new-medal', (event, data) => {
     if (data.game && data.title && data.desc && data.banner) {
         var obj = (achievementsList);
-        var achievementToAdd = { 
-            "game": data.game, 
+        var achievementToAdd = {
+            "game": data.game,
             "title": data.title,
             "desc": data.desc,
             "banner": data.banner
         }
 
         if (achievementsList.items.find(
-            obj => obj.game === data.game && 
-            obj.title === data.title && 
-            obj.desc === data.desc 
-            && obj.banner === data.banner
-            )) return;
+            obj => obj.game === data.game &&
+                obj.title === data.title &&
+                obj.desc === data.desc
+                && obj.banner === data.banner
+        )) return;
         obj['items'].push(achievementToAdd);
 
         jsonStr = JSON.stringify(obj, null, "\t");
         fs.writeFile(configDir + '/achievements.json', jsonStr, (err) => {
-          if (err) {
-            console.log(err);
-          }
+            if (err) {
+                console.log(err);
+            }
         });
         loadAchievements("")
     }
