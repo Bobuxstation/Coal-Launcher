@@ -1,6 +1,17 @@
 //load dependencies
 const Downloader = require("nodejs-file-downloader");
 
+//another code stolen from stackoverflow
+function formatSizeUnits(bytes) {
+  if (bytes >= 1073741824) { bytes = (bytes / 1073741824).toFixed(2) + " GB"; }
+  else if (bytes >= 1048576) { bytes = (bytes / 1048576).toFixed(2) + " MB"; }
+  else if (bytes >= 1024) { bytes = (bytes / 1024).toFixed(2) + " KB"; }
+  else if (bytes > 1) { bytes = bytes + " bytes"; }
+  else if (bytes == 1) { bytes = bytes + " byte"; }
+  else { bytes = "0 bytes"; }
+  return bytes;
+}
+
 async function downloadgame(game) {
   //Check the type of the game
   if (game.type == "html5" || game.type === "undefined") {
@@ -34,7 +45,7 @@ async function downloadgame(game) {
       document.getElementById(sanitizeHtml(game.name)).innerHTML = "<h3>" + sanitizeHtml(game.name) + "</h3>" + "<p>" + error + "</p>";
     },
     onProgress: function (percentage, chunk, remainingSize) {
-      let downloadprogres = (Math.round(percentage) + "%. " + remainingSize + " Bytes Left");
+      let downloadprogres = (Math.round(percentage) + "%. " + formatSizeUnits(remainingSize) + " Left");
       console.log(downloadprogres);
       document.getElementById(sanitizeHtml(game.name)).innerHTML = "<h3>" + sanitizeHtml(game.name) + "</h3>" + "<p>" + downloadprogres + "</p>" + "<progress class='progress' value='" + Math.round(percentage) + "' max='100'></progress>";
     },
@@ -72,7 +83,7 @@ function addedcollection(gameName) {
 function extensionadded(gameName) {
   if (document.getElementById('downloadprogress').innerHTML.includes(gameName)) { } else {
     let downloadprogress = document.createElement("p");
-    downloadprogress.innerHTML = "<h3>" + gameName + "</h3>" + "<p>Theme/Extension saved! restart launcher to see changes.</p>";
+    downloadprogress.innerHTML = "<h3>" + gameName + "</h3>" + "<p>Theme/Extension/Repository has been saved! Restart launcher to see changes.</p>";
     downloadprogress.id = gameName
     downloadprogress.className = "downloadinfo"
     document.getElementById('downloadprogress').appendChild(downloadprogress);

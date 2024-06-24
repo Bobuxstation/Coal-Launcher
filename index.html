@@ -42,7 +42,7 @@
     </a>
     <a id="optionbtn" class="navbtn" role="tab" aria-controls="options">
       <i class="fa-solid fa-gear"></i>
-      <span>Options</span>
+      <span>Settings</span>
     </a>
     <a id="detailbtn" class="navbtn" role="tab" aria-controls="gamedetail">
       <span>Details</span>
@@ -91,7 +91,8 @@
         <div id="execonly">
           <button id="createDesktopShortcut"><i class="fa-solid fa-desktop"></i> Create Shortcut</button>
           <button id="emulatePrompt"><i class="fa-solid fa-wine-glass"></i> Emulate It!</button>
-          <button id="editPrompt" style="margin-bottom: 5px;"><i class="fa-solid fa-edit"></i> Change launch arguments</button>
+          <button id="editPrompt" style="margin-bottom: 5px;"><i class="fa-solid fa-edit"></i> Change launch
+            arguments</button>
         </div>
         <button id="deletegame"><i class="fa-solid fa-trash"></i> Delete Game</button>
         <button id="showinfolder"><i class="fa-solid fa-folder-open"></i> Show In Folder</button>
@@ -113,15 +114,6 @@
     <div class="sidebar">
       <div class="gamelist">
         <div id="myproviders" class="game">
-          <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i
-                class="fa-solid fa-plus"></i> Add a
-              game</button></a>
-          <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
-                class="fa-solid fa-folder-plus"></i> Add
-              a repository</button></a>
-          <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
-              your games</button></a>
-          <hr>
         </div>
       </div>
     </div>
@@ -151,13 +143,15 @@
           <a onclick="document.getElementById('optionbtn').click()" href="#achievementsection"><button><i
                 class="fa-solid fa-award"></i> Manage achievements</button></a>
           <hr>
-          <a onclick="loadAchievements('')"><button><i class="fa-solid fa-refresh"></i> Refresh achievements</button></a>
+          <a onclick="loadAchievements('')"><button><i class="fa-solid fa-refresh"></i> Refresh
+              achievements</button></a>
         </div>
       </div>
     </div>
 
     <div class="sidebar2" style="overflow: scroll; overflow-x: hidden;">
-      <input class="input" onchange="loadAchievements(this.value)" placeholder="Search achievements..." type="search" style="margin-bottom: 0;">
+      <input class="input" onchange="loadAchievements(this.value)" placeholder="Search achievements..." type="search"
+        style="margin-bottom: 0;">
       <div id="myachievements">
       </div>
     </div>
@@ -176,9 +170,9 @@
           <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
                 class="fa-solid fa-folder-plus"></i> Add
               a repository</button></a>
-          <a href="gamesubmitter.html" target="_blank"><button><i class="fa-solid fa-circle-question"></i> Submitting
-              your games</button></a>
           <hr>
+          <a onclick="document.getElementById('marketbtn').click()" href="#launcherconfigtitle"><button><i
+                class="fa-solid fa-arrow-left"></i> Return to market</button></a>
         </div>
       </div>
     </div>
@@ -245,7 +239,7 @@
             <button onclick="add()" style="cursor: pointer;" id="addgame" class="button">Add to my games</button>
             <button onclick="editjson()" style="cursor: pointer;" class="button">Edit collection JSON file</button>
           </details>
-        </div><br>
+        </div>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
@@ -262,7 +256,7 @@
             <button onclick="editproviderjson()" style="cursor: pointer;" class="button">Edit Repositories JSON
               file</button>
           </details>
-        </div><br>
+        </div>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
@@ -277,7 +271,7 @@
             <button onclick="settheme()" style="cursor: pointer;" id="applytheme" class="button">Apply Theme</button>
             <button onclick="openThemeFolder()" style="cursor: pointer;" class="button">Open Themes Folder</button>
           </details>
-        </div><br>
+        </div>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
@@ -291,7 +285,7 @@
             <button onclick="setEmulator()" style="cursor: pointer;" id="applyEmulator" class="button">Apply
               Emulator</button>
           </details>
-        </div><br>
+        </div>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
@@ -305,7 +299,7 @@
               extensions
               JSON file</button>
           </details>
-        </div><br>
+        </div>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <details>
@@ -319,7 +313,7 @@
               achievements
               JSON file</button>
           </details>
-        </div><br>
+        </div>
 
         <div class="gamedetails" id="gamedetails" style="display: block;">
           <h2 id="launchevertitle">About</h2>
@@ -336,7 +330,11 @@
           </a>
           <br>
           <a onclick="redirect('https://github.com/Bobuxstation/Coal-Launcher/wiki')">
-            <i class="fa-solid fa-up-right-from-square"></i> View documentation
+            <i class="fa-solid fa-up-right-from-square"></i> User documentation
+          </a>
+          <br>
+          <a onclick="redirect('https://github.com/Bobuxstation/Coal-Launcher/wiki/For-Developers')">
+            <i class="fa-solid fa-up-right-from-square"></i> Developer documentation
           </a>
         </div>
       </div>

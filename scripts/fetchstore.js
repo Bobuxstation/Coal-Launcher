@@ -25,7 +25,6 @@ function loadMarket(jsonURL, jsonName, search) {
     .then((res) => { return res.json(); })
     .then((data) =>
       data.items.forEach(onlineitems => {
-
         //Create game card
         let btn = document.createElement("div");
 
@@ -33,6 +32,14 @@ function loadMarket(jsonURL, jsonName, search) {
         let sanitizedgamename = sanitizeHtml(onlineitems.name);
         let sanitizeddevname = sanitizeHtml(onlineitems.developer);
         let sanitizedgameinfo = sanitizeHtml(onlineitems.info);
+        let cutgameinfo = ``
+
+        //cut game description if too long
+        if (sanitizedgameinfo.length > 128) {
+          cutgameinfo = sanitizedgameinfo.slice(0, 128) + '...';
+        } else {
+          cutgameinfo = sanitizedgameinfo
+        }
 
         //set game type icons
         if (onlineitems.type == "html5" || onlineitems.type === "undefined") {
@@ -47,6 +54,8 @@ function loadMarket(jsonURL, jsonName, search) {
           gameextensionicon = '<i class="fa-solid fa-puzzle-piece"></i> '
         } else if (onlineitems.type == "theme") {
           gameextensionicon = '<i class="fa-solid fa-paintbrush"></i> '
+        } else if (onlineitems.type == "repository") {
+          gameextensionicon = '<i class="fa-solid fa-folder"></i> '
         }
 
         //set game extension
@@ -63,7 +72,7 @@ function loadMarket(jsonURL, jsonName, search) {
           "</div>" + "<div class='gamecard'>" +
           "<h3>" + gameextensionicon + sanitizedgamename + "</h3>" +
           `<p>${sanitizeddevname}</p>` +
-          `<br><p title="${sanitizedgameinfo}">` + sanitizedgameinfo.slice(0, 128) + "...</p></div>";
+          `<br><p title="${sanitizedgameinfo}">` + cutgameinfo + "</p></div>";
         btn.className = "STOREGAME";
         let banner = onlineitems.banner;
         btn.style.backgroundImage = "url(" + banner + ")";
@@ -73,6 +82,7 @@ function loadMarket(jsonURL, jsonName, search) {
           document.getElementById('downloadname').innerText = sanitizedgamename;
           document.getElementById('downloaddev').innerText = sanitizeddevname;
           document.getElementById('downloaddesc').innerText = sanitizedgameinfo;
+
           lastDownloadsBackground = banner;
           document.getElementById('detailbtn').click();
 
@@ -89,88 +99,110 @@ function loadMarket(jsonURL, jsonName, search) {
             clickSound.volume = 0.1;
             clickSound.play()
 
-            //adds game to the collection without downloading if it is a link
-            if (onlineitems.type == "link") {
-              let itemToAppend = {
-                "name": sanitizedgamename,
-                "feed": sanitizeHtml(onlineitems.feed),
-                "Version": sanitizeHtml(onlineitems.Version),
-                "developer": sanitizeddevname,
-                "banner": sanitizeHtml(onlineitems.banner),
-                "dir": onlineitems.download,
-                "type": "html5"
-              }
-              let isDuplicate = jsonData.items.some(item => {
-                return JSON.stringify(item) === JSON.stringify(itemToAppend);
-              });
-              if (isDuplicate) {
-                addedcollection(sanitizedgamename)
-              } else {
-                var obj = (jsonData);
-                obj['items'].push(itemToAppend);
-                jsonStr = JSON.stringify(obj, null, "\t");
-                const gameListDir = configDir + "/games.json";
-                fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
-                addedcollection(sanitizedgamename)
-                loadCollection()
-              };
-              //installs the game as an extension if it is an extension
-            } else if (onlineitems.type == "extension") {
-              let itemToAppend = {
-                "name": sanitizedgamename,
-                "icon": onlineitems.icon,
-                "URL": onlineitems.link,
-              }
-              let isDuplicate = tabList.extensions.some(item => {
-                return JSON.stringify(item) === JSON.stringify(itemToAppend);
-              });
-              if (isDuplicate) {
-                extensionadded(sanitizedgamename)
-              } else {
-                var obj = (tabList);
-                obj['extensions'].push(itemToAppend);
-                jsonStr = JSON.stringify(obj, null, "\t");
-                const gameListDir = configDir + "/extensions.json";
-                fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
-                extensionadded(sanitizedgamename)
-              };
+            switch (onlineitems.type) {
+              case "link":
+                // Adds game to the collection without downloading if it is a link
+                let linkItemToAppend = {
+                  "name": sanitizedgamename,
+                  "feed": sanitizeHtml(onlineitems.feed),
+                  "Version": sanitizeHtml(onlineitems.Version),
+                  "developer": sanitizeddevname,
+                  "banner": sanitizeHtml(onlineitems.banner),
+                  "dir": onlineitems.download,
+                  "type": "html5"
+                };
 
-              //only download it to the themes folder if its a theme
-            } else if (onlineitems.type == "theme") {
-              downloadFileToThemeFolder(onlineitems).then(
-                function (value) {
-                  extensionadded(sanitizedgamename)
+                if (jsonData.items.some(item => JSON.stringify(item) === JSON.stringify(linkItemToAppend))) {
+                  addedcollection(sanitizedgamename);
+                } else {
+                  var obj = jsonData;
+                  obj['items'].push(linkItemToAppend);
+                  jsonStr = JSON.stringify(obj, null, "\t");
+                  const gameListDir = configDir + "/games.json";
+                  fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+
+                  addedcollection(sanitizedgamename);
+                  loadCollection();
                 }
-              )
-            } else {
-              //Check if game exists
-              let itemToAppend = {
-                "name": sanitizedgamename,
-                "feed": sanitizeHtml(onlineitems.feed),
-                "Version": sanitizeHtml(onlineitems.Version),
-                "developer": sanitizeddevname,
-                "banner": sanitizeHtml(onlineitems.banner),
-                "dir": configDir + "/games/" + sanitizedgamename + gameextension,
-                "type": sanitizeHtml(onlineitems.type)
-              }
-              let isDuplicate = jsonData.items.some(item => {
-                return JSON.stringify(item) === JSON.stringify(itemToAppend);
-              });
-              if (isDuplicate) {
-                console.log('game exists! updating html file...')
-                downloadgame(onlineitems);
-              } else {
-                downloadgame(onlineitems).then(
-                  function (value) {
-                    var obj = (jsonData);
-                    obj['items'].push(itemToAppend);
+                break;
+
+              case "repository":
+                // Installs the game as a repository if it is a repository
+                let repoItemToAppend = {
+                  "name": sanitizedgamename,
+                  "JSONDir": onlineitems.link,
+                };
+
+                if (gameProviderList.items.some(item => JSON.stringify(item) === JSON.stringify(repoItemToAppend))) {
+                  extensionadded(sanitizedgamename);
+                  loadRepositories()
+                } else {
+                  var obj = gameProviderList;
+                  obj['items'].push(repoItemToAppend);
+                  jsonStr = JSON.stringify(obj, null, "\t");
+                  const gameListDir = configDir + "/gameProviders.json";
+                  fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+
+                  extensionadded(sanitizedgamename);
+                  loadRepositories()
+                }
+                break;
+
+              case "extension":
+                // Installs the game as an extension if it is an extension
+                let extensionItemToAppend = {
+                  "name": sanitizedgamename,
+                  "icon": onlineitems.icon,
+                  "URL": onlineitems.link,
+                };
+
+                if (tabList.extensions.some(item => JSON.stringify(item) === JSON.stringify(extensionItemToAppend))) {
+                  extensionadded(sanitizedgamename);
+                } else {
+                  var obj = tabList;
+                  obj['extensions'].push(extensionItemToAppend);
+                  jsonStr = JSON.stringify(obj, null, "\t");
+                  const gameListDir = configDir + "/extensions.json";
+                  fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
+
+                  extensionadded(sanitizedgamename);
+                }
+                break;
+
+              case "theme":
+                // Only download it to the themes folder if it's a theme
+                downloadFileToThemeFolder(onlineitems).then(function () {
+                  extensionadded(sanitizedgamename);
+                });
+                break;
+
+              default:
+                // Check if game exists
+                let defaultItemToAppend = {
+                  "name": sanitizedgamename,
+                  "feed": sanitizeHtml(onlineitems.feed),
+                  "Version": sanitizeHtml(onlineitems.Version),
+                  "developer": sanitizeddevname,
+                  "banner": sanitizeHtml(onlineitems.banner),
+                  "dir": configDir + "/games/" + sanitizedgamename + gameextension,
+                  "type": sanitizeHtml(onlineitems.type)
+                };
+
+                if (jsonData.items.some(item => JSON.stringify(item) === JSON.stringify(defaultItemToAppend))) {
+                  console.log('game exists! updating html file...');
+                  downloadgame(onlineitems);
+                } else {
+                  downloadgame(onlineitems).then(function (value) {
+                    var obj = jsonData;
+                    obj['items'].push(defaultItemToAppend);
                     jsonStr = JSON.stringify(obj, null, "\t");
                     const gameListDir = configDir + "/games.json";
                     fs.writeFile(gameListDir, jsonStr, (err) => { if (err) { console.log(err); } });
-                    loadCollection()
-                  },
-                );
-              };
+
+                    loadCollection();
+                  });
+                }
+                break;
             }
           }
         };
@@ -187,28 +219,39 @@ function loadMarket(jsonURL, jsonName, search) {
 };
 
 //Show game providers
-gameProviderList.items.forEach((items, i) => {
-  let btn = document.createElement("button");
-  btn.textContent = items.name;
-  btn.onclick = function () {
-    let clickSound = new Audio("assets/click_002.ogg")
-    clickSound.volume = 0.1;
-    clickSound.play();
+function loadRepositories(first) {
+  providerList.innerHTML = `
+    <a onclick="document.getElementById('optionbtn').click()" href="#addgametitle"><button><i
+          class="fa-solid fa-plus"></i> Add a game</button></a>
+    <a onclick="document.getElementById('optionbtn').click()" href="#launcherconfigtitle"><button><i
+          class="fa-solid fa-folder-plus"></i> Add a repository</button></a>
+    <hr>
+    <a onclick="loadRepositories()"><button><i class="fa-solid fa-arrows-rotate"></i> Refresh repositories</button></a>
+  `
+  gameProviderList.items.forEach((items, i) => {
+    let btn = document.createElement("button");
+    btn.textContent = items.name;
+    btn.onclick = function () {
+      let clickSound = new Audio("assets/click_002.ogg")
+      clickSound.volume = 0.1;
+      clickSound.play();
 
-    document.getElementById('playbutton').value = "";
+      document.getElementById('playbutton').value = "";
 
-    loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);
-  };
-  providerList.appendChild(btn);
+      loadMarket(items.JSONDir, items.name, document.getElementById('playbutton').value);
+    };
+    providerList.appendChild(btn);
 
-  if (i == 0) btn.click();
-});
+    if (i == 0 && first) btn.click();
+  });
+}
+loadRepositories(true)
 
 function loadAchievements(search) {
   document.getElementById("myachievements").innerHTML = ""
 
   if (achievementsList.items.length == 0) {
-    document.getElementById("myachievements").innerHTML = '<h4 style="text-align: center;">You have no achievements!</h4>'
+    document.getElementById("myachievements").innerHTML = '<br><h4 style="text-align: center;">You have no achievements!</h4>'
   }
 
   achievementsList.items.forEach(function (onlineitems) {

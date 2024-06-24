@@ -88,16 +88,12 @@ function defaultprovider() {
         "JSONDir": "https://bobuxstation.github.io/Coal-Web/games.json"
       },
       {
-        "name": "Community Games",
-        "JSONDir": "https://bobuxstation.github.io/Coal-Web/communitygames.json"
+        "name": "Community Repositories",
+        "JSONDir": "https://bobuxstation.github.io/Coal-Web/repositories.json"
       },
       {
-        "name": "Extensions",
+        "name": "Extensions & Themes",
         "JSONDir": "https://bobuxstation.github.io/Coal-Web/extensions.json"
-      },
-      {
-          "name": "Emupedia",
-          "JSONDir": "https://mobiz-advanced-technologies.github.io/Mobiz-Advanced-Coal-Launcher-Repositories/emupedia/index.json"
       }
     ],
   };
